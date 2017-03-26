@@ -1,0 +1,11 @@
+@import "../../../styles";
+:host {
+  @extend .navbar;
+  @extend .navbar-inverse;
+  @extend .bg-inverse;
+}
+
+.navbar-brand {
+  font-size: $font-size-h3;
+  font-family: $brand-font-display;
+}
