@@ -1,4 +1,15 @@
 @import "../../styles.scss";
+:host {
+  &>.container {
+    @extend .d-flex;
+    @extend .justify-content-around;
+    &>* {
+      @extend .m-2;
+      width: 33%;
+    }
+  }
+}
+
 .jumbotron {
   @extend .jumbotron-fluid;
   background-color: mix($brand-primary, $white);
