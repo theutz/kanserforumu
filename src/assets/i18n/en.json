@@ -1,0 +1,17 @@
+{
+  "BRAND": {
+    "SITE_NAME": "Cancer Forum"
+  },
+  "NAVBAR": {
+
+  },
+  "FOOTER": {
+    "COPYRIGHT": "Copyright &copy; 2017. All Rights Reserved."
+  },
+  "HOME": {
+    "HERO": {
+      "TITLE": "Find hope together",
+      "TEXT": "You don't have to face cancer alone."
+    }
+  }
+}
