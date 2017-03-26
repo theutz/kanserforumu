@@ -1,0 +1,10 @@
+@import "../../../styles";
+:host {
+  @extend .d-flex;
+  @extend .justify-content-center;
+  @extend .fixed-bottom;
+}
+
+p {
+  font-size: $font-size-base * .8;
+}

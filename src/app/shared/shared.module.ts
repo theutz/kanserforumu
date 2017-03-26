@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -9,11 +10,13 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule
   ],
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   exports: [
     NavbarComponent,
-    TranslateModule
+    TranslateModule,
+    FooterComponent
   ]
 })
 export class SharedModule { }

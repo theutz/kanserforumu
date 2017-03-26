@@ -1,4 +1,10 @@
 {
+  "BRAND": {
+    "SITE_NAME": "Cancer Forum"
+  },
+  "NAVBAR": {
+
+  },
   "HOME": {
     "HERO": {
       "TITLE": "Find hope together",
