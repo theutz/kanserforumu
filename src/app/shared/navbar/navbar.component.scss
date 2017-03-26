@@ -2,7 +2,7 @@
 :host {
   @extend .navbar;
   @extend .navbar-inverse;
-  @extend .bg-inverse;
+  @extend .bg-primary;
 }
 
 .navbar-brand {
