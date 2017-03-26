@@ -1,0 +1,9 @@
+@import "../../styles.scss";
+.jumbotron {
+  @extend .jumbotron-fluid;
+  background-color: mix($brand-primary, $white);
+  h1 {
+    @extend .display-1;
+    color: $brand-primary;
+  }
+}
