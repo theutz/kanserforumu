@@ -5,6 +5,9 @@
   "NAVBAR": {
 
   },
+  "FOOTER": {
+    "COPYRIGHT": "Copyright &copy; 2017. All Rights Reserved."
+  },
   "HOME": {
     "HERO": {
       "TITLE": "Find hope together",
