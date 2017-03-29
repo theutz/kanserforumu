@@ -3,10 +3,10 @@
   @extend .navbar;
   @extend .navbar-inverse;
   @extend .bg-primary;
-  @extend .sticky-top;
 }
 
 .navbar-brand {
-  font-size: $font-size-h3;
+  font-size: $font-size-h2;
   font-family: $brand-font-display;
+  color: $white;
 }

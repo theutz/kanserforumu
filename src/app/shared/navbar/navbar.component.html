@@ -1,6 +1,10 @@
 <div class="container">
-  <a href="#" class="navbar-brand">{{title}}</a>
-  <ul class="navbar-nav mr-auto">
-    <li></li>
-  </ul>
+  <a class="navbar-brand" routerLink="/home">{{title}}</a>
+  <div class="navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/forum">Forum</a>
+      </li>
+    </ul>
+  </div>
 </div>

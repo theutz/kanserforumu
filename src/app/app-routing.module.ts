@@ -8,10 +8,11 @@ import { ForumHomeComponent } from './forum/forum-home/forum-home.component';
     RouterModule.forRoot([
       {
         path: 'forum', component: ForumComponent, children: [
-          { path: '', component: ForumHomeComponent }
+          { path: '', component: ForumHomeComponent },
         ]
       },
-      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
+      { path: '', redirectTo: '/home', pathMatch: 'full' }
     ])
   ],
   exports: [RouterModule]

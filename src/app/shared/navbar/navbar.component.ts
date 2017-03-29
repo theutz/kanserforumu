@@ -1,8 +1,7 @@
 import { TranslationConfigService } from '../../services/translation-config.service';
 import { Subscription } from 'rxjs/Rx';
-import { OnDestroy } from '@angular/core/core';
 import { BrandingService } from '../../services/branding.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
