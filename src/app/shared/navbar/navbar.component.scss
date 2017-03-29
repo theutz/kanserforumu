@@ -1,7 +1,7 @@
 @import "../../../styles";
-:host {
-  @extend .navbar;
+.navbar {
   @extend .navbar-inverse;
+  @extend .navbar-toggleable-md;
   @extend .bg-primary;
 }
 
