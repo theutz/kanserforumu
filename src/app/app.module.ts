@@ -12,6 +12,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslationConfigService } from './services/translation-config.service';
 import { MissingTranslationHandler } from '@ngx-translate/core';
+import { CarouselModule } from 'ng2-bootstrap/carousel';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -28,6 +29,7 @@ export function HttpLoaderFactory(http: Http) {
     HttpModule,
     SharedModule,
     AppRoutingModule,
+    CarouselModule.forRoot(),
     TranslateModule.forRoot({
       missingTranslationHandler: {
         provide: MissingTranslationHandler,
