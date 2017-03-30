@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isCollapsed = true;
 
   private _titleSubscription: Subscription;
+  private _linkSubcription: Subscription;
 
   constructor(
     private _brand: BrandingService,
@@ -43,6 +44,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._titleSubscription.unsubscribe();
+    this._linkSubcription.unsubscribe();
   }
 
   private _setTitle() {
@@ -51,7 +53,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   private _setLinks() {
-    this._trans.get('NAVBAR.LINKS').subscribe(x => {
+    this._linkSubcription = this._trans.get('NAVBAR.LINKS').subscribe(x => {
       this.links.push({ title: x['HOME'], url: [''] });
       this.links.push({ title: x['FORUM'], url: ['/forum'] });
     })

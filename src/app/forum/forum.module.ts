@@ -10,12 +10,14 @@ import { ForumInfoComponent } from './forum-info/forum-info.component';
 import { DiscussionsListComponent } from './discussions-list/discussions-list.component';
 import { ForumSidebarComponent } from './forum-sidebar/forum-sidebar.component';
 import { CollapseModule } from 'ng2-bootstrap/collapse';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    CollapseModule
+    CollapseModule,
+    TranslateModule
   ],
   declarations: [ForumHomeComponent,
     ForumComponent,

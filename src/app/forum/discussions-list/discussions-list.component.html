@@ -1,3 +1,11 @@
-<p>
-  discussions-list works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">{{ 'DISCUSSIONS_LIST.TITLE' | translate }}</h2>
+  </div>
+  <ul class="discussions">
+    <li class="discussion" *ngFor="let discussion of discussions">
+      <h4 class="title">{{discussion.title}}</h4>
+      <p class="card-text">{{discussion.summary}}</p>
+    </li>
+  </ul>
+</div>
