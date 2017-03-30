@@ -11,8 +11,7 @@ import { ForumHomeComponent } from './forum/forum-home/forum-home.component';
           { path: '', component: ForumHomeComponent },
         ]
       },
-      { path: 'home', component: HomeComponent },
-      { path: '', redirectTo: '/home', pathMatch: 'full' }
+      { path: '', component: HomeComponent, pathMatch: 'full' },
     ])
   ],
   exports: [RouterModule]

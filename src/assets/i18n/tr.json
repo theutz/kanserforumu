@@ -7,6 +7,12 @@
       "TITLE": "Birlikte umult bul"
     }
   },
+  "NAVBAR": {
+    "LINKS": {
+      "HOME": "Ana sayfa",
+      "FORUM": "Forumu"
+    }
+  },
   "FOOTER": {
     "COPYRIGHT": "Telif hakkı 2017 Kanser Forumu. Her hakkı saklıdır."
   }
