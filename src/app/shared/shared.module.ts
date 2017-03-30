@@ -5,12 +5,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { CollapseModule } from 'ng2-bootstrap/collapse';
 
 @NgModule({
   imports: [
     CommonModule,
     TranslateModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CollapseModule
   ],
   declarations: [
     NavbarComponent,

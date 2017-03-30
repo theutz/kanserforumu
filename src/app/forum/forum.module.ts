@@ -9,12 +9,22 @@ import { ForumCategoriesComponent } from './forum-categories/forum-categories.co
 import { ForumInfoComponent } from './forum-info/forum-info.component';
 import { DiscussionsListComponent } from './discussions-list/discussions-list.component';
 import { ForumSidebarComponent } from './forum-sidebar/forum-sidebar.component';
+import { CollapseModule } from 'ng2-bootstrap/collapse';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    CollapseModule
   ],
-  declarations: [ForumHomeComponent, ForumComponent, ForumWelcomeComponent, ForumNavbarComponent, ForumCategoriesComponent, ForumInfoComponent, DiscussionsListComponent, ForumSidebarComponent]
+  declarations: [ForumHomeComponent,
+    ForumComponent,
+    ForumWelcomeComponent,
+    ForumNavbarComponent,
+    ForumCategoriesComponent,
+    ForumInfoComponent,
+    DiscussionsListComponent,
+    ForumSidebarComponent
+  ]
 })
 export class ForumModule { }
