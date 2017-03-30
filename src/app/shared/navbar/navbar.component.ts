@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs/Rx';
 import { BrandingService } from '../../services/branding.service';
 import { Component, OnInit, OnDestroy, HostBinding, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { CollapseDirective } from 'ng2-bootstrap/collapse';
 
 @Component({
   selector: 'app-navbar',
