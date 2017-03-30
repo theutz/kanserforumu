@@ -1,0 +1,4 @@
+@import "../../../styles.scss";
+app-forum-sidebar {
+  @extend .hidden-sm-down;
+}
