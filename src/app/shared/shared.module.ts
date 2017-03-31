@@ -11,7 +11,7 @@ import { FromNowPipe } from './from-now.pipe';
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule,
+    TranslateModule.forChild(),
     AppRoutingModule,
     CollapseModule
   ],

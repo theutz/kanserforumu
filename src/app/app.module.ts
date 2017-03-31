@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { AppMissingTranslationHandler } from './app-missing-translation-handler';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +11,6 @@ import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslationConfigService } from './services/translation-config.service';
 import { MissingTranslationHandler } from '@ngx-translate/core';
 import { CarouselModule } from 'ng2-bootstrap/carousel';
 import { ForumModule } from './forum/forum.module';
@@ -53,9 +53,11 @@ export function HttpLoaderFactory(http: Http) {
     }),
   ],
   providers: [
-    BrandingService,
-    TranslationConfigService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
+
+moment.locale('tr-tr');

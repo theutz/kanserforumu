@@ -1,6 +1,4 @@
-import { TranslationConfigService } from '../../services/translation-config.service';
 import { Subscription } from 'rxjs/Rx';
-import { BrandingService } from '../../services/branding.service';
 import { Component, OnInit, OnDestroy, HostBinding, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -18,8 +16,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private _linkSubcription: Subscription;
 
   constructor(
-    private _brand: BrandingService,
-    private _transConfig: TranslationConfigService,
     private _trans: TranslateService
   ) { }
 
@@ -48,8 +44,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   private _setTitle() {
-    this._titleSubscription = this._brand.siteName$
-      .subscribe(x => this.title = x);
+    this._titleSubscription = this._trans.get('BRAND.SITE_NAME').subscribe(x => this.title = x);
   }
 
   private _setLinks() {
