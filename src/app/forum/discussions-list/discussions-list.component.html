@@ -4,7 +4,7 @@
   </div>
   <ul class="discussions">
     <li class="discussion" *ngFor="let discussion of discussions | async">
-      <div class="d-flex justify-content-between">
+      <div class="title">
         <h5 class="title">{{discussion.title}}</h5>
         <small class="w-25 text-right">{{discussion.createdDate | fromNow }}</small>
       </div>

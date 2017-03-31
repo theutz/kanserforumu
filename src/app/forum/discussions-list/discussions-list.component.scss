@@ -15,7 +15,9 @@
 .discussion {
   @extend .list-group-item;
   &>.title {
-    @extend .mt-2;
-    @extend .mb-1;
+    @extend .d-flex;
+    @extend .w-100;
+    @extend .justify-content-between;
+    @extend .mb-2;
   }
 }
