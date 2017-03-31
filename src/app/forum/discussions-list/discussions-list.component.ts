@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { Discussion } from '../discussion';
+import { Discussion } from '../../services/discussion';
+import { DiscussionsService } from '../../services/discussions.service';
 
 @Component({
   selector: 'app-discussions-list',
@@ -10,13 +11,15 @@ import { Discussion } from '../discussion';
 export class DiscussionsListComponent implements OnInit {
   discussions: Discussion[] = [];
 
-  constructor() { }
+  constructor(
+    private _dis: DiscussionsService
+  ) { }
 
   ngOnInit() {
-    this._loadDummyDiscussions();
+    this._loadDiscussions();
   }
 
-  private _loadDummyDiscussions() {
+  private _loadDiscussions() {
     this.discussions = [
       {
         id: '1',
