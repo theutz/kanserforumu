@@ -14,6 +14,7 @@ import { TranslationConfigService } from './services/translation-config.service'
 import { MissingTranslationHandler } from '@ngx-translate/core';
 import { CarouselModule } from 'ng2-bootstrap/carousel';
 import { ForumModule } from './forum/forum.module';
+import { AngularFireModule } from 'angularfire2';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -31,6 +32,13 @@ export function HttpLoaderFactory(http: Http) {
     SharedModule,
     AppRoutingModule,
     ForumModule,
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyCQEZubfgXV-Als42XLneLT-DjS48ES4Ls',
+      authDomain: 'kanserforumu.firebaseapp.com',
+      databaseURL: 'https://kanserforumu.firebaseio.com',
+      storageBucket: 'kanserforumu.appspot.com',
+      messagingSenderId: '839522952482'
+    }),
     CarouselModule.forRoot(),
     TranslateModule.forRoot({
       missingTranslationHandler: {

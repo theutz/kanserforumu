@@ -3,9 +3,12 @@
     <h2 class="card-title">{{ 'DISCUSSIONS_LIST.TITLE' | translate }}</h2>
   </div>
   <ul class="discussions">
-    <li class="discussion" *ngFor="let discussion of discussions">
-      <h4 class="title">{{discussion.title}}</h4>
-      <p class="card-text">{{discussion.summary}}</p>
+    <li class="discussion" *ngFor="let discussion of discussions | async">
+      <div class="d-flex justify-content-between">
+        <h5 class="title">{{discussion.title}}</h5>
+        <small class="w-25 text-right">{{discussion.createdDate | fromNow }}</small>
+      </div>
+      <p class="card-text">{{discussion.description}}</p>
     </li>
   </ul>
 </div>

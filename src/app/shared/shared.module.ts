@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { CollapseModule } from 'ng2-bootstrap/collapse';
+import { FromNowPipe } from './from-now.pipe';
 
 @NgModule({
   imports: [
@@ -16,12 +17,14 @@ import { CollapseModule } from 'ng2-bootstrap/collapse';
   ],
   declarations: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    FromNowPipe
   ],
   exports: [
     NavbarComponent,
     TranslateModule,
-    FooterComponent
+    FooterComponent,
+    FromNowPipe
   ]
 })
 export class SharedModule { }

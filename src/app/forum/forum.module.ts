@@ -1,3 +1,5 @@
+import { SharedModule } from '../shared/shared.module';
+import { FromNowPipe } from '../pipes/from-now.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ForumHomeComponent } from './forum-home/forum-home.component';
@@ -18,19 +20,21 @@ import { DiscussionsService } from '../services/discussions.service'
     CommonModule,
     RouterModule,
     CollapseModule,
-    TranslateModule
+    TranslateModule,
+    SharedModule
   ],
-  declarations: [ForumHomeComponent,
+  declarations: [
+    ForumHomeComponent,
     ForumComponent,
     ForumWelcomeComponent,
     ForumNavbarComponent,
     ForumCategoriesComponent,
     ForumInfoComponent,
     DiscussionsListComponent,
-    ForumSidebarComponent
+    ForumSidebarComponent,
   ],
   providers: [
-    DiscussionsService
+    DiscussionsService,
   ]
 })
 export class ForumModule { }
