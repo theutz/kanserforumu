@@ -6,7 +6,7 @@
     <li class="discussion" *ngFor="let discussion of discussions | async">
       <div class="title">
         <h5 class="title">{{discussion.title}}</h5>
-        <small class="w-25 text-right">{{discussion.createdDate | fromNow }}</small>
+        <small class="w-25 text-right">{{discussion.createdDate | amTimeAgo }}</small>
       </div>
       <p class="card-text">{{discussion.description}}</p>
     </li>

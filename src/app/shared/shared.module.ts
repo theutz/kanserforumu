@@ -6,25 +6,25 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { CollapseModule } from 'ng2-bootstrap/collapse';
-import { FromNowPipe } from './from-now.pipe';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   imports: [
     CommonModule,
     TranslateModule.forChild(),
     AppRoutingModule,
-    CollapseModule
+    CollapseModule,
+    MomentModule
   ],
   declarations: [
     NavbarComponent,
     FooterComponent,
-    FromNowPipe
   ],
   exports: [
     NavbarComponent,
     TranslateModule,
     FooterComponent,
-    FromNowPipe
+    MomentModule
   ]
 })
 export class SharedModule { }
