@@ -11,6 +11,7 @@ import { DiscussionsListComponent } from './discussions-list/discussions-list.co
 import { ForumSidebarComponent } from './forum-sidebar/forum-sidebar.component';
 import { CollapseModule } from 'ng2-bootstrap/collapse';
 import { TranslateModule } from '@ngx-translate/core';
+import { DiscussionsService } from '../services/discussions.service'
 
 @NgModule({
   imports: [
@@ -27,6 +28,9 @@ import { TranslateModule } from '@ngx-translate/core';
     ForumInfoComponent,
     DiscussionsListComponent,
     ForumSidebarComponent
+  ],
+  providers: [
+    DiscussionsService
   ]
 })
 export class ForumModule { }
