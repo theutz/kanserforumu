@@ -14,6 +14,7 @@
       "FORUM": "Forum"
     },
     "WELCOME": "Hoş Geldiniz, {{ displayName }}!",
+    "LOGIN": "Giriş Yap",
     "LOGOUT": "Çıkış"
   },
   "DISCUSSIONS_LIST": {

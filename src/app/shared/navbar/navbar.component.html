@@ -12,14 +12,19 @@
           <a class="nav-link" [routerLink]="link.url">{{ link.title }}</a>
         </li>
       </ul>
-      <ng-container *ngIf="isLoggedIn()|async">
-        <span class="welcome-message">
+      <ng-container [ngSwitch]="isLoggedIn()|async">
+        <ng-container *ngSwitchCase="true">
+          <span class="welcome-message">
           {{ 'NAVBAR.WELCOME' | translate:nameParam }}
         </span>
-        <div class="profile-image">
-          <img [src]="currentUser.photoURL" [alt]="currentUser.displayName">
-        </div>
-        <button class="logout">{{ 'NAVBAR.LOGOUT' | translate }} <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+          <div class="profile-image">
+            <img [src]="currentUser.photoURL" [alt]="currentUser.displayName">
+          </div>
+          <button class="logout" (click)="logout()">{{ 'NAVBAR.LOGOUT' | translate }} <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        </ng-container>
+        <ng-container *ngSwitchCase="false">
+          <button (click)="login()" class="login">{{ 'NAVBAR.LOGIN' | translate }} <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+        </ng-container>
       </ng-container>
     </div>
   </nav>

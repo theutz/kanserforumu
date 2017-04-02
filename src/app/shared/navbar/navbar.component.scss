@@ -36,7 +36,8 @@
   }
 }
 
-.logout {
+.logout,
+.login {
   @extend .btn;
   @extend .btn-info;
 }

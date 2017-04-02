@@ -2,6 +2,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../services/auth.service';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
     private _auth: AuthService,
     private _toast: ToastsManager,
     vcr: ViewContainerRef,
-    private _translate: TranslateService
+    private _translate: TranslateService,
+    private _router: Router
   ) {
     this._toast.setRootViewContainerRef(vcr);
   }
@@ -29,10 +31,12 @@ export class LoginComponent implements OnInit {
       const titleKey = `${transBase}.SUCCESS.TITLE`;
       this._translate
         .get([bodyKey, titleKey], { provider: provider })
-        .subscribe(translation => this._toast.success(translation[bodyKey], translation[titleKey]));
+        .subscribe(translation => {
+          this._toast.success(translation[bodyKey], translation[titleKey]);
+          this._router.navigate(['/forum']);
+        });
     },
       err => {
-        // console.log(err);
         if (err.code === 'auth/account-exists-with-different-credential') {
           const bodyKey = `${transBase}.ERROR.WRONG_PROVIDER.TITLE`;
           const titleKey = `${transBase}.ERROR.WRONG_PROVIDER.BODY`;
