@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -11,6 +12,8 @@ import { ForumHomeComponent } from './forum/forum-home/forum-home.component';
           { path: '', component: ForumHomeComponent },
         ]
       },
+      { path: 'girisyap', component: LoginComponent },
+      { path: 'login', redirectTo: '/girisyap' },
       { path: '', component: HomeComponent, pathMatch: 'full' },
     ])
   ],

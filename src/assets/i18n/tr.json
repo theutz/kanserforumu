@@ -4,7 +4,7 @@
   },
   "HOME": {
     "HERO": {
-      "TITLE": "KanserForumu.com",
+      "TITLE": "Kanser Forumu",
       "TEXT": "Kanserle yalnız yüzleşmek zorunda değilsiniz"
     }
   },
@@ -16,6 +16,11 @@
   },
   "DISCUSSIONS_LIST": {
     "TITLE": "Forumlar"
+  },
+  "LOGIN": {
+    "CTA": {
+      "LOGIN": "Giriş Yap"
+    }
   },
   "FOOTER": {
     "COPYRIGHT": "Telif hakkı 2017 Kanser Forumu. Her hakkı saklıdır."

@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import * as moment from 'moment';
 import { AppMissingTranslationHandler } from './app-missing-translation-handler';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,7 @@ import { MissingTranslationHandler } from '@ngx-translate/core';
 import { CarouselModule } from 'ng2-bootstrap/carousel';
 import { ForumModule } from './forum/forum.module';
 import { AngularFireModule } from 'angularfire2';
+import { LoginComponent } from './login/login.component';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -23,6 +25,7 @@ export function HttpLoaderFactory(http: Http) {
   declarations: [
     AppComponent,
     HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ export function HttpLoaderFactory(http: Http) {
     }),
   ],
   providers: [
+    AuthService
   ],
   bootstrap: [
     AppComponent
