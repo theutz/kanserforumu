@@ -13,7 +13,8 @@
       "HOME": "Ana sayfa",
       "FORUM": "Forum"
     },
-    "WELCOME": "Hoş Geldiniz, {{ displayName }}!"
+    "WELCOME": "Hoş Geldiniz, {{ displayName }}!",
+    "LOGOUT": "Çıkış"
   },
   "DISCUSSIONS_LIST": {
     "TITLE": "Forumlar"

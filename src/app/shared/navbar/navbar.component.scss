@@ -35,3 +35,8 @@
     padding: 10px;
   }
 }
+
+.logout {
+  @extend .btn;
+  @extend .btn-info;
+}
