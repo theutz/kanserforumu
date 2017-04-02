@@ -1,3 +1,9 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <h1>{{ 'LOGIN.WELCOME' | translate }}</h1>
+  <h2>{{ 'LOGIN.PLEASE' | translate }}</h2>
+  <div class="buttons">
+    <button class="facebook" (click)="loginVia('facebook')">Facebook <i class="fa fa-facebook" aria-hidden="true"></i></button>
+    <button class="google" (click)="loginVia('google')">Google <i class="fa fa-google" aria-hidden="true"></i></button>
+    <button class="twitter" (click)="loginVia('twitter')">Twitter <i class="fa fa-twitter" aria-hidden="true"></i></button>
+  </div>
+</div>

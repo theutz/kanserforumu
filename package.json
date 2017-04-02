@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^4.0.1",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
@@ -28,8 +29,10 @@
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "firebase": "^3.7.4",
+    "font-awesome": "^4.7.0",
     "moment": "^2.0.0",
     "ng2-bootstrap": "^1.4.2",
+    "ng2-toastr": "^4.0.1",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },

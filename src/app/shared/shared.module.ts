@@ -7,6 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { CollapseModule } from 'ng2-bootstrap/collapse';
 import { MomentModule } from 'angular2-moment';
+import { ToastModule } from 'ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ import { MomentModule } from 'angular2-moment';
     TranslateModule.forChild(),
     AppRoutingModule,
     CollapseModule,
-    MomentModule
+    MomentModule,
+    ToastModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     NavbarComponent,
@@ -24,7 +28,9 @@ import { MomentModule } from 'angular2-moment';
     NavbarComponent,
     TranslateModule,
     FooterComponent,
-    MomentModule
+    MomentModule,
+    ToastModule,
+    BrowserAnimationsModule
   ]
 })
 export class SharedModule { }

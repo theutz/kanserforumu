@@ -18,8 +18,16 @@
     "TITLE": "Forumlar"
   },
   "LOGIN": {
+    "WELCOME": "Hoş Geldiniz",
+    "PLEASE": "Lütfen giriş yapın",
     "CTA": {
       "LOGIN": "Giriş Yap"
+    },
+    "NOTIFICATIONS": {
+      "SUCCESS": {},
+      "ERROR": {
+        "WRONG_PROVIDER": {}
+      }
     }
   },
   "FOOTER": {
