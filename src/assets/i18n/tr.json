@@ -12,7 +12,8 @@
     "LINKS": {
       "HOME": "Ana sayfa",
       "FORUM": "Forum"
-    }
+    },
+    "WELCOME": "Hoş Geldiniz, {{ displayName }}!"
   },
   "DISCUSSIONS_LIST": {
     "TITLE": "Forumlar"

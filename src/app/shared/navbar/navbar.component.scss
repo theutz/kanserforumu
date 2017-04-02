@@ -5,8 +5,33 @@
   @extend .bg-primary;
 }
 
+.navbar,
+.navbar-collapse,
+.container {
+  height: 70px;
+}
+
 .navbar-brand {
   font-size: $font-size-h2;
   font-family: $brand-font-display;
   color: $white;
+}
+
+.navbar-collapse {
+  @extend .d-flex;
+  @extend .align-items-center;
+}
+
+.welcome-message {
+  @extend .navbar-text;
+  @extend .mx-1;
+}
+
+.profile-image {
+  height: 100%;
+  img {
+    @extend .rounded-circle;
+    height: 100%;
+    padding: 10px;
+  }
 }

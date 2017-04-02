@@ -12,6 +12,14 @@
           <a class="nav-link" [routerLink]="link.url">{{ link.title }}</a>
         </li>
       </ul>
+      <ng-container *ngIf="isLoggedIn()|async">
+        <span class="welcome-message">
+          {{ 'NAVBAR.WELCOME' | translate:nameParam }}
+        </span>
+        <div class="profile-image">
+          <img [src]="currentUser.photoURL" [alt]="currentUser.displayName">
+        </div>
+      </ng-container>
     </div>
   </nav>
 </header>
