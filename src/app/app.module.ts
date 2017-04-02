@@ -3,7 +3,6 @@ import { AppMissingTranslationHandler } from './app-missing-translation-handler'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { BrandingService } from './services/branding.service';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';

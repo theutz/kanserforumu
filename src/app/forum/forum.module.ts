@@ -1,5 +1,4 @@
 import { SharedModule } from '../shared/shared.module';
-import { FromNowPipe } from '../pipes/from-now.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ForumHomeComponent } from './forum-home/forum-home.component';
