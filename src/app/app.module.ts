@@ -17,7 +17,7 @@ import { ForumModule } from './forum/forum.module';
 import { AngularFireModule } from 'angularfire2';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastModule } from 'ng2-toastr';
+import { ToastrModule } from 'ngx-toastr';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -37,7 +37,10 @@ export function HttpLoaderFactory(http: Http) {
     AppRoutingModule,
     ForumModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot(),
+    ToastrModule.forRoot({
+      closeButton: true,
+      positionClass: 'toast-bottom-full-width'
+    }),
     AngularFireModule.initializeApp({
       apiKey: 'AIzaSyCQEZubfgXV-Als42XLneLT-DjS48ES4Ls',
       authDomain: 'kanserforumu.firebaseapp.com',

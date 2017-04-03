@@ -1,10 +1,10 @@
-import { ToastsManager } from 'ng2-toastr';
 import { UserInfo } from '../../services/user-info';
 import { AuthService } from '../../services/auth.service';
 import { Observable, Subscription } from 'rxjs/Rx';
 import { Component, OnInit, ViewContainerRef, OnDestroy, HostBinding, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -25,12 +25,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     private _trans: TranslateService,
     private _auth: AuthService,
-    private _toast: ToastsManager,
+    private _toast: ToastrService,
     private _router: Router,
-    vcr: ViewContainerRef
-  ) {
-    this._toast.setRootViewContainerRef(vcr);
-  }
+  ) { }
 
   ngOnInit() {
     this._setTitle();

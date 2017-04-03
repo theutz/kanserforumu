@@ -7,8 +7,8 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { CollapseModule } from 'ng2-bootstrap/collapse';
 import { MomentModule } from 'angular2-moment';
-import { ToastModule } from 'ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     CollapseModule,
     MomentModule,
-    ToastModule,
+    ToastrModule,
     BrowserAnimationsModule
   ],
   declarations: [
@@ -29,7 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TranslateModule,
     FooterComponent,
     MomentModule,
-    ToastModule,
+    ToastrModule,
     BrowserAnimationsModule
   ]
 })
