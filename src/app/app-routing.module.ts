@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
@@ -8,7 +9,7 @@ import { ForumHomeComponent } from './forum/forum-home/forum-home.component';
   imports: [
     RouterModule.forRoot([
       {
-        path: 'forum', component: ForumComponent, children: [
+        path: 'forum', component: ForumComponent, canActivate: [AuthGuard], children: [
           { path: '', component: ForumHomeComponent },
         ]
       },

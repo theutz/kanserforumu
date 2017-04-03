@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { AuthService } from './services/auth.service';
 import * as moment from 'moment';
 import { AppMissingTranslationHandler } from './app-missing-translation-handler';
@@ -62,7 +63,8 @@ export function HttpLoaderFactory(http: Http) {
     }),
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [
     AppComponent

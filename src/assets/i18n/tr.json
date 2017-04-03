@@ -10,7 +10,7 @@
   },
   "NAVBAR": {
     "LINKS": {
-      "HOME": "Ana sayfa",
+      "HOME": "Ana Sayfa",
       "FORUM": "Forum"
     },
     "WELCOME": "Hoş Geldiniz, {{ displayName }}!",
