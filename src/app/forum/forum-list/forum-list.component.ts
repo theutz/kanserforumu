@@ -29,7 +29,6 @@ export class ForumListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._forumSub.unsubscribe();
   }
 
   isLoggedIn(): Observable<boolean> {
@@ -37,6 +36,10 @@ export class ForumListComponent implements OnInit, OnDestroy {
   }
 
   addForum() {
+  }
+
+  viewForum(id: string) {
+    this._router.navigate(['/forum', id]);
   }
 
   private _loadForums() {

@@ -4,7 +4,7 @@
     <button *ngIf="isLoggedIn()|async" (click)="addForum()" class="add-forum">{{ 'FORUMS_LIST.ADD_BUTTON' | translate}} <i class="fa fa-plus" aria-hidden="true"></i></button>
   </div>
   <ul class="forums">
-    <li class="forum" *ngFor="let forum of forums | async">
+    <li class="forum" (click)="viewForum(forum.$key)" *ngFor="let forum of forums | async">
       <div class="title">
         <h5 class="title">{{forum.title}}</h5>
         <small class="w-25 text-right">{{forum.createdDate | amTimeAgo }}</small>
