@@ -63,7 +63,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this._auth.logout()
       .subscribe(state => {
         if (state === 'success') {
-          const base = 'NAVBAR.LOGOUT',
+          const base = 'NAVBAR.NOTIFICATIONS.LOGOUT',
             title = `${base}.TITLE`,
             body = `${base}.BODY`;
           this._trans

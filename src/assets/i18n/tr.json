@@ -19,9 +19,15 @@
       "HOME": "Ana Sayfa",
       "FORUM": "Forum"
     },
-    "WELCOME": "Hoş Geldiniz, {{ displayName }}!",
+    "WELCOME": "Hoş Geldin, {{ displayName }}!",
     "LOGIN": "Giriş Yap",
-    "LOGOUT": "Çıkış"
+    "LOGOUT": "Çıkış",
+    "NOTIFICATIONS": {
+      "LOGOUT": {
+        "BODY": "Bir dahaki sefere görüşmek üzere!",
+        "TITLE": "Oturum kapatıldı"
+      }
+    }
   },
   "DISCUSSIONS_LIST": {
     "TITLE": "Forumlar"
@@ -33,9 +39,14 @@
       "LOGIN": "Giriş Yap"
     },
     "NOTIFICATIONS": {
-      "SUCCESS": {},
+      "SUCCESS": {
+        "TITLE": "Giriş başarılı",
+        "BODY": "Hoş geldin, {{ displayName }}!"
+      },
       "ERROR": {
-        "WRONG_PROVIDER": {}
+        "WRONG_PROVIDER": {
+          "TITLE": "Giriş yaparken hata oluştu"
+        }
       }
     }
   },
