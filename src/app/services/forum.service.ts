@@ -17,6 +17,10 @@ export class ForumService {
     return this._list;
   }
 
+  get(id: string): Observable<Forum> {
+    return this._af.database.object(`/forums/${id}`);
+  }
+
   create(forum: Forum): Observable<any> {
     const sub = new ReplaySubject<any>();
 
@@ -35,4 +39,5 @@ export class ForumService {
 
     return sub.asObservable();
   }
+
 }

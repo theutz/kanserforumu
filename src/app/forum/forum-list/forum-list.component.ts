@@ -37,7 +37,6 @@ export class ForumListComponent implements OnInit, OnDestroy {
   }
 
   addForum() {
-
   }
 
   private _loadForums() {

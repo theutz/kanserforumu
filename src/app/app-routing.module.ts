@@ -5,16 +5,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ForumComponent } from './forum/forum/forum.component';
 import { ForumListComponent } from './forum/forum-list/forum-list.component';
-import { DiscussionComponent } from './forum/discussion/discussion.component';
-import { DiscussionEditComponent } from './forum/discussion-edit/discussion-edit.component';
+import { ForumViewComponent } from './forum/forum-view/forum-view.component';
+import { ForumEditComponent } from './forum/forum-edit/forum-edit.component';
+import { ForumResolver } from './services/forum-resolver.service';
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
       {
         path: 'forum', component: ForumComponent, children: [
-          { path: ':id', component: DiscussionComponent },
-          { path: ':id/edit', component: DiscussionEditComponent },
+          { path: ':id', component: ForumViewComponent, resolve: ForumResolver },
+          { path: ':id/edit', component: ForumEditComponent, resolve: ForumResolver },
           { path: '', component: ForumListComponent },
         ]
       },

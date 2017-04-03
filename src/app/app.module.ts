@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxLoremIpsumModule, NgxLoremIpsumService } from 'ngx-lorem-ipsum';
+import { ForumResolver } from './services/forum-resolver.service';
 
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
@@ -66,7 +67,8 @@ export function HttpLoaderFactory(http: Http) {
   providers: [
     AuthService,
     AuthGuard,
-    NgxLoremIpsumService
+    NgxLoremIpsumService,
+    ForumResolver
   ],
   bootstrap: [
     AppComponent
