@@ -1,7 +1,7 @@
 import { SharedModule } from '../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ForumHomeComponent } from './forum-home/forum-home.component';
+import { ForumListComponent } from './forum-list/forum-list.component';
 import { ForumComponent } from './forum/forum.component';
 import { RouterModule } from '@angular/router';
 import { ForumWelcomeComponent } from './forum-welcome/forum-welcome.component';
@@ -12,7 +12,9 @@ import { DiscussionsListComponent } from './discussions-list/discussions-list.co
 import { ForumSidebarComponent } from './forum-sidebar/forum-sidebar.component';
 import { CollapseModule } from 'ng2-bootstrap/collapse';
 import { TranslateModule } from '@ngx-translate/core';
-import { DiscussionsService } from '../services/discussions.service'
+import { DiscussionsService } from '../services/discussions.service';
+import { DiscussionComponent } from './discussion/discussion.component';
+import { DiscussionEditComponent } from './discussion-edit/discussion-edit.component'
 
 @NgModule({
   imports: [
@@ -23,7 +25,7 @@ import { DiscussionsService } from '../services/discussions.service'
     SharedModule
   ],
   declarations: [
-    ForumHomeComponent,
+    ForumListComponent,
     ForumComponent,
     ForumWelcomeComponent,
     ForumNavbarComponent,
@@ -31,6 +33,8 @@ import { DiscussionsService } from '../services/discussions.service'
     ForumInfoComponent,
     DiscussionsListComponent,
     ForumSidebarComponent,
+    DiscussionComponent,
+    DiscussionEditComponent,
   ],
   providers: [
     DiscussionsService,

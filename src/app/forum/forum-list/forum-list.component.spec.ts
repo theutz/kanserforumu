@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ForumHomeComponent } from './forum-home.component';
+import { ForumHomeComponent } from './forum-list.component';
 
 describe('ForumHomeComponent', () => {
   let component: ForumHomeComponent;
@@ -8,9 +8,9 @@ describe('ForumHomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ForumHomeComponent ]
+      declarations: [ForumHomeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
