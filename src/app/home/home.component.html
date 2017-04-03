@@ -1,16 +1,11 @@
 <carousel>
-  <slide>
-    <img class="img-fluid" src="/assets/father-and-child-on-dock.jpg" alt="Father and daughter on dock">
-    <div class="carousel-caption">
-      <h1>{{ 'HOME.HERO.TITLE' | translate }}</h1>
-      <p class="lead">{{ 'HOME.HERO.TEXT' | translate }}</p>
+  <slide *ngFor="let slide of slides">
+    <div class="img-holder">
+      <img [src]="slide['PHOTO_URL']" [alt]="slide['TITLE']">
     </div>
-  </slide>
-  <slide>
-    <img class="img-fluid" src="/assets/istanbul-sunset.jpg" alt="Father and daughter on dock">
     <div class="carousel-caption">
-      <h1>{{ 'HOME.HERO.TITLE' | translate }}</h1>
-      <p class="lead">{{ 'HOME.HERO.TEXT' | translate }}</p>
+      <h1>{{ slide['TITLE'] }}</h1>
+      <p class="lead">{{ slide['BODY'] }}</p>
     </div>
   </slide>
 </carousel>

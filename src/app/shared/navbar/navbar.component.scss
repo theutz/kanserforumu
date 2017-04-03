@@ -12,9 +12,12 @@
 }
 
 .navbar-brand {
-  font-size: $font-size-h2;
+  font-size: $font-size-h4;
   font-family: $brand-font-display;
   color: $white;
+  @include media-breakpoint-up(md) {
+    font-size: $font-size-h2;
+  }
 }
 
 .navbar-collapse {

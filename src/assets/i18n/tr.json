@@ -3,10 +3,16 @@
     "SITE_NAME": "Kanser Forumu"
   },
   "HOME": {
-    "HERO": {
+    "SLIDES": [{
       "TITLE": "Kanser Forumu",
-      "TEXT": "Kanserle yalnız yüzleşmek zorunda değilsiniz"
-    }
+      "BODY": "Kanserle yalnız yüzleşmek zorunda değilsiniz",
+      "PHOTO_URL": "/assets/father-and-child-on-dock.jpg"
+    }, {
+      "TITLE": "Kanser Forumu",
+      "BODY": "Kanserle yalnız yüzleşmek zorunda değilsiniz",
+      "PHOTO_URL": "/assets/istanbul-sunset.jpg"
+    }],
+    "HERO": {}
   },
   "NAVBAR": {
     "LINKS": {
