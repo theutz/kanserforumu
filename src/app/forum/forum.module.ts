@@ -1,3 +1,4 @@
+import { ForumService } from '../services/forum.service';
 import { SharedModule } from '../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -38,6 +39,7 @@ import { DiscussionEditComponent } from './discussion-edit/discussion-edit.compo
   ],
   providers: [
     DiscussionsService,
+    ForumService
   ]
 })
 export class ForumModule { }

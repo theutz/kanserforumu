@@ -4,4 +4,5 @@ export interface Discussion {
   description?: string;
   createdDate: Date | string;
   modifiedDate: Date | string;
+  forumId: string;
 }

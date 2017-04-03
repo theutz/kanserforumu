@@ -64,7 +64,7 @@ export function HttpLoaderFactory(http: Http) {
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
   ],
   bootstrap: [
     AppComponent

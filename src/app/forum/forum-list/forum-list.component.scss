@@ -1,10 +1,1 @@
-@import "../../../styles.scss";
-app-forum-sidebar {
-  @extend .hidden-sm-down;
-  @extend .col-md-4;
-}
 
-app-discussions-list {
-  @extend .col-12;
-  @extend .col-md-8;
-}
