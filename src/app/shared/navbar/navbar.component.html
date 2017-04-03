@@ -23,7 +23,7 @@
           <button class="logout" (click)="logout()">{{ 'NAVBAR.LOGOUT' | translate }} <i class="fa fa-sign-out" aria-hidden="true"></i></button>
         </ng-container>
         <ng-container *ngSwitchCase="false">
-          <button (click)="login()" class="login">{{ 'NAVBAR.LOGIN' | translate }} <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+          <a routerLink="/login" class="login">{{ 'NAVBAR.LOGIN' | translate }} <i class="fa fa-sign-in" aria-hidden="true"></i></a>
         </ng-container>
       </ng-container>
     </div>

@@ -29,8 +29,10 @@
       }
     }
   },
-  "DISCUSSIONS_LIST": {
-    "TITLE": "Forumlar"
+  "DISCUSSIONS_LIST": {},
+  "FORUMS_LIST": {
+    "TITLE": "Forumlar",
+    "ADD_BUTTON": "Forum Ekle"
   },
   "LOGIN": {
     "WELCOME": "Hoş Geldiniz",

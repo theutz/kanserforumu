@@ -16,6 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DiscussionsService } from '../services/discussions.service';
 import { DiscussionComponent } from './discussion/discussion.component';
 import { DiscussionEditComponent } from './discussion-edit/discussion-edit.component'
+import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { DiscussionEditComponent } from './discussion-edit/discussion-edit.compo
     RouterModule,
     CollapseModule,
     TranslateModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     ForumListComponent,
@@ -39,7 +40,7 @@ import { DiscussionEditComponent } from './discussion-edit/discussion-edit.compo
   ],
   providers: [
     DiscussionsService,
-    ForumService
+    ForumService,
   ]
 })
 export class ForumModule { }
