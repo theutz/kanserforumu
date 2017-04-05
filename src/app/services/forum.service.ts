@@ -1,6 +1,6 @@
 import { DiscussionsService } from './discussions.service';
 import { Discussions, Discussion } from './discussion';
-import { Observable, ReplaySubject } from 'rxjs/Rx';
+import { Observable, ReplaySubject, Subject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { Forums, Forum } from './forum';
 import { AngularFire, AngularFireDatabase } from 'angularfire2';
@@ -12,7 +12,7 @@ export class ForumService {
   private _db: AngularFireDatabase;
 
   constructor(
-    private _af: AngularFire
+    private _af: AngularFire,
   ) {
     this._db = _af.database;
   }
@@ -22,7 +22,17 @@ export class ForumService {
   }
 
   get(forumKey: string): Observable<Forum> {
-    return this._db.object(this._forumNode(forumKey));
+    const original$ = this._db.object(this._forumNode(forumKey));
+    return original$.switchMap(forum => {
+      const discussions: Observable<Discussion>[] = [];
+      if (!!forum.discussions) {
+        Object.keys(forum.discussions).forEach(key => {
+          discussions.push(this._db.object(this._discussionNode(key)));
+        });
+      }
+      forum.discussions = discussions;
+      return Observable.of(forum);
+    });
   }
 
   add(forum: Forum): Observable<string> {
@@ -60,7 +70,7 @@ export class ForumService {
   addDiscussion(forumKey: string, discussionKey: string) {
     console.log(`Forum: ${forumKey}; Discussion: ${discussionKey}`);
     const sub = new ReplaySubject<void>();
-    this._db.object(this._discussionsNode(forumKey, discussionKey))
+    this._db.object(this._forumDiscussionsNode(forumKey, discussionKey))
       .set(true)
       .then(() => { sub.next(null); sub.complete(); })
       .catch(err => sub.error(err));
@@ -81,7 +91,11 @@ export class ForumService {
     return `${this._baseNode}/${forumKey}`;
   }
 
-  private _discussionsNode(forumKey: string, discussionKey: string) {
+  private _forumDiscussionsNode(forumKey: string, discussionKey: string) {
     return `${this._baseNode}/${forumKey}/discussions/${discussionKey}`;
+  }
+
+  private _discussionNode(discussionKey: string) {
+    return `/discussions/${discussionKey}`;
   }
 }

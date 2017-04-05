@@ -15,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ForumViewComponent implements OnInit, OnDestroy {
   forum: Forum;
+  discussions = [];
 
   private _subscriptions: Subscription[] = [];
 
@@ -37,13 +38,20 @@ export class ForumViewComponent implements OnInit, OnDestroy {
     this._discussionService.add(this._makeDummyDiscussion());
   }
 
-  private _loadForum() {
+  private _loadForum(): Observable<void> {
+    const subject = new ReplaySubject<void>();
+
     this._getForumKeyFromRoute()
       .subscribe(key => {
+
         const forumSub = this._forumService.get(key)
           .do(() => this._subscriptions.push(forumSub))
-          .subscribe(f => this.forum = f);
+          .subscribe(forum => {
+            this.forum = forum;
+          });
       })
+
+    return subject.asObservable();
   }
 
   private _getForumKeyFromRoute(): Observable<string> {
