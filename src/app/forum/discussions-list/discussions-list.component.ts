@@ -1,6 +1,7 @@
+import { Observable } from 'rxjs/Rx';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { Discussion } from '../../services/discussion';
+import { Discussion, Discussions } from '../../services/discussion';
 import { DiscussionsService } from '../../services/discussions.service';
 import { FirebaseListObservable } from 'angularfire2';
 
@@ -10,13 +11,11 @@ import { FirebaseListObservable } from 'angularfire2';
   styleUrls: ['./discussions-list.component.scss']
 })
 export class DiscussionsListComponent implements OnInit {
-  discussions: FirebaseListObservable<Discussion[]>;
+  discussions: Observable<Discussions>;
 
   constructor(
     private _dis: DiscussionsService
-  ) {
-    this.discussions = this._dis.getAll();
-  }
+  ) { }
 
   ngOnInit() {
     this.discussions = this._dis.getAll();

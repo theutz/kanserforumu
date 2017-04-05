@@ -34,6 +34,9 @@
     "TITLE": "Forumlar",
     "ADD_BUTTON": "Forum Ekle"
   },
+  "FORUM": {
+    "ADD_DISCUSSION_BUTTON": "Konu Ekle"
+  },
   "LOGIN": {
     "WELCOME": "Hoş Geldiniz",
     "PLEASE": "Lütfen giriş yapın",

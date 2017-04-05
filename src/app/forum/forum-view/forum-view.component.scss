@@ -1,0 +1,15 @@
+@import "../../../styles";
+.card {
+  @extend .my-4;
+}
+
+.card-header {
+  @extend .d-flex;
+  @extend .justify-content-start;
+}
+
+.add-discussion {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .ml-auto;
+}

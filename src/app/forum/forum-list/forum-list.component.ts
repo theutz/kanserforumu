@@ -3,7 +3,6 @@ import { Observable, Subscription } from 'rxjs/Rx';
 import { OnDestroy, Component, OnInit } from '@angular/core';
 import { ForumService } from 'app/services/forum.service';
 import { Forum, Forums } from 'app/services/forum';
-import { FirebaseListObservable } from 'angularfire2';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 import { Router } from '@angular/router';
 
@@ -13,9 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./forum-list.component.scss']
 })
 export class ForumListComponent implements OnInit, OnDestroy {
-  forums: FirebaseListObservable<Forums>;
-
-  private _forumSub: Subscription;
+  forums: Forums;
+  private _subscriptions: Subscription[] = [];
 
   constructor(
     private _forumsService: ForumService,
@@ -25,10 +23,10 @@ export class ForumListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this._loadForums();
   }
 
   ngOnDestroy() {
+    this._subscriptions.map(s => s.unsubscribe());
   }
 
   isLoggedIn(): Observable<boolean> {
@@ -38,12 +36,8 @@ export class ForumListComponent implements OnInit, OnDestroy {
   addForum() {
   }
 
-  viewForum(id: string) {
-    this._router.navigate(['/forum', id]);
-  }
-
-  private _loadForums() {
-    this.forums = this._forumsService.getAll();
+  viewForum(forumKey: string) {
+    this._router.navigate(['/forum', forumKey]);
   }
 
 }

@@ -1,37 +1,42 @@
+import { DiscussionsService } from './discussions.service';
+import { Discussions, Discussion } from './discussion';
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { Forums, Forum } from './forum';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire, AngularFireDatabase } from 'angularfire2';
 
 @Injectable()
 export class ForumService {
-  private _list: FirebaseListObservable<Forums>;
+  private _db: AngularFireDatabase;
+  private _baseUrl = '/forums';
+  private _itemUrl = (forumKey: string) => `${this._baseUrl}/${forumKey}`;
+  private _discussionUrl = (forumKey: string) => `${this._itemUrl(forumKey)}/discussions`;
 
   constructor(
-    private _af: AngularFire
+    private _af: AngularFire,
+    private _discussionService: DiscussionsService
   ) {
-    this._list = this._af.database.list('/forums');
+    this._db = _af.database;
   }
 
-  getAll(): FirebaseListObservable<Forums> {
-    return this._list;
+  getAll(): Observable<Forums> {
+    return this._db.list('/forums');
   }
 
-  get(id: string): Observable<Forum> {
-    return this._af.database.object(`/forums/${id}`);
+  get(forumKey: string): Observable<Forum> {
+    return this._db.object(this._itemUrl(forumKey))
+      .switchMap(forum => {
+        return Observable.of(forum);
+      })
   }
 
   create(forum: Forum): Observable<any> {
     const sub = new ReplaySubject<any>();
 
-    if (forum.createdDate instanceof Date) {
-      forum.createdDate.toISOString();
-    }
-    if (forum.modifiedDate instanceof Date) {
-      forum.modifiedDate.toISOString();
-    }
+    forum.createdDate = this._dateToString(forum.createdDate);
+    forum.modifiedDate = this._dateToString(forum.modifiedDate);
 
-    this._list.push(forum)
+    this._db.list(this._baseUrl).push(forum)
       .then(x => {
         sub.next(x);
         sub.complete();
@@ -40,4 +45,11 @@ export class ForumService {
     return sub.asObservable();
   }
 
+  private _dateToString(date: string | Date): string {
+    if (date instanceof Date) {
+      return date.toISOString();
+    } else {
+      return date;
+    }
+  }
 }
