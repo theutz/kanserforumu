@@ -57,6 +57,16 @@ export class ForumService {
     return sub.asObservable();
   }
 
+  addDiscussion(forumKey: string, discussionKey: string) {
+    console.log(`Forum: ${forumKey}; Discussion: ${discussionKey}`);
+    const sub = new ReplaySubject<void>();
+    this._db.object(this._discussionsNode(forumKey, discussionKey))
+      .set(true)
+      .then(() => { sub.next(null); sub.complete(); })
+      .catch(err => sub.error(err));
+    return sub.asObservable();
+  }
+
   remove(forumKey: string): Observable<void> {
     const sub = new ReplaySubject<void>();
     this._db.object(this._forumNode(forumKey))
@@ -71,7 +81,7 @@ export class ForumService {
     return `${this._baseNode}/${forumKey}`;
   }
 
-  private _discussionsNode(forumKey: string) {
-    return `${this._baseNode}/${forumKey}/discussions`;
+  private _discussionsNode(forumKey: string, discussionKey: string) {
+    return `${this._baseNode}/${forumKey}/discussions/${discussionKey}`;
   }
 }

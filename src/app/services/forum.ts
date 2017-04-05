@@ -8,5 +8,5 @@ export interface Forum {
   createdDate: string;
   modifiedDate: string;
   description: string;
-  discussions: [{ [key: string]: boolean }] | boolean;
+  discussions: [{ [key: string]: boolean }];
 }

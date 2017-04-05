@@ -52,11 +52,11 @@ export class ForumListComponent implements OnInit, OnDestroy {
   private _dummyForumFactory(): Forum {
     return {
       key: null,
-      title: this._lorem.get(1).slice(0, 100),
+      title: `Forum #${Math.floor(Math.random() * 1000)}`,
       createdDate: new Date().toISOString(),
       modifiedDate: new Date().toISOString(),
       description: this._lorem.get(2),
-      discussions: false
+      discussions: null
     };
   }
 

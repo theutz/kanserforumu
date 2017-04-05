@@ -1,3 +1,4 @@
+import { NgxLoremIpsumService } from 'ngx-lorem-ipsum/lib';
 import { OnDestroy } from '@angular/core/core';
 import { Discussion, Discussions } from '../../services/discussion';
 import { DiscussionsService } from '../../services/discussions.service';
@@ -20,7 +21,8 @@ export class ForumViewComponent implements OnInit, OnDestroy {
   constructor(
     private _route: ActivatedRoute,
     private _forumService: ForumService,
-    private _discussionService: DiscussionsService
+    private _discussionService: DiscussionsService,
+    private _lorem: NgxLoremIpsumService
   ) { }
 
   ngOnInit() {
@@ -32,17 +34,7 @@ export class ForumViewComponent implements OnInit, OnDestroy {
   }
 
   addDiscussion() {
-    // const discussion: Discussion = {
-    //   createdDate: new Date().toISOString(),
-    //   title: `Discussion ${Math.floor(Math.random() * 1000)}`,
-    //   forumKey: this.forum.$ref.key
-    // };
-    // this._discussionService
-    //   .create(discussion)
-    //   .subscribe(key => {
-    //     this._forumService
-    //       .addDiscussionKey(this.forum.$ref.key, key);
-    //   });
+    this._discussionService.add(this._makeDummyDiscussion());
   }
 
   private _loadForum() {
@@ -59,6 +51,17 @@ export class ForumViewComponent implements OnInit, OnDestroy {
     this._route.paramMap
       .subscribe(map => subject.next(map.get('id')));
     return subject.asObservable();
+  }
+
+  private _makeDummyDiscussion(): Discussion {
+    return {
+      key: null,
+      title: `Discussion #${Math.floor(Math.random() * 1000)}`,
+      description: this._lorem.get(2),
+      createdDate: new Date().toISOString(),
+      modifiedDate: new Date().toISOString(),
+      forumKey: this.forum.key
+    };
   }
 
 }
