@@ -3,10 +3,10 @@ import { FirebaseListObservable } from 'angularfire2/database';
 export type Forums = Forum[];
 
 export interface Forum {
-  key: string;
+  key: string | null;
   title: string;
-  createdDate: Date | string;
-  modifiedDate?: Date | string;
-  description?: string;
-  discussions?: [{ [key: string]: boolean }] | FirebaseListObservable<Discussions> | Discussions;
+  createdDate: string;
+  modifiedDate: string;
+  description: string;
+  discussions: [{ [key: string]: boolean }] | boolean;
 }

@@ -23,6 +23,14 @@ export class ForumListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this._loadForum();
+  }
+
+  private _loadForum() {
+    const sub = this._forumsService.getAll()
+      .subscribe(forums => this.forums = forums);
+
+    this._subscriptions.push(sub);
   }
 
   ngOnDestroy() {
@@ -34,10 +42,21 @@ export class ForumListComponent implements OnInit, OnDestroy {
   }
 
   addForum() {
+    this._forumsService.add(this._dummyForumFactory());
+  }
+
+  private _dummyForumFactory(): Forum {
+    return {
+      key: null,
+      title: this._lorem.get(1).slice(0, 100),
+      createdDate: new Date().toISOString(),
+      modifiedDate: new Date().toISOString(),
+      description: this._lorem.get(2),
+      discussions: false
+    };
   }
 
   viewForum(forumKey: string) {
     this._router.navigate(['/forum', forumKey]);
   }
-
 }

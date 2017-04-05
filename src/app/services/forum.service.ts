@@ -7,49 +7,50 @@ import { AngularFire, AngularFireDatabase } from 'angularfire2';
 
 @Injectable()
 export class ForumService {
+  private readonly _baseNode = '/forums';
+
   private _db: AngularFireDatabase;
-  private _baseUrl = '/forums';
-  private _itemUrl = (forumKey: string) => `${this._baseUrl}/${forumKey}`;
-  private _discussionUrl = (forumKey: string) => `${this._itemUrl(forumKey)}/discussions`;
 
   constructor(
-    private _af: AngularFire,
-    private _discussionService: DiscussionsService
+    private _af: AngularFire
   ) {
     this._db = _af.database;
   }
 
   getAll(): Observable<Forums> {
-    return this._db.list('/forums');
+    return this._db.list(this._baseNode);
   }
 
   get(forumKey: string): Observable<Forum> {
-    return this._db.object(this._itemUrl(forumKey))
-      .switchMap(forum => {
-        return Observable.of(forum);
-      })
+    return this._db.object(this._forumNode(forumKey));
   }
 
-  create(forum: Forum): Observable<any> {
-    const sub = new ReplaySubject<any>();
-
-    forum.createdDate = this._dateToString(forum.createdDate);
-    forum.modifiedDate = this._dateToString(forum.modifiedDate);
-
-    this._db.list(this._baseUrl).push(forum)
-      .then(x => {
-        sub.next(x);
-        sub.complete();
-      });
-
-    return sub.asObservable();
+  add(forum: Forum) {
+    const key = this._db.list(this._baseNode)
+      .push(null).ref.key;
+    forum.key = key;
+    this.set(forum);
   }
 
-  private _dateToString(date: string | Date): string {
-    if (date instanceof Date) {
-      return date.toISOString();
-    } else {
-      return date;
-    }
+  set(forum: Forum) {
+    this._db.object(this._forumNode(forum.key))
+      .set(forum);
+  }
+
+  update(forum: Forum) {
+
+  }
+
+  remove(forumKey: string) {
+
+  }
+
+  // Address Utils
+  private _forumNode(forumKey: string) {
+    return `${this._baseNode}/${forumKey}`;
+  }
+
+  private _discussionsNode(forumKey: string) {
+    return `${this._baseNode}/${forumKey}/discussions`;
   }
 }
