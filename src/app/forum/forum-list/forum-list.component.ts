@@ -45,6 +45,10 @@ export class ForumListComponent implements OnInit, OnDestroy {
     this._forumsService.add(this._dummyForumFactory());
   }
 
+  viewForum(forumKey: string) {
+    this._router.navigate(['/forum', forumKey]);
+  }
+
   private _dummyForumFactory(): Forum {
     return {
       key: null,
@@ -56,7 +60,4 @@ export class ForumListComponent implements OnInit, OnDestroy {
     };
   }
 
-  viewForum(forumKey: string) {
-    this._router.navigate(['/forum', forumKey]);
-  }
 }

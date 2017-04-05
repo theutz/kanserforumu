@@ -24,6 +24,7 @@ export class ForumViewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this._loadForum();
   }
 
   ngOnDestroy() {
@@ -44,11 +45,20 @@ export class ForumViewComponent implements OnInit, OnDestroy {
     //   });
   }
 
-  // private _getForumKeyFromRoute(): Observable<string> {
-  //   const sub = new ReplaySubject<string>();
-  //   this._route.paramMap
-  //     .subscribe(map => sub.next(map.get('id')));
-  //   return sub.asObservable();
-  // }
+  private _loadForum() {
+    this._getForumKeyFromRoute()
+      .subscribe(key => {
+        const forumSub = this._forumService.get(key)
+          .do(() => this._subscriptions.push(forumSub))
+          .subscribe(f => this.forum = f);
+      })
+  }
+
+  private _getForumKeyFromRoute(): Observable<string> {
+    const subject = new ReplaySubject<string>();
+    this._route.paramMap
+      .subscribe(map => subject.next(map.get('id')));
+    return subject.asObservable();
+  }
 
 }

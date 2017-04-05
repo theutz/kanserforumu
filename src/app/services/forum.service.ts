@@ -25,24 +25,45 @@ export class ForumService {
     return this._db.object(this._forumNode(forumKey));
   }
 
-  add(forum: Forum) {
+  add(forum: Forum): Observable<string> {
+    const sub = new ReplaySubject<string>();
     const key = this._db.list(this._baseNode)
       .push(null).ref.key;
     forum.key = key;
-    this.set(forum);
+    this.set(forum)
+      .take(1)
+      .subscribe({
+        next: f => { sub.next(key); sub.complete(); },
+        error: err => sub.error(err)
+      });
+    return sub.asObservable();
   }
 
-  set(forum: Forum) {
+  set(forum: Forum): Observable<void> {
+    const sub = new ReplaySubject<void>();
     this._db.object(this._forumNode(forum.key))
-      .set(forum);
+      .set(forum)
+      .then(() => { sub.next(null); sub.complete(); })
+      .catch(err => sub.error(err));
+    return sub.asObservable();
   }
 
-  update(forum: Forum) {
-
+  update(forum: Forum): Observable<void> {
+    const sub = new ReplaySubject<void>();
+    this._db.object(this._forumNode(forum.key))
+      .update(forum)
+      .then(() => { sub.next(null); sub.complete(); })
+      .catch(err => sub.error(err));
+    return sub.asObservable();
   }
 
-  remove(forumKey: string) {
-
+  remove(forumKey: string): Observable<void> {
+    const sub = new ReplaySubject<void>();
+    this._db.object(this._forumNode(forumKey))
+      .remove()
+      .then(() => { sub.next(null); sub.complete(); })
+      .catch(err => sub.error(err));
+    return sub.asObservable();
   }
 
   // Address Utils
