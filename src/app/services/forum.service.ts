@@ -1,91 +1,59 @@
-import { DiscussionsService } from './discussions.service';
-import { Discussions, Discussion } from './discussion';
-import { Observable, ReplaySubject, Subject } from 'rxjs/Rx';
+import { Forum } from './forum';
 import { Injectable } from '@angular/core';
-import { Forums, Forum } from './forum';
-import { AngularFire, AngularFireDatabase } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class ForumService {
-  private readonly _baseNode = '/forums';
-
-  private _db: AngularFireDatabase;
 
   constructor(
-    private _af: AngularFire,
-  ) {
-    this._db = _af.database;
-  }
+    private _db: AngularFireDatabase,
+  ) { }
 
-  getAll(): Observable<Forums> {
-    return this._db.list(this._baseNode);
+  getAll(): Observable<Forum[]> {
+    return this._db
+      .list('/forums');
   }
 
   get(forumKey: string): Observable<Forum> {
-    return this._db.object(`/forums/${forumKey}`);
+    return this._db
+      .object(`/forums/${forumKey}`);
   }
 
   add(forum: Forum): Observable<string> {
-    const sub = new ReplaySubject<string>();
-    const key = this._db.list(this._baseNode)
+    forum.key = this._db
+      .list('/forums')
       .push(null).ref.key;
-    forum.key = key;
-    this.set(forum)
-      .take(1)
-      .subscribe({
-        next: f => { sub.next(key); sub.complete(); },
-        error: err => sub.error(err)
-      });
-    return sub.asObservable();
+
+    return this.set(forum)
+      .switchMap(() => forum.key);
   }
 
   set(forum: Forum): Observable<void> {
-    const sub = new ReplaySubject<void>();
-    this._db.object(this._forumNode(forum.key))
-      .set(forum)
-      .then(() => { sub.next(null); sub.complete(); })
-      .catch(err => sub.error(err));
-    return sub.asObservable();
+    const promise = this._db
+      .object(`/forums/${forum.key}`)
+      .set(forum);
+    return Observable.fromPromise(<Promise<void>>promise);
   }
 
   update(forum: Forum): Observable<void> {
-    const sub = new ReplaySubject<void>();
-    this._db.object(this._forumNode(forum.key))
+    const promise = this._db
+      .object(`/forums/${forum.key}`)
       .update(forum)
-      .then(() => { sub.next(null); sub.complete(); })
-      .catch(err => sub.error(err));
-    return sub.asObservable();
+    return Observable.fromPromise(<Promise<void>>promise);
   }
 
-  addDiscussion(forumKey: string, discussionKey: string) {
-    console.log(`Forum: ${forumKey}; Discussion: ${discussionKey}`);
-    const sub = new ReplaySubject<void>();
-    this._db.object(this._forumDiscussionsNode(forumKey, discussionKey))
-      .set(true)
-      .then(() => { sub.next(null); sub.complete(); })
-      .catch(err => sub.error(err));
-    return sub.asObservable();
+  addDiscussion(forumKey: string, discussionKey: string): Observable<void> {
+    const promise = this._db
+      .object(`/forums/${forumKey}/discussions/${discussionKey}`)
+      .set(true);
+    return Observable.fromPromise(<Promise<void>>promise);
   }
 
   remove(forumKey: string): Observable<void> {
-    const sub = new ReplaySubject<void>();
-    this._db.object(this._forumNode(forumKey))
-      .remove()
-      .then(() => { sub.next(null); sub.complete(); })
-      .catch(err => sub.error(err));
-    return sub.asObservable();
-  }
-
-  // Address Utils
-  private _forumNode(forumKey: string) {
-    return `${this._baseNode}/${forumKey}`;
-  }
-
-  private _forumDiscussionsNode(forumKey: string, discussionKey: string) {
-    return `${this._baseNode}/${forumKey}/discussions/${discussionKey}`;
-  }
-
-  private _discussionNode(discussionKey: string) {
-    return `/discussions/${discussionKey}`;
+    const promise = this._db
+      .object(`/forums/${forumKey}`)
+      .remove();
+    return Observable.fromPromise(<Promise<void>>promise);
   }
 }

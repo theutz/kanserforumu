@@ -1,4 +1,3 @@
-export type Discussions = Discussion[];
 export interface Discussion {
   key: string | null;
   title: string;
