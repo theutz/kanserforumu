@@ -9,7 +9,7 @@
     <div class="navbar-collapse" [collapse]="isCollapsed">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" routerLinkActive="active" *ngFor="let link of links">
-          <a class="nav-link" [routerLink]="link.url">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="link.url">
             <i class="fa fa-lg fa-{{ link.icon }}" aria-hidden="true"></i> {{ link.title }}
           </a>
         </li>

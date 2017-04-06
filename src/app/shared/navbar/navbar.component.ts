@@ -87,7 +87,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private _setLinks() {
     this._linkSubcription = this._trans
       .get('NAVBAR.LINKS').subscribe(x => {
-        this.links.push({ title: x['HOME'], url: [''], icon: 'home' });
+        this.links.push({ title: x['HOME'], url: ['/home'], icon: 'home' });
         this.links.push({ title: x['FORUM'], url: ['/forum'], icon: 'users' });
       })
   }

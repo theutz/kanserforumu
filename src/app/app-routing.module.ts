@@ -23,7 +23,8 @@ import { DiscussionResolver } from './services/discussion-resolver.service';
         ]
       },
       { path: 'login', component: LoginComponent },
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: '', redirectTo: '/home', pathMatch: 'full' }
     ])
   ],
   exports: [RouterModule]
