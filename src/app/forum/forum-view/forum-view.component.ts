@@ -18,7 +18,7 @@ export class ForumViewComponent implements OnInit, OnDestroy {
   forum$: Observable<Forum>;
   discussions$: Observable<Discussions>;
 
-  private _subscriptions: Subscription[] = [];
+  private _keySub: Subscription;
 
   constructor(
     private _route: ActivatedRoute,
@@ -28,23 +28,19 @@ export class ForumViewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this._getForumKeyFromRoute()
-      .do(key => this.forum$ = this._forumService.get(key))
-      .do(key => this.discussions$ = this._discussionService.getByForumKey(key))
-      .subscribe(key => this.forumKey = key);
+    this._keySub = this._getForumKeyFromRoute()
+      .subscribe(key => {
+        this.forum$ = this._forumService.get(key);
+        this.discussions$ = this._discussionService.getByForumKey(key);
+      });
   }
 
   ngOnDestroy() {
-    this._subscriptions.map(x => x.unsubscribe());
+    this._keySub.unsubscribe();
   }
 
   addDiscussion() {
     this._discussionService.add(this._discussionService.makeDummyDiscussion(this.forumKey));
-  }
-
-  private _loadForum(): Observable<Forum> {
-    return this._getForumKeyFromRoute()
-      .switchMap(key => this._forumService.get(key));
   }
 
   private _getForumKeyFromRoute(): Observable<string> {
