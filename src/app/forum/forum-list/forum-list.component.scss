@@ -12,10 +12,33 @@
   @extend .mb-0;
 }
 
-.add-forum {
+.actions {
+  @extend .d-flex;
+  @extend .w-100;
+  @extend .justify-content-start;
+  @extend .align-items-center;
+  &>* {
+    @extend .mr-2;
+  }
+}
+
+button {
   @extend .btn;
+}
+
+.view-forum {
+  @extend .mr-auto;
+}
+
+.add-forum {
   @extend .ml-auto;
   @extend .btn-primary;
+}
+
+.remove-forum {
+  @extend .btn-danger;
+  @extend .btn-sm;
+  @extend .ml-auto;
 }
 
 .forums {

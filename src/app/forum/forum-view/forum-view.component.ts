@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr/toastr-service';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum/lib';
 import { OnDestroy } from '@angular/core/core';
 import { Discussion } from '../../services/discussion';
@@ -14,43 +15,58 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./forum-view.component.scss']
 })
 export class ForumViewComponent implements OnInit, OnDestroy {
-  forumKey: string;
-  forum$: Observable<Forum>;
-  discussions$: Observable<Discussion[]>;
+  forum: Forum;
+  discussions: Discussion[];
 
-  private _keySub: Subscription;
+  private _forum$: Observable<Forum>;
+  private _forum$sub: Subscription;
+  private _discussions$: Observable<Discussion[]>;
+  private _discussions$sub: Subscription;
+  private _key$sub: Subscription;
 
   constructor(
     private _route: ActivatedRoute,
     private _forumService: ForumService,
     private _discussionService: DiscussionsService,
     private _router: Router,
+    private _toast: ToastrService,
     private _lorem: NgxLoremIpsumService
   ) { }
 
   ngOnInit() {
-    this._keySub = this._getForumKeyFromRoute()
+    this._key$sub = this._getForumKeyFromRoute()
       .subscribe(key => {
-        this.forumKey = key;
-        this.forum$ = this._forumService.get(key);
-        this.discussions$ = this._discussionService.getByForumKey(key);
+        this._forum$ = this._forumService.get(key);
+        this._discussions$ = this._discussionService.getByForumKey(key);
       });
+
+    this._forum$sub = this._forum$
+      .subscribe(forum => this.forum = forum);
+
+    this._discussions$sub = this._discussions$
+      .subscribe(discussions =>
+        this.discussions = discussions);
   }
 
   ngOnDestroy() {
-    this._keySub.unsubscribe();
+    this._key$sub.unsubscribe();
+    this._forum$sub.unsubscribe();
+    this._discussions$sub.unsubscribe();
   }
 
   addDiscussion() {
     this._discussionService
       .add(this._discussionService
-        .makeDummyDiscussion(this.forumKey));
+        .makeDummyDiscussion(this.forum.key));
   }
 
   removeForum() {
     this._forumService
-      .remove(this.forumKey)
-      .subscribe(() => this._router.navigate(['/forum']));
+      .remove(this.forum.key)
+      .subscribe(() => {
+        this._router.navigate(['/forum'])
+          .then(() => { });
+      });
   }
 
   private _getForumKeyFromRoute(): Observable<string> {

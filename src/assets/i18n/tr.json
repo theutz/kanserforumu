@@ -33,7 +33,8 @@
   "FORUMS_LIST": {
     "TITLE": "Forumlar",
     "ADD_BUTTON": "Forum Ekle",
-    "VISIT_FORUM": "Foruma Git"
+    "VISIT_FORUM": "Foruma Git",
+    "REMOVE_FORUM_BUTTON": "Forum Kaldır"
   },
   "FORUM": {
     "ADD_DISCUSSION_BUTTON": "Konu Ekle",

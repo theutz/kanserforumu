@@ -1,7 +1,12 @@
 <div class="card">
   <div class="card-header">
-    <h2 class="card-title">{{ 'FORUMS_LIST.TITLE' | translate }}</h2>
-    <button *ngIf="isLoggedIn()|async" (click)="addForum()" class="add-forum">{{ 'FORUMS_LIST.ADD_BUTTON' | translate}} <i class="fa fa-plus" aria-hidden="true"></i></button>
+    <h2 class="card-title">
+      <i class="fa fa-users" aria-hidden="true"></i> {{ 'FORUMS_LIST.TITLE' | translate }}
+    </h2>
+    <button *ngIf="isLoggedIn()|async" (click)="addForum()" class="add-forum">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+      {{ 'FORUMS_LIST.ADD_BUTTON' | translate}} 
+    </button>
   </div>
   <ul class="forums">
     <li class="forum" *ngFor="let forum of forums">
@@ -14,9 +19,15 @@
         <small class="w-25 text-right">{{forum.createdDate | amTimeAgo }}</small>
       </div>
       <p class="card-text">{{forum.description}}</p>
-      <a [routerLink]="'/forum/' + forum.key" class="card-link">
-        {{ 'FORUMS_LIST.VISIT_FORUM' | translate}}
-      </a>
+      <div class="actions">
+        <a class="view-forum" [routerLink]="'/forum/' + forum.key" class="card-link">
+          <i class="fa fa-users" aria-hidden="true"></i> {{ 'FORUMS_LIST.VISIT_FORUM' | translate}}
+        </a>
+        <button (click)="removeForum(forum)" class="remove-forum">
+          <i class="fa fa-remove" aria-hidden="true"></i>
+        {{ 'FORUMS_LIST.REMOVE_FORUM_BUTTON' | translate }}
+        </button>
+      </div>
     </li>
   </ul>
 </div>
