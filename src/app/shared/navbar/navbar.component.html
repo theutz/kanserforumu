@@ -9,7 +9,9 @@
     <div class="navbar-collapse" [collapse]="isCollapsed">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" routerLinkActive="active" *ngFor="let link of links">
-          <a class="nav-link" [routerLink]="link.url">{{ link.title }}</a>
+          <a class="nav-link" [routerLink]="link.url">
+            <i class="fa fa-lg fa-{{ link.icon }}" aria-hidden="true"></i> {{ link.title }}
+          </a>
         </li>
       </ul>
       <ng-container [ngSwitch]="isLoggedIn()|async">

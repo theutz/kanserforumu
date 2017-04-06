@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   title: string;
-  links: Array<{ url: string[] | string, title: string }> = [];
+  links: Array<{ url: string[] | string, title: string, icon: string }> = [];
   isCollapsed = true;
   currentUser: UserInfo;
   nameParam: any;
@@ -85,10 +85,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   private _setLinks() {
-    this._linkSubcription = this._trans.get('NAVBAR.LINKS').subscribe(x => {
-      this.links.push({ title: x['HOME'], url: [''] });
-      this.links.push({ title: x['FORUM'], url: ['/forum'] });
-    })
+    this._linkSubcription = this._trans
+      .get('NAVBAR.LINKS').subscribe(x => {
+        this.links.push({ title: x['HOME'], url: [''], icon: 'home' });
+        this.links.push({ title: x['FORUM'], url: ['/forum'], icon: 'users' });
+      })
   }
 
   private _setCurrentUser() {
