@@ -32,10 +32,12 @@
   "DISCUSSIONS_LIST": {},
   "FORUMS_LIST": {
     "TITLE": "Forumlar",
-    "ADD_BUTTON": "Forum Ekle"
+    "ADD_BUTTON": "Forum Ekle",
+    "VISIT_FORUM": "Foruma Git"
   },
   "FORUM": {
-    "ADD_DISCUSSION_BUTTON": "Konu Ekle"
+    "ADD_DISCUSSION_BUTTON": "Konu Ekle",
+    "REMOVE_FORUM_BUTTON": "Forum Kaldır"
   },
   "LOGIN": {
     "WELCOME": "Hoş Geldiniz",

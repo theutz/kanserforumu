@@ -43,14 +43,8 @@ export class ForumService {
     return Observable.fromPromise(<Promise<void>>promise);
   }
 
-  addDiscussion(forumKey: string, discussionKey: string): Observable<void> {
-    const promise = this._db
-      .object(`/forums/${forumKey}/discussions/${discussionKey}`)
-      .set(true);
-    return Observable.fromPromise(<Promise<void>>promise);
-  }
-
   remove(forumKey: string): Observable<void> {
+    console.log(forumKey);
     const promise = this._db
       .object(`/forums/${forumKey}`)
       .remove();

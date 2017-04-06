@@ -8,8 +8,19 @@
   @extend .justify-content-start;
 }
 
-.add-discussion {
-  @extend .btn;
-  @extend .btn-primary;
+.btn-group {
   @extend .ml-auto;
+}
+
+button {
+  @extend .btn;
+  @extend .align-self-center;
+}
+
+.add-discussion {
+  @extend .btn-primary;
+}
+
+.remove-forum {
+  @extend .btn-danger;
 }

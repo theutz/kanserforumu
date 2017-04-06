@@ -40,9 +40,15 @@ export class DiscussionsService {
       .push(null).ref.key;
 
     return this.set(discussion)
-      .map(() => this._forumService
-        .addDiscussion(discussion.forumKey, discussion.key))
+      .map(() => this.addDiscussionToForum(discussion.forumKey, discussion.key))
       .switchMap(() => discussion.key);
+  }
+
+  addDiscussionToForum(forumKey: string, discussionKey: string): Observable<void> {
+    const promise = this._db
+      .object(`/forums/${forumKey}/discussions/${discussionKey}`)
+      .set(true);
+    return Observable.fromPromise(<Promise<void>>promise);
   }
 
   set(discussion: Discussion): Observable<void> {
