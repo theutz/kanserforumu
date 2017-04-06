@@ -1,18 +1,18 @@
 <div class="card">
   <div class="card-header">
-    <h2>{{ forum?.title }}</h2>
+    <h2>{{ (forum$|async)?.title }}</h2>
     <button (click)="addDiscussion()" class="add-discussion">
       {{ 'FORUM.ADD_DISCUSSION_BUTTON' | translate }}
       <i class="fa fa-plus" aria-hidden="true"></i>
     </button>
   </div>
   <div class="card-block">
-    <p>{{ forum?.description }}</p>
+    <p>{{ (forum$|async)?.description }}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" *ngFor="let discussion of forum?.discussions">
-      <h6 class="list-group-item-title">{{ (discussion|async)?.title }}</h6>
-      <p>{{(discussion|async)?.description}}</p>
+    <li class="list-group-item" *ngFor="let discussion of discussions$ | async">
+      <h6 class="list-group-item-title">{{ discussion?.title }}</h6>
+      <p>{{ discussion?.description }}</p>
     </li>
   </ul>
 </div>

@@ -22,17 +22,7 @@ export class ForumService {
   }
 
   get(forumKey: string): Observable<Forum> {
-    const original$ = this._db.object(this._forumNode(forumKey));
-    return original$.switchMap(forum => {
-      const discussions: Observable<Discussion>[] = [];
-      if (!!forum.discussions) {
-        Object.keys(forum.discussions).forEach(key => {
-          discussions.push(this._db.object(this._discussionNode(key)));
-        });
-      }
-      forum.discussions = discussions;
-      return Observable.of(forum);
-    });
+    return this._db.object(`/forums/${forumKey}`);
   }
 
   add(forum: Forum): Observable<string> {

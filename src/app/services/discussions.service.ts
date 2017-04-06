@@ -1,3 +1,4 @@
+import { NgxLoremIpsumService } from 'ngx-lorem-ipsum/lib';
 import { ForumService } from './forum.service';
 import { Discussion, Discussions } from '../services/discussion';
 import { Injectable } from '@angular/core';
@@ -12,7 +13,8 @@ export class DiscussionsService {
 
   constructor(
     private _af: AngularFire,
-    private _forumService: ForumService
+    private _forumService: ForumService,
+    private _lorem: NgxLoremIpsumService
   ) { this._db = _af.database; }
 
   getAll(): Observable<Discussions> {
@@ -21,6 +23,15 @@ export class DiscussionsService {
 
   get(key: string): Observable<Discussion> {
     return this._db.object(this._discussionNode(key));
+  }
+
+  getByForumKey(forumKey: string) {
+    return this._db.list(this._baseNode, {
+      query: {
+        orderByChild: 'forumKey',
+        equalTo: forumKey
+      }
+    });
   }
 
   add(discussion: Discussion): Observable<string> {
@@ -69,6 +80,17 @@ export class DiscussionsService {
       .then(() => { sub.next(null); sub.complete(); })
       .catch(err => sub.error(err));
     return sub.asObservable()
+  }
+
+  makeDummyDiscussion(forumKey: string): Discussion {
+    return {
+      key: null,
+      title: `Discussion #${Math.floor(Math.random() * 1000)}`,
+      description: this._lorem.get(2),
+      createdDate: new Date().toISOString(),
+      modifiedDate: new Date().toISOString(),
+      forumKey: forumKey
+    };
   }
 
   // Address Utilities

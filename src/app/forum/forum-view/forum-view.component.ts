@@ -14,8 +14,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./forum-view.component.scss']
 })
 export class ForumViewComponent implements OnInit, OnDestroy {
-  forum: Forum;
-  discussions = [];
+  forumKey: string;
+  forum$: Observable<Forum>;
+  discussions$: Observable<Discussions>;
 
   private _subscriptions: Subscription[] = [];
 
@@ -27,7 +28,10 @@ export class ForumViewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this._loadForum();
+    this._getForumKeyFromRoute()
+      .do(key => this.forum$ = this._forumService.get(key))
+      .do(key => this.discussions$ = this._discussionService.getByForumKey(key))
+      .subscribe(key => this.forumKey = key);
   }
 
   ngOnDestroy() {
@@ -35,41 +39,17 @@ export class ForumViewComponent implements OnInit, OnDestroy {
   }
 
   addDiscussion() {
-    this._discussionService.add(this._makeDummyDiscussion());
+    this._discussionService.add(this._discussionService.makeDummyDiscussion(this.forumKey));
   }
 
-  private _loadForum(): Observable<void> {
-    const subject = new ReplaySubject<void>();
-
-    this._getForumKeyFromRoute()
-      .subscribe(key => {
-
-        const forumSub = this._forumService.get(key)
-          .do(() => this._subscriptions.push(forumSub))
-          .subscribe(forum => {
-            this.forum = forum;
-          });
-      })
-
-    return subject.asObservable();
+  private _loadForum(): Observable<Forum> {
+    return this._getForumKeyFromRoute()
+      .switchMap(key => this._forumService.get(key));
   }
 
   private _getForumKeyFromRoute(): Observable<string> {
-    const subject = new ReplaySubject<string>();
-    this._route.paramMap
-      .subscribe(map => subject.next(map.get('id')));
-    return subject.asObservable();
-  }
-
-  private _makeDummyDiscussion(): Discussion {
-    return {
-      key: null,
-      title: `Discussion #${Math.floor(Math.random() * 1000)}`,
-      description: this._lorem.get(2),
-      createdDate: new Date().toISOString(),
-      modifiedDate: new Date().toISOString(),
-      forumKey: this.forum.key
-    };
+    return this._route.paramMap
+      .map(map => map.get('id'));
   }
 
 }

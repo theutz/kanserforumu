@@ -56,7 +56,7 @@ export class ForumListComponent implements OnInit, OnDestroy {
       createdDate: new Date().toISOString(),
       modifiedDate: new Date().toISOString(),
       description: this._lorem.get(2),
-      discussions: null
+      discussionKeys: null
     };
   }
 

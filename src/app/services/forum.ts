@@ -9,5 +9,5 @@ export interface Forum {
   createdDate: string;
   modifiedDate: string;
   description: string;
-  discussions: [{ [key: string]: boolean }] | Observable<Discussions> | Discussions;
+  discussionKeys: [{ [key: string]: boolean }];
 }
