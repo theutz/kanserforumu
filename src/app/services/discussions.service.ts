@@ -1,5 +1,4 @@
 import { Discussion } from '../services/discussion';
-import { ForumService } from './forum.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum/lib';
@@ -10,7 +9,6 @@ export class DiscussionsService {
 
   constructor(
     private _db: AngularFireDatabase,
-    private _forumService: ForumService,
     private _lorem: NgxLoremIpsumService
   ) { }
 
@@ -19,7 +17,7 @@ export class DiscussionsService {
       .list('/discussions');
   }
 
-  getByForumKey(forumKey: string) {
+  getByForumKey(forumKey: string): Observable<Discussion[]> {
     return this._db
       .list('/discussions', {
         query: {
@@ -70,6 +68,15 @@ export class DiscussionsService {
       .object(`/discussions/${key}`)
       .remove();
     return Observable.fromPromise(<Promise<void>>promise);
+  }
+
+  removeByForumKey(forumKey: string): Observable<void> {
+    return this.getByForumKey(forumKey)
+      .map(discussions => {
+        discussions.map(discussion => {
+          this.remove(discussion.key);
+        });
+      });
   }
 
   makeDummyDiscussion(forumKey: string): Discussion {

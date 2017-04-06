@@ -1,3 +1,4 @@
+import { DiscussionsService } from './discussions.service';
 import { Forum } from './forum';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2';
@@ -8,6 +9,7 @@ export class ForumService {
 
   constructor(
     private _db: AngularFireDatabase,
+    private _discussionsService: DiscussionsService
   ) { }
 
   getAll(): Observable<Forum[]> {
@@ -44,10 +46,18 @@ export class ForumService {
   }
 
   remove(forumKey: string): Observable<void> {
-    console.log(forumKey);
     const promise = this._db
       .object(`/forums/${forumKey}`)
       .remove();
-    return Observable.fromPromise(<Promise<void>>promise);
+
+    const forumRemove$ = Observable
+      .fromPromise(<Promise<void>>promise);
+
+    const discussionsRemove$ = this._discussionsService
+      .removeByForumKey(forumKey);
+
+    return Observable
+      .zip(forumRemove$, discussionsRemove$)
+      .map(array => null);
   }
 }
