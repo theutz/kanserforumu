@@ -4,12 +4,19 @@
     <button *ngIf="isLoggedIn()|async" (click)="addForum()" class="add-forum">{{ 'FORUMS_LIST.ADD_BUTTON' | translate}} <i class="fa fa-plus" aria-hidden="true"></i></button>
   </div>
   <ul class="forums">
-    <li class="forum" (click)="viewForum(forum.key)" *ngFor="let forum of forums">
+    <li class="forum" *ngFor="let forum of forums">
       <div class="title">
-        <h5 class="title">{{forum.title}}</h5>
+        <h5>
+          <a [routerLink]="'/forum/' + forum.key">
+          {{forum.title}}
+          </a>
+        </h5>
         <small class="w-25 text-right">{{forum.createdDate | amTimeAgo }}</small>
       </div>
       <p class="card-text">{{forum.description}}</p>
+      <a [routerLink]="'/forum/' + forum.key" class="card-link">
+        {{ 'FORUMS_LIST.VISIT_FORUM' | translate}}
+      </a>
     </li>
   </ul>
 </div>
