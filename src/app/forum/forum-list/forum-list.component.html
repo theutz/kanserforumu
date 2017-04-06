@@ -25,8 +25,11 @@
         </a>
         <button (click)="removeForum(forum)" class="remove-forum">
           <i class="fa fa-remove" aria-hidden="true"></i>
-        {{ 'FORUMS_LIST.REMOVE_FORUM_BUTTON' | translate }}
+        {{ 'BUTTONS.REMOVE' | translate }}
         </button>
+        <a [routerLink]="'/forum/' + forum.key + '/edit'" class="edit-forum">
+          <i class="fa fa-edit" aria-hidden="true"></i> {{ 'BUTTONS.EDIT' | translate }}
+        </a>
       </div>
     </li>
   </ul>

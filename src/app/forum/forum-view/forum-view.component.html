@@ -3,19 +3,21 @@
     <h2>
       <i class="fa fa-users fa-fw" aria-hidden="true"></i> {{ forum?.title }}
     </h2>
-    <div class="btn-group btn-group-sm">
-      <button (click)="addDiscussion()" class="add-discussion">
-      <i class="fa fa-plus" aria-hidden="true"></i>
-      {{ 'FORUM.ADD_DISCUSSION_BUTTON' | translate }}
-    </button>
+    <div class="forum-actions">
+      <a class="edit-forum" routerLink="edit">
+        <i class="fa fa-edit" aria-hidden="true"></i> {{ 'BUTTONS.EDIT' | translate }}
+      </a>
       <button (click)="removeForum()" class="remove-forum">
-      <i class="fa fa-remove" aria-hidden="true"></i>
-      {{ 'FORUM.REMOVE_FORUM_BUTTON' | translate }}
-    </button>
+        <i class="fa fa-remove" aria-hidden="true"></i>
+        {{ 'BUTTONS.REMOVE' | translate }}
+      </button>
     </div>
   </div>
   <div class="card-block">
     <p>{{ forum?.description }}</p>
+    <button (click)="addDiscussion()" class="add-discussion">
+      <i class="fa fa-plus" aria-hidden="true"></i> {{ 'FORUM.ADD_DISCUSSION_BUTTON' | translate }}
+    </button>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item" *ngFor="let discussion of discussions">
@@ -25,6 +27,10 @@
         </a>
       </h6>
       <p>{{ discussion?.description }}</p>
+      <button (click)="removeDiscussion(discussion)" class="remove-discussion">
+        <i class="fa fa-remove" aria-hidden="true"></i>
+        {{ 'BUTTONS.REMOVE' | translate}}
+      </button>
     </li>
   </ul>
 </div>

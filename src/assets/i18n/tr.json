@@ -2,6 +2,10 @@
   "BRAND": {
     "SITE_NAME": "Kanser Forumu"
   },
+  "BUTTONS": {
+    "REMOVE": "Kaldır",
+    "EDIT": "Düzenle"
+  },
   "HOME": {
     "SLIDES": [{
       "TITLE": "Kanser Forumu",
@@ -33,8 +37,7 @@
   "FORUMS_LIST": {
     "TITLE": "Forumlar",
     "ADD_BUTTON": "Forum Ekle",
-    "VISIT_FORUM": "Foruma Git",
-    "REMOVE_FORUM_BUTTON": "Forum Kaldır"
+    "VISIT_FORUM": "Foruma Git"
   },
   "FORUM": {
     "ADD_DISCUSSION_BUTTON": "Konu Ekle",

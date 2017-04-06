@@ -12,13 +12,31 @@
   @extend .ml-auto;
 }
 
+.forum-actions {
+  @extend .btn-group;
+  @extend .btn-group-sm;
+  &>* {
+    @extend .align-self-center;
+  }
+}
+
 button {
   @extend .btn;
-  @extend .align-self-center;
 }
 
 .add-discussion {
   @extend .btn-primary;
+  @extend .card-link;
+}
+
+.edit-forum {
+  @extend .btn;
+  @extend .btn-secondary;
+}
+
+.remove-discussion {
+  @extend .btn-sm;
+  @extend .btn-danger;
 }
 
 .remove-forum {
