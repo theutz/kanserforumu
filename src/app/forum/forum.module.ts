@@ -18,6 +18,7 @@ import { DiscussionEditComponent } from './discussion-edit/discussion-edit.compo
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 import { ForumEditComponent } from './forum-edit/forum-edit.component';
 import { ForumViewComponent } from './forum-view/forum-view.component';
+import { DiscussionViewComponent } from './discussion-view/discussion-view.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { ForumViewComponent } from './forum-view/forum-view.component';
     DiscussionEditComponent,
     ForumEditComponent,
     ForumViewComponent,
+    DiscussionViewComponent,
   ],
   providers: [
     DiscussionsService,

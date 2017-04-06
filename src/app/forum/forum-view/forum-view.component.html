@@ -20,7 +20,9 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item" *ngFor="let discussion of discussions">
       <h6 class="list-group-item-title">
-        <i class="fa fa-fw fa-comments" aria-hidden="true"></i> {{ discussion?.title }}
+        <a [routerLink]="'discussion/' + discussion.key">
+          <i class="fa fa-fw fa-comments" aria-hidden="true"></i> {{ discussion?.title }}
+        </a>
       </h6>
       <p>{{ discussion?.description }}</p>
     </li>

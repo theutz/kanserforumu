@@ -8,6 +8,8 @@ import { ForumListComponent } from './forum/forum-list/forum-list.component';
 import { ForumViewComponent } from './forum/forum-view/forum-view.component';
 import { ForumEditComponent } from './forum/forum-edit/forum-edit.component';
 import { ForumResolver } from './services/forum-resolver.service';
+import { DiscussionViewComponent } from './forum/discussion-view/discussion-view.component';
+import { DiscussionResolver } from './services/discussion-resolver.service';
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import { ForumResolver } from './services/forum-resolver.service';
         path: 'forum', component: ForumComponent, children: [
           { path: ':id', component: ForumViewComponent, resolve: ForumResolver },
           { path: ':id/edit', component: ForumEditComponent, resolve: ForumResolver },
+          { path: ':id/discussion/:disucssionId', component: DiscussionViewComponent, resolve: DiscussionResolver },
           { path: '', component: ForumListComponent },
         ]
       },

@@ -1,3 +1,4 @@
+import { DiscussionResolver } from './services/discussion-resolver.service';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './services/auth.service';
 import * as moment from 'moment';
@@ -68,7 +69,8 @@ export function HttpLoaderFactory(http: Http) {
     AuthService,
     AuthGuard,
     NgxLoremIpsumService,
-    ForumResolver
+    ForumResolver,
+    DiscussionResolver
   ],
   bootstrap: [
     AppComponent
