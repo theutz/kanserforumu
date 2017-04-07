@@ -12,6 +12,10 @@
   @extend .mb-0;
 }
 
+.fa-users::before {
+  color: $brand-primary;
+}
+
 .actions {
   @extend .d-flex;
   @extend .w-100;

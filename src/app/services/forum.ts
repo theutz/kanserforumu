@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs/Rx';
-import { Discussions } from './discussion';
 import { FirebaseListObservable } from 'angularfire2/database';
 
 export interface Forum {
