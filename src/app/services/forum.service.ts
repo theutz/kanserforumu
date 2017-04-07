@@ -2,7 +2,7 @@ import { DiscussionsService } from './discussions.service';
 import { Forum } from './forum';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2';
-import { Observable } from 'rxjs/Rx';
+import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 @Injectable()
 export class ForumService {
@@ -22,13 +22,25 @@ export class ForumService {
       .object(`/forums/${forumKey}`);
   }
 
-  add(forum: Forum): Observable<string> {
-    forum.key = this._db
+  add(forum?: Forum): Observable<string> {
+    const subject = new ReplaySubject<string>();
+    this._db
       .list('/forums')
-      .push(null).ref.key;
+      .push(null)
+      .then(ref => {
+        const key = ref.key;
+        if (!!forum) {
+          forum.key = key;
+        } else { forum = this._blankForum(key); }
+        subject.next(key);
+        subject.complete();
+      });
+    const subject$ = subject.asObservable();
 
-    return this.set(forum)
-      .switchMap(() => forum.key);
+    return subject$.switchMap(() => {
+      return this.set(forum)
+        .map(() => forum.key);
+    });
   }
 
   set(forum: Forum): Observable<void> {
@@ -39,9 +51,10 @@ export class ForumService {
   }
 
   update(forum: Forum): Observable<void> {
+    forum.modifiedDate = new Date().toISOString();
     const promise = this._db
       .object(`/forums/${forum.key}`)
-      .update(forum)
+      .update(forum);
     return Observable.fromPromise(<Promise<void>>promise);
   }
 
@@ -59,5 +72,16 @@ export class ForumService {
     return Observable
       .zip(forumRemove$, discussionsRemove$)
       .map(array => null);
+  }
+
+  private _blankForum(forumKey: string): Forum {
+    return {
+      key: forumKey,
+      title: 'Forum',
+      createdDate: new Date().toISOString(),
+      modifiedDate: new Date().toISOString(),
+      description: '',
+      discussionKeys: null
+    };
   }
 }

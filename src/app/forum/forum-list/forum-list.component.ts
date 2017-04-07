@@ -48,11 +48,12 @@ export class ForumListComponent implements OnInit, OnDestroy {
   }
 
   addForum() {
-    const forum = this._dummyForumFactory();
     this._forumsService
-      .add(forum)
-      .first()
-      .subscribe(() => this._toast.success(`${forum.title} was created!`, `Success`));
+      .add(null)
+      .subscribe(key => {
+        console.log(key);
+        this._router.navigate(['forum', key, 'edit']);
+      });
   }
 
   removeForum(forum: Forum) {
@@ -61,7 +62,7 @@ export class ForumListComponent implements OnInit, OnDestroy {
       .first()
       .subscribe(() => {
         this._toast.success(`${forum.title} was removed.`, 'Success');
-      })
+      });
   }
 
   private _dummyForumFactory(): Forum {
