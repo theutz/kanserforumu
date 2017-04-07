@@ -65,15 +65,19 @@ export class ForumViewComponent implements OnInit, OnDestroy {
   addDiscussion() {
     this._discussionService
       .add(this._discussionService
-        .makeDummyDiscussion(this.forum.key));
+        .makeDummyDiscussion(this.forum.key))
+      .subscribe(key => {
+        this._router
+          .navigate(['forum', this.forum.key, 'discussion', key]);
+      });
   }
 
   removeDiscussion(discussion: Discussion) {
     this._discussionService
       .remove(discussion.key)
       .subscribe(() => {
-        this._toast.success(`Removed ${discussion.title} successfully.`, 'Success!')
-      })
+        this._toast.success(`Removed ${discussion.title} successfully.`, 'Success!');
+      });
   }
 
   removeForum() {

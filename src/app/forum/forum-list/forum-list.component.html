@@ -21,6 +21,7 @@
         </div>
         <p class="card-text">{{forum.description}}</p>
         <div class="actions">
+          {{ forum | json }}
           <a class="view-forum" [routerLink]="'/forum/' + forum.key" class="card-link">
             <i class="fa fa-users" aria-hidden="true"></i> {{ i18n.buttons.visit }}
           </a>

@@ -2,7 +2,7 @@ import { Discussion } from '../services/discussion';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum/lib';
-import { Observable } from 'rxjs/Rx';
+import { Observable, ReplaySubject } from 'rxjs/Rx';
 
 @Injectable()
 export class DiscussionsService {
@@ -33,13 +33,19 @@ export class DiscussionsService {
   }
 
   add(discussion: Discussion): Observable<string> {
-    discussion.key = this._db
+    const sub = new ReplaySubject<string>();
+    this._db
       .list('/disussions')
-      .push(null).ref.key;
+      .push(null)
+      .then(ref => { sub.next(ref.key); sub.complete(); });
 
-    return this.set(discussion)
-      .map(() => this.addDiscussionToForum(discussion.forumKey, discussion.key))
-      .switchMap(() => discussion.key);
+    return sub.asObservable()
+      .switchMap(discussionKey => {
+        discussion.key = discussionKey;
+        return this.set(discussion)
+          .switchMap(() => this.addDiscussionToForum(discussion.forumKey, discussionKey))
+          .switchMap(() => discussionKey);
+      });
   }
 
   addDiscussionToForum(forumKey: string, discussionKey: string): Observable<void> {
@@ -52,7 +58,7 @@ export class DiscussionsService {
   set(discussion: Discussion): Observable<void> {
     const promise = this._db
       .object(`/discussions/${discussion.key}`)
-      .set(discussion)
+      .set(discussion);
     return Observable.fromPromise(<Promise<void>>promise);
   }
 
