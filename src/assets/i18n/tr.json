@@ -1,67 +1,97 @@
 {
-  "BRAND": {
-    "SITE_NAME": "Kanser Forumu"
+  "discussions": {
+    "view": {}
   },
-  "BUTTONS": {
-    "REMOVE": "Kaldır",
-    "EDIT": "Düzenle"
+  "footer": {
+    "copyright": "Telif hakkı 2017 Kanser Forumu. Her hakkı saklıdır."
   },
-  "HOME": {
-    "SLIDES": [{
-      "TITLE": "Kanser Forumu",
-      "BODY": "Kanserle yalnız yüzleşmek zorunda değilsiniz",
-      "PHOTO_URL": "/assets/father-and-child-on-dock.jpg"
-    }, {
-      "TITLE": "Kanser Forumu",
-      "BODY": "Kanserle yalnız yüzleşmek zorunda değilsiniz",
-      "PHOTO_URL": "/assets/istanbul-sunset.jpg"
-    }],
-    "HERO": {}
-  },
-  "NAVBAR": {
-    "LINKS": {
-      "HOME": "Ana Sayfa",
-      "FORUM": "Forum"
-    },
-    "WELCOME": "Hoş Geldin, {{ displayName }}!",
-    "LOGIN": "Giriş Yap",
-    "LOGOUT": "Çıkış",
-    "NOTIFICATIONS": {
-      "LOGOUT": {
-        "BODY": "Bir dahaki sefere görüşmek üzere!",
-        "TITLE": "Oturum kapatıldı"
-      }
-    }
-  },
-  "DISCUSSIONS_LIST": {},
-  "FORUMS_LIST": {
-    "TITLE": "Forumlar",
-    "ADD_BUTTON": "Forum Ekle",
-    "VISIT_FORUM": "Foruma Git"
-  },
-  "FORUM": {
-    "ADD_DISCUSSION_BUTTON": "Konu Ekle",
-    "REMOVE_FORUM_BUTTON": "Forum Kaldır"
-  },
-  "LOGIN": {
-    "WELCOME": "Hoş Geldiniz",
-    "PLEASE": "Lütfen giriş yapın",
-    "CTA": {
-      "LOGIN": "Giriş Yap"
-    },
-    "NOTIFICATIONS": {
-      "SUCCESS": {
-        "TITLE": "Giriş başarılı",
-        "BODY": "Hoş geldin, {{ displayName }}!"
+  "forum": {
+    "edit": {
+      "buttons": {
+        "save": "Kaydet"
       },
-      "ERROR": {
-        "WRONG_PROVIDER": {
-          "TITLE": "Giriş yaparken hata oluştu"
-        }
+      "dates": {
+        "created": "Oluşturulduğu Tarih",
+        "modified": "Değiştirilme Tarihi"
+      },
+      "labels": {
+        "description": "Açıklama",
+        "title": "Forum Adı"
+      },
+      "title": "{{forumTitle}} Düzenle"
+    },
+    "list": {
+      "buttons": {
+        "add": "Forum Ekle",
+        "edit": "Düzenle",
+        "remove": "Kaldır",
+        "visit": "Foruma Git"
+      },
+      "dates": {
+        "created": "Oluşturulduğu Tarih",
+        "modified": "Değiştirilme Tarihi"
+      },
+      "title": "Forumlar"
+    },
+    "view": {
+      "buttons": {
+        "add_discussion": "Konu Ekle",
+        "edit": "Düzenle",
+        "remove": "Kaldır"
+      },
+      "dates": {
+        "created": "Oluşturulduğu Tarih",
+        "modified": "Değiştirilme Tarihi"
       }
     }
   },
-  "FOOTER": {
-    "COPYRIGHT": "Telif hakkı 2017 Kanser Forumu. Her hakkı saklıdır."
+  "home": {
+    "slides": [{
+        "body": "Kanserle yalnız yüzleşmek zorunda değilsiniz",
+        "photo_url": "/assets/father-and-child-on-dock.jpg",
+        "title": "Kanser Forumu"
+      },
+      {
+        "body": "Kanserle yalnız yüzleşmek zorunda değilsiniz",
+        "photo_url": "/assets/istanbul-sunset.jpg",
+        "title": "Kanser Forumu"
+      }
+    ]
+  },
+  "login": {
+    "cta": {
+      "login": "Giriş Yap"
+    },
+    "notifications": {
+      "error": {
+        "wrong_provider": {
+          "title": "Giriş yaparken hata oluştu"
+        }
+      },
+      "success": {
+        "body": "Hoş geldin, {{ displayName }}!",
+        "title": "Giriş başarılı"
+      }
+    },
+    "please": "Lütfen giriş yapın",
+    "welcome": "Hoş Geldiniz"
+  },
+  "navbar": {
+    "buttons": {
+      "login": "Giriş Yap",
+      "logout": "Çıkış"
+    },
+    "links": {
+      "forum": "Forum",
+      "home": "Ana Sayfa"
+    },
+    "notifications": {
+      "logout": {
+        "body": "Bir dahaki sefere görüşmek üzere!",
+        "title": "Oturum kapatıldı"
+      }
+    },
+    "title": "Kanser Forumu",
+    "welcome": "Hoş Geldin, {{ displayName }}!"
   }
 }

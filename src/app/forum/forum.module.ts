@@ -19,6 +19,7 @@ import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 import { ForumEditComponent } from './forum-edit/forum-edit.component';
 import { ForumViewComponent } from './forum-view/forum-view.component';
 import { DiscussionViewComponent } from './discussion-view/discussion-view.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { DiscussionViewComponent } from './discussion-view/discussion-view.compo
     CollapseModule,
     TranslateModule,
     SharedModule,
+    FormsModule
   ],
   declarations: [
     ForumListComponent,

@@ -1,36 +1,43 @@
-<div class="card">
-  <div class="card-header">
-    <h2 class="card-title">
-      <i class="fa fa-users" aria-hidden="true"></i> {{ 'FORUMS_LIST.TITLE' | translate }}
-    </h2>
-    <button *ngIf="isLoggedIn()|async" (click)="addForum()" class="add-forum">
+<ng-container [ngSwitch]="!!forums && !!i18n">
+  <div *ngSwitchCase="true" class="card">
+    <div class="card-header">
+      <h2 class="card-title">
+        <i class="fa fa-users" aria-hidden="true"></i> {{ i18n.title }}
+      </h2>
+      <button *ngIf="isLoggedIn()|async" (click)="addForum()" class="add-forum">
       <i class="fa fa-plus" aria-hidden="true"></i>
-      {{ 'FORUMS_LIST.ADD_BUTTON' | translate}} 
+      {{ i18n.buttons.add }} 
     </button>
-  </div>
-  <ul class="forums">
-    <li class="forum" *ngFor="let forum of forums">
-      <div class="title">
-        <h5>
-          <a [routerLink]="'/forum/' + forum.key">
-          {{forum.title}}
+    </div>
+    <ul class="forums">
+      <li class="forum" *ngFor="let forum of forums">
+        <div class="title">
+          <h5>
+            <a [routerLink]="'/forum/' + forum.key">
+          {{ forum.title }}
           </a>
-        </h5>
-        <small class="w-25 text-right">{{forum.createdDate | amTimeAgo }}</small>
-      </div>
-      <p class="card-text">{{forum.description}}</p>
-      <div class="actions">
-        <a class="view-forum" [routerLink]="'/forum/' + forum.key" class="card-link">
-          <i class="fa fa-users" aria-hidden="true"></i> {{ 'FORUMS_LIST.VISIT_FORUM' | translate}}
-        </a>
-        <button (click)="removeForum(forum)" class="remove-forum">
+          </h5>
+          <small class="text-muted w-25 text-right">{{ forum.createdDate | amTimeAgo }}</small>
+        </div>
+        <p class="card-text">{{forum.description}}</p>
+        <div class="actions">
+          <a class="view-forum" [routerLink]="'/forum/' + forum.key" class="card-link">
+            <i class="fa fa-users" aria-hidden="true"></i> {{ i18n.buttons.visit }}
+          </a>
+          <div class="ml-auto btn-group">
+            <a [routerLink]="'/forum/' + forum.key + '/edit'" class="edit-forum">
+              <i class="fa fa-edit" aria-hidden="true"></i> {{ i18n.buttons.edit }}
+            </a>
+            <button (click)="removeForum(forum)" class="remove-forum">
           <i class="fa fa-remove" aria-hidden="true"></i>
-        {{ 'BUTTONS.REMOVE' | translate }}
+        {{ i18n.buttons.remove }}
         </button>
-        <a [routerLink]="'/forum/' + forum.key + '/edit'" class="edit-forum">
-          <i class="fa fa-edit" aria-hidden="true"></i> {{ 'BUTTONS.EDIT' | translate }}
-        </a>
-      </div>
-    </li>
-  </ul>
-</div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngSwitchCase="false" class="d-flex w-100 h-100 justify-content-center align-items-center">
+    <i class="fa fa-spinner fa-spin fa-4x"></i>
+  </div>
+</ng-container>

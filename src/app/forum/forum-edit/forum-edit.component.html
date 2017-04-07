@@ -1,1 +1,38 @@
-<h1>{{forum?.title}}</h1>
+<ng-container [ngSwitch]="!!forum && !!i18n">
+  <ng-container *ngSwitchCase="true">
+    <h2 class="mt-4" [translate]="'forum.edit.title'" [translateParams]="{ forumTitle: forum.title }"></h2>
+    <form class="my-4">
+      <div class="card card-primary card-inverse">
+        <div class="card-header">
+          <div class="form-group">
+            <label for="title">{{ i18n.labels.title }}</label>
+            <input class="form-control" type="text" name="title" [(ngModel)]="forum.title">
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="form-group">
+            <label for="description">{{ i18n.labels.description }}</label>
+            <textarea [(ngModel)]="forum.description" name="description" rows="5" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <div>
+            <i class="fa fa-fw fa-calendar-plus-o" aria-hidden="true"></i>
+            <strong>{{ i18n.dates.created }}:</strong> {{ forum.createdDate | amCalendar }}
+          </div>
+          <div>
+            <i class="fa fa-fw fa-calendar-check-o" aria-hidden="true"></i>
+            <strong>{{ i18n.dates.modified }}:</strong> {{ forum.modifiedDate | amCalendar }}
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary mt-4" type="submit">
+      <i class="fa fa-save"></i>
+      {{ i18n.buttons.save }}
+      </button>
+    </form>
+  </ng-container>
+  <div class="d-flex justify-content-center align-items-center w-100 h-100" *ngSwitchCase="false">
+    <i class="fa fa-spin fa-4x fa-spinner"></i>
+  </div>
+</ng-container>

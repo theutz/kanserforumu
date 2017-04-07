@@ -13,14 +13,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   title: string;
-  links: Array<{ url: string[] | string, title: string, icon: string }> = [];
+  links: Array<{ url: string | string, title: string, icon: string }> = [];
   isCollapsed = true;
   currentUser: UserInfo;
-  nameParam: any;
+  i18n: any;
 
-  private _titleSubscription: Subscription;
-  private _linkSubcription: Subscription;
-  private _currentUserSubscription: Subscription;
+  private _currentUser$sub: Subscription;
+  private _i18n$sub: Subscription;
 
   constructor(
     private _trans: TranslateService,
@@ -30,9 +29,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this._setTitle();
-    this._setLinks();
-    this._setCurrentUser();
+    this._currentUser$sub = this._auth.currentUser().subscribe(user => {
+      this.currentUser = user;
+
+      this._i18n$sub = this._trans
+        .get('navbar', {
+          welcome: {
+            displayName: user.displayName
+          }
+        })
+        .subscribe(i18n => {
+          this.i18n = i18n;
+          this.links.push({ title: i18n.links.home, url: '/home', icon: 'home' });
+          this.links.push({ title: i18n.links.forum, url: '/forum', icon: 'users' });
+        });
+    });
   }
 
   toggleNavbar(event?: Event): void {
@@ -50,9 +61,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._titleSubscription.unsubscribe();
-    this._linkSubcription.unsubscribe();
-    this._currentUserSubscription.unsubscribe();
+    this._currentUser$sub.unsubscribe();
+    this._i18n$sub.unsubscribe();
   }
 
   isLoggedIn(): Observable<boolean> {
@@ -77,25 +87,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    this._router.navigate(['/girisyap']);
+    this._router.navigate(['/login']);
   }
 
-  private _setTitle() {
-    this._titleSubscription = this._trans.get('BRAND.SITE_NAME').subscribe(x => this.title = x);
-  }
-
-  private _setLinks() {
-    this._linkSubcription = this._trans
-      .get('NAVBAR.LINKS').subscribe(x => {
-        this.links.push({ title: x['HOME'], url: ['/home'], icon: 'home' });
-        this.links.push({ title: x['FORUM'], url: ['/forum'], icon: 'users' });
-      })
-  }
-
-  private _setCurrentUser() {
-    this._currentUserSubscription = this._auth
-      .currentUser()
-      .do(u => this.nameParam = { displayName: u.displayName })
-      .subscribe(u => this.currentUser = u);
-  }
 }

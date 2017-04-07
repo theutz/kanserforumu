@@ -9,20 +9,17 @@ import { Slides, Slide } from './slides';
 })
 export class HomeComponent implements OnInit {
   slides: Slides;
+  i18n: any;
 
   constructor(
     private _translate: TranslateService
   ) { }
 
   ngOnInit() {
-    this._setSlides();
-  }
-
-  private _setSlides() {
-    this._translate
-      .get('HOME.SLIDES')
-      .subscribe(slides => {
-        this.slides = slides;
+    this._translate.get('home')
+      .subscribe(x => {
+        this.i18n = x;
+        this.slides = x.slides;
       });
   }
 

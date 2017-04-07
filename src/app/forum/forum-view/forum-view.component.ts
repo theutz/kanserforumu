@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr/toastr-service';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum/lib';
 import { OnDestroy } from '@angular/core/core';
@@ -17,6 +18,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ForumViewComponent implements OnInit, OnDestroy {
   forum: Forum;
   discussions: Discussion[];
+  i18n: any;
 
   private _forum$: Observable<Forum>;
   private _forum$sub: Subscription;
@@ -30,7 +32,8 @@ export class ForumViewComponent implements OnInit, OnDestroy {
     private _discussionService: DiscussionsService,
     private _router: Router,
     private _toast: ToastrService,
-    private _lorem: NgxLoremIpsumService
+    private _lorem: NgxLoremIpsumService,
+    private _tr: TranslateService
   ) { }
 
   ngOnInit() {
@@ -42,6 +45,11 @@ export class ForumViewComponent implements OnInit, OnDestroy {
 
     this._forum$sub = this._forum$
       .subscribe(forum => this.forum = forum);
+
+    this._tr.get('forum.view')
+      .subscribe(i18n =>
+        this.i18n = i18n
+      );
 
     this._discussions$sub = this._discussions$
       .subscribe(discussions =>

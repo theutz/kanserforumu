@@ -1,11 +1,11 @@
 <carousel>
   <slide *ngFor="let slide of slides">
     <div class="img-holder">
-      <img [src]="slide['PHOTO_URL']" [alt]="slide['TITLE']">
+      <img [src]="slide['photo_url']" [alt]="slide['title']">
     </div>
     <div class="carousel-caption">
-      <h1>{{ slide['TITLE'] }}</h1>
-      <p class="lead">{{ slide['BODY'] }}</p>
+      <h1>{{ slide['title'] }}</h1>
+      <p class="lead">{{ slide['body'] }}</p>
     </div>
   </slide>
 </carousel>

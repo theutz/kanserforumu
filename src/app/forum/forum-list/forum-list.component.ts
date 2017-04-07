@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr/toastr-service';
 import { AuthService } from '../../services/auth.service';
 import { Observable, Subscription } from 'rxjs/Rx';
@@ -14,29 +15,32 @@ import { Router } from '@angular/router';
 })
 export class ForumListComponent implements OnInit, OnDestroy {
   forums: Forum[];
-  private _subscriptions: Subscription[] = [];
+  i18n: any;
+
+  private _forums$sub: Subscription;
+  private _i18n$sub: Subscription;
 
   constructor(
     private _forumsService: ForumService,
     private _lorem: NgxLoremIpsumService,
     private _auth: AuthService,
     private _toast: ToastrService,
-    private _router: Router
+    private _router: Router,
+    private _trs: TranslateService
   ) { }
 
   ngOnInit() {
-    this._loadForum();
-  }
-
-  private _loadForum() {
-    const sub = this._forumsService.getAll()
-      .subscribe(forums => this.forums = forums);
-
-    this._subscriptions.push(sub);
+    this._forums$sub = this._forumsService.getAll()
+      .subscribe(forums => {
+        this.forums = forums;
+        this._i18n$sub = this._trs.get('forum.list')
+          .subscribe(i18n => this.i18n = i18n);
+      });
   }
 
   ngOnDestroy() {
-    this._subscriptions.map(s => s.unsubscribe());
+    this._i18n$sub.unsubscribe();
+    this._forums$sub.unsubscribe();
   }
 
   isLoggedIn(): Observable<boolean> {

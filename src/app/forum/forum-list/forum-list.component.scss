@@ -43,13 +43,11 @@ button {
   @extend .btn;
   @extend .btn-secondary;
   @extend .btn-sm;
-  @extend .ml-1;
 }
 
 .remove-forum {
   @extend .btn-danger;
   @extend .btn-sm;
-  @extend .ml-auto;
 }
 
 .forums {
