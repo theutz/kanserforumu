@@ -48,11 +48,10 @@ export class ForumListComponent implements OnInit, OnDestroy {
   }
 
   addForum() {
-    this._forumsService
-      .add(null)
-      .subscribe(key => {
-        console.log(key);
-        this._router.navigate(['forum', key, 'edit']);
+    this._forumsService.add()
+      .first()
+      .subscribe(forum => {
+        this._router.navigate(['forum', forum.key, 'edit']);
       });
   }
 

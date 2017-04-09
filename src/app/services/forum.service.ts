@@ -20,21 +20,19 @@ export class ForumService {
       .object(`/forums/${forumKey}`);
   }
 
-  add(forum?: Forum): Observable<string> {
-    const forumsList$ = this._db.list('forums');
-
-    const key$ = Observable
-      .from(forumsList$.push(null))
-      .map(ref => ref.key);
-
-    const forumWithKey$ = key$.map(key =>
-      !!forum ? forum.key = key : this._blankForum(key));
+  add(forum?: Forum): Observable<Forum> {
+    const forumWithKey$ = Observable
+      .from(this._db.list('forums').push(null))
+      .map(ref => ref.key)
+      .map(key =>
+        !!forum ? forum.key = key : this._blankForum(key));
 
     const forumSet$ = forumWithKey$
-      .switchMap(f => this.set(f));
+      .switchMap(f => this.set(f))
+      .combineLatest(forumWithKey$);
 
     return Observable
-      .combineLatest(forumSet$, key$)
+      .combineLatest(forumSet$, forumWithKey$)
       .map(x => x[1]);
   }
 
