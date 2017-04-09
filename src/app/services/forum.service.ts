@@ -1,4 +1,3 @@
-import { DiscussionsService } from './discussions.service';
 import { Forum } from './forum';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2';
@@ -9,7 +8,6 @@ export class ForumService {
 
   constructor(
     private _db: AngularFireDatabase,
-    private _discussionsService: DiscussionsService
   ) { }
 
   getAll(): Observable<Forum[]> {
@@ -23,24 +21,21 @@ export class ForumService {
   }
 
   add(forum?: Forum): Observable<string> {
-    const subject = new ReplaySubject<string>();
-    this._db
-      .list('/forums')
-      .push(null)
-      .then(ref => {
-        const key = ref.key;
-        if (!!forum) {
-          forum.key = key;
-        } else { forum = this._blankForum(key); }
-        subject.next(key);
-        subject.complete();
-      });
-    const subject$ = subject.asObservable();
+    const forumsList$ = this._db.list('forums');
 
-    return subject$.switchMap(() => {
-      return this.set(forum)
-        .map(() => forum.key);
-    });
+    const key$ = Observable
+      .from(forumsList$.push(null))
+      .map(ref => ref.key);
+
+    const forumWithKey$ = key$.map(key =>
+      !!forum ? forum.key = key : this._blankForum(key));
+
+    const forumSet$ = forumWithKey$
+      .switchMap(f => this.set(f));
+
+    return Observable
+      .combineLatest(forumSet$, key$)
+      .map(x => x[1]);
   }
 
   set(forum: Forum): Observable<void> {
@@ -66,12 +61,14 @@ export class ForumService {
     const forumRemove$ = Observable
       .fromPromise(<Promise<void>>promise);
 
-    const discussionsRemove$ = this._discussionsService
-      .removeByForumKey(forumKey);
+    // TODO: Merge with discussion removal
+    // const discussionsRemove$ = this._discussionsService
+    //   .removeByForumKey(forumKey);
 
-    return Observable
-      .zip(forumRemove$, discussionsRemove$)
-      .map(array => null);
+    // return Observable
+    //   .zip(forumRemove$, discussionsRemove$)
+    //   .map(array => null);
+    return forumRemove$;
   }
 
   private _blankForum(forumKey: string): Forum {
