@@ -60,7 +60,8 @@ export class ForumListComponent implements OnInit, OnDestroy {
       .remove(forum.key)
       .first()
       .subscribe(() => {
-        this._toast.success(`${forum.title} was removed.`, 'Success');
+        this._toast
+          .success(`${forum.title} was removed.`, 'Success');
       });
   }
 

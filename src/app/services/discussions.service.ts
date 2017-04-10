@@ -50,7 +50,7 @@ export class DiscussionsService {
 
   addDiscussionToForum(forumKey: string, discussionKey: string): Observable<void> {
     const promise = this._db
-      .object(`/forums/${forumKey}/discussions/${discussionKey}`)
+      .object(`/forums/${forumKey}/discussionKeys/${discussionKey}`)
       .set(true);
     return Observable.fromPromise(<Promise<void>>promise);
   }

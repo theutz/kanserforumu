@@ -1,3 +1,4 @@
+import { Discussion } from './discussion';
 import { Forum } from './forum';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2';
@@ -36,37 +37,56 @@ export class ForumService {
       .map(x => x[1]);
   }
 
-  set(forum: Forum): Observable<void> {
-    const promise = this._db
-      .object(`/forums/${forum.key}`)
-      .set(forum);
-    return Observable.fromPromise(<Promise<void>>promise);
+  set(forum: Forum): Observable<Forum> {
+    return Observable
+      .from(this._db.object(`/forums/${forum.key}`)
+        .set(forum)
+      ).map(() => forum);
   }
 
-  update(forum: Forum): Observable<void> {
+  update(forum: Forum): Observable<Forum> {
     forum.modifiedDate = new Date().toISOString();
-    const promise = this._db
+    return Observable.from(this._db
       .object(`/forums/${forum.key}`)
-      .update(forum);
-    return Observable.fromPromise(<Promise<void>>promise);
+      .update(forum)
+    ).map(() => forum);
   }
 
   remove(forumKey: string): Observable<void> {
-    const promise = this._db
-      .object(`/forums/${forumKey}`)
-      .remove();
+    const forumRm$ = Observable
+      .defer(() =>
+        this._db.object(`/forums/${forumKey}`)
+          .remove()
+      );
 
-    const forumRemove$ = Observable
-      .fromPromise(<Promise<void>>promise);
+    const discussionsRm$ =
+      this.removeDiscussionsForForum(forumKey);
 
-    // TODO: Merge with discussion removal
-    // const discussionsRemove$ = this._discussionsService
-    //   .removeByForumKey(forumKey);
+    return Observable
+      .forkJoin(forumRm$, discussionsRm$)
+      .map(x => null)
+      .first();
+  }
 
-    // return Observable
-    //   .zip(forumRemove$, discussionsRemove$)
-    //   .map(array => null);
-    return forumRemove$;
+  removeDiscussionsForForum(forumKey: string): Observable<void> {
+    return this.getDiscussions(forumKey)
+      .flatMap(discussions =>
+        Observable.from(discussions)
+          .flatMap(d =>
+            Observable.defer(() =>
+              this._db.object(`/discussions/${d.key}`)
+                .remove()
+            ))
+      ).first();
+  }
+
+  getDiscussions(forumKey: string): Observable<Discussion[]> {
+    return this._db.list(`/discussions`, {
+      query: {
+        orderByChild: 'forumKey',
+        equalTo: forumKey
+      }
+    });
   }
 
   private _blankForum(forumKey: string): Forum {
