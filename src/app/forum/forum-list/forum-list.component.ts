@@ -65,15 +65,9 @@ export class ForumListComponent implements OnInit, OnDestroy {
       });
   }
 
-  private _dummyForumFactory(): Forum {
-    return {
-      key: null,
-      title: `Forum #${Math.floor(Math.random() * 1000)}`,
-      createdDate: new Date().toISOString(),
-      modifiedDate: new Date().toISOString(),
-      description: this._lorem.get(2),
-      discussionKeys: null
-    };
+  discussionCount(forum: Forum): number {
+    return !!forum.discussionKeys
+      ? Object.keys(forum.discussionKeys).length
+      : 0;
   }
-
 }

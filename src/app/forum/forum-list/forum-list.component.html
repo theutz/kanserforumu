@@ -21,9 +21,11 @@
         </div>
         <p class="card-text">{{forum.description}}</p>
         <div class="actions">
-          {{ forum | json }}
-          <a class="view-forum" [routerLink]="'/forum/' + forum.key" class="card-link">
-            <i class="fa fa-users" aria-hidden="true"></i> {{ i18n.buttons.visit }}
+          <a class="card-link view-forum d-flex align-items-center" [routerLink]="'/forum/' + forum.key">
+            <span class="badge badge-primary mr-1">
+              <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
+              {{ discussionCount(forum) }}
+            </span> {{ i18n.buttons.visit }}
           </a>
           <div class="ml-auto btn-group">
             <a [routerLink]="'/forum/' + forum.key + '/edit'" class="edit-forum">
