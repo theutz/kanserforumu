@@ -29,7 +29,10 @@
           <small class="text-right pull-right text-muted">{{ discussion.modifiedDate | amTimeAgo }}</small>
         </h6>
         <p>{{ discussion.description }}</p>
-        <div class="w-100 d-flex justify-content-end">
+        <div class="btn-group btn-group-xs">
+          <a [routerLink]="'discussion/' + discussion.key + '/edit'" class="btn btn-secondary">
+            <i class="fa fa-edit"></i> {{ i18n.buttons.edit }}
+          </a>
           <button (click)="removeDiscussion(discussion)" class="remove-discussion">
             <i class="fa fa-remove" aria-hidden="true"></i>
             {{ i18n.buttons.remove }}

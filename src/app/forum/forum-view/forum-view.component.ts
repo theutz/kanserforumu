@@ -72,6 +72,11 @@ export class ForumViewComponent implements OnInit, OnDestroy {
       });
   }
 
+  editDiscussion(discussion: Discussion) {
+    this._router
+      .navigate(['forums', this.forum.key, 'discussions', discussion.key, 'edit']);
+  }
+
   removeDiscussion(discussion: Discussion) {
     this._discussionService
       .remove(discussion.key)

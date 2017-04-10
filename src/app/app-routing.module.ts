@@ -9,6 +9,7 @@ import { ForumViewComponent } from './forum/forum-view/forum-view.component';
 import { ForumEditComponent } from './forum/forum-edit/forum-edit.component';
 import { ForumResolver } from './services/forum-resolver.service';
 import { DiscussionViewComponent } from './forum/discussion-view/discussion-view.component';
+import { DiscussionEditComponent } from './forum/discussion-edit/discussion-edit.component';
 import { DiscussionResolver } from './services/discussion-resolver.service';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { DiscussionResolver } from './services/discussion-resolver.service';
           { path: ':id', component: ForumViewComponent, resolve: ForumResolver },
           { path: ':id/edit', component: ForumEditComponent, resolve: ForumResolver },
           { path: ':id/discussion/:disucssionId', component: DiscussionViewComponent, resolve: DiscussionResolver },
+          { path: ':id/discussion/:disucssionId/edit', component: DiscussionEditComponent, resolve: DiscussionResolver },
           { path: '', component: ForumListComponent },
         ]
       },
