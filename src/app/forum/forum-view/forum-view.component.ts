@@ -64,11 +64,23 @@ export class ForumViewComponent implements OnInit, OnDestroy {
 
   addDiscussion() {
     this._discussionService
-      .add(this._discussionService
-        .makeDummyDiscussion(this.forum.key))
-      .subscribe(key => {
+      .add({
+        key: '',
+        forumKey: this.forum.key,
+        createdDate: new Date().toISOString(),
+        modifiedDate: new Date().toISOString(),
+        description: '',
+        title: 'New Discussion'
+      })
+      .subscribe(discussion => {
         this._router
-          .navigate(['forum', this.forum.key, 'discussion', key]);
+          .navigate([
+            'forum',
+            this.forum.key,
+            'discussion',
+            discussion.key,
+            'edit'
+          ]);
       });
   }
 

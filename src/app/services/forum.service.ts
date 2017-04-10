@@ -22,7 +22,8 @@ export class ForumService {
   add(forum: Forum): Observable<Forum> {
     return Observable.from(
       this._db.list(`/forums`).push(null))
-      .do((ref: firebase.database.ThenableReference) => forum.key = ref.key)
+      .do((ref: firebase.database.ThenableReference) =>
+        forum.key = ref.key)
       .switchMap(f => this.set(forum))
       .map(f => forum);
   }

@@ -32,20 +32,14 @@ export class DiscussionsService {
       .object(`/discussions/${discussionKey}`);
   }
 
-  add(discussion: Discussion): Observable<string> {
-    const sub = new ReplaySubject<string>();
-    this._db
-      .list('/disussions')
-      .push(null)
-      .then(ref => { sub.next(ref.key); sub.complete(); });
-
-    return sub.asObservable()
-      .switchMap(discussionKey => {
-        discussion.key = discussionKey;
-        return this.set(discussion)
-          .switchMap(() => this.addDiscussionToForum(discussion.forumKey, discussionKey))
-          .switchMap(() => discussionKey);
-      });
+  add(discussion: Discussion): Observable<Discussion> {
+    return Observable.from(
+      this._db.list(`/discussions`).push(null))
+      .do((ref: firebase.database.ThenableReference) =>
+        discussion.key = ref.key)
+      .do(() => this.addDiscussionToForum(discussion.forumKey, discussion.key))
+      .switchMap(f => this.set(discussion))
+      .map(d => discussion);
   }
 
   addDiscussionToForum(forumKey: string, discussionKey: string): Observable<void> {
@@ -83,16 +77,5 @@ export class DiscussionsService {
           this.remove(discussion.key);
         });
       });
-  }
-
-  makeDummyDiscussion(forumKey: string): Discussion {
-    return {
-      key: null,
-      title: `Discussion #${Math.floor(Math.random() * 1000)}`,
-      description: this._lorem.get(2),
-      createdDate: new Date().toISOString(),
-      modifiedDate: new Date().toISOString(),
-      forumKey: forumKey
-    };
   }
 }
