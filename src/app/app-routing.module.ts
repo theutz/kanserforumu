@@ -19,8 +19,8 @@ import { DiscussionResolver } from './services/discussion-resolver.service';
         path: 'forum', component: ForumComponent, children: [
           { path: ':id', component: ForumViewComponent, resolve: ForumResolver },
           { path: ':id/edit', component: ForumEditComponent, resolve: ForumResolver },
-          { path: ':id/discussion/:disucssionId', component: DiscussionViewComponent, resolve: DiscussionResolver },
-          { path: ':id/discussion/:disucssionId/edit', component: DiscussionEditComponent, resolve: DiscussionResolver },
+          { path: ':id/discussion/:discussionId', component: DiscussionViewComponent, resolve: DiscussionResolver },
+          { path: ':id/discussion/:discussionId/edit', component: DiscussionEditComponent, resolve: DiscussionResolver },
           { path: '', component: ForumListComponent },
         ]
       },

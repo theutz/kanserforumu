@@ -1,3 +1,10 @@
-<p>
-  discussion-edit works!
-</p>
+<ng-container [ngSwitch]="!!discussion">
+  <div *ngSwitchCase="true" class="card my-4">
+    <div class="card-header">
+      <h1>{{discussion.title}}</h1>
+    </div>
+  </div>
+  <ng-container *ngSwitchCase="false">
+    <i class="fa fa-spinner fa-spin fa-4x"></i>
+  </ng-container>
+</ng-container>
