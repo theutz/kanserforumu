@@ -12,29 +12,19 @@ export class ForumService {
   ) { }
 
   getAll(): Observable<Forum[]> {
-    return this._db
-      .list('/forums');
+    return this._db.list('/forums');
   }
 
   get(forumKey: string): Observable<Forum> {
-    return this._db
-      .object(`/forums/${forumKey}`);
+    return this._db.object(`/forums/${forumKey}`);
   }
 
-  add(forum?: Forum): Observable<Forum> {
-    const forumWithKey$ = Observable
-      .from(this._db.list('forums').push(null))
-      .map(ref => ref.key)
-      .map(key =>
-        !!forum ? forum.key = key : this._blankForum(key));
-
-    const forumSet$ = forumWithKey$
-      .switchMap(f => this.set(f))
-      .combineLatest(forumWithKey$);
-
-    return Observable
-      .combineLatest(forumSet$, forumWithKey$)
-      .map(x => x[1]);
+  add(forum: Forum): Observable<Forum> {
+    return Observable.from(
+      this._db.list(`/forums`).push(null))
+      .do((ref: firebase.database.ThenableReference) => forum.key = ref.key)
+      .switchMap(f => this.set(forum))
+      .map(f => forum);
   }
 
   set(forum: Forum): Observable<Forum> {
