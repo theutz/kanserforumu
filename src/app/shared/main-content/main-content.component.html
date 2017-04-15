@@ -1,9 +1,10 @@
 <div class="card">
-  <div *ngIf="!!title" class="card-header d-flex align-items-center h5">
+  <div *ngIf="!!title" class="card-header justify-content-end d-flex align-items-center h5">
     <i *ngIf="!!icon" class="d-block text-primary mr-3 fa fa-{{icon}}" aria-hidden="true"></i>
-    <h4 class="card-title mb-0">
+    <h4 class="card-title mr-auto mb-0">
       {{ title }}
     </h4>
+    <ng-content select="[title-right]"></ng-content>
   </div>
   <div class="card-block">
     <ng-content></ng-content>
