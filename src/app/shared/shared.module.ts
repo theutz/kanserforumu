@@ -9,7 +9,7 @@ import { CollapseModule } from 'ng2-bootstrap/collapse';
 import { MomentModule } from 'angular2-moment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { MainContentComponent } from './main-content/main-content.component';
+import { MainContentModule } from './main-content/main-content.module';
 
 @NgModule({
   imports: [
@@ -19,12 +19,12 @@ import { MainContentComponent } from './main-content/main-content.component';
     CollapseModule,
     MomentModule,
     ToastrModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MainContentModule
   ],
   declarations: [
     NavbarComponent,
     FooterComponent,
-    MainContentComponent,
   ],
   exports: [
     NavbarComponent,
@@ -33,7 +33,7 @@ import { MainContentComponent } from './main-content/main-content.component';
     MomentModule,
     ToastrModule,
     BrowserAnimationsModule,
-    MainContentComponent
+    MainContentModule
   ]
 })
 export class SharedModule { }

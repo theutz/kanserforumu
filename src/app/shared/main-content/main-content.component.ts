@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MainContentComponent implements OnInit {
   @Input() icon = '';
   @Input() title = '';
+  @Input() footer = '';
 
   constructor() { }
 
