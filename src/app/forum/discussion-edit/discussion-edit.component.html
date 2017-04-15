@@ -1,9 +1,39 @@
-<ng-container [ngSwitch]="!!discussion">
-  <div *ngSwitchCase="true" class="card my-4">
-    <div class="card-header">
-      <h1>{{discussion.title}}</h1>
-    </div>
-  </div>
+<ng-container [ngSwitch]="!!discussion && !!i18n">
+  <ng-container *ngSwitchCase="true">
+    <h2 class="mt-4" [translate]="'discussion.edit.title'" [translateParams]="{ discussionTitle: discussion.title }"></h2>
+    <form class="my-4" (ngSubmit)="onSubmit(theForm.value)" #theForm="ngForm">
+      <input type="hidden" name="key" [(ngModel)]="discussion.key">
+      <input type="hidden" name="forumKey" [(ngModel)]="discussion.forumKey">
+      <div class="card card-primary card-inverse">
+        <div class="card-header">
+          <div class="form-group">
+            <label for="title">{{ i18n.labels.title }}</label>
+            <input class="form-control" type="text" name="title" [(ngModel)]="discussion.title">
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="form-group">
+            <label for="description">{{ i18n.labels.description }}</label>
+            <textarea [(ngModel)]="discussion.description" name="description" rows="5" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <div>
+            <i class="fa fa-fw fa-calendar-plus-o" aria-hidden="true"></i>
+            <strong>{{ i18n.dates.created }}:</strong> {{ discussion.createdDate | amCalendar }}
+          </div>
+          <div>
+            <i class="fa fa-fw fa-calendar-check-o" aria-hidden="true"></i>
+            <strong>{{ i18n.dates.modified }}:</strong> {{ discussion.modifiedDate | amCalendar }}
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary mt-4" type="submit">
+      <i class="fa fa-save"></i>
+      {{ i18n.buttons.save }}
+      </button>
+    </form>
+  </ng-container>
   <ng-container *ngSwitchCase="false">
     <i class="fa fa-spinner fa-spin fa-4x"></i>
   </ng-container>

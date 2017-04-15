@@ -1,6 +1,20 @@
 {
-  "discussions": {
-    "view": {}
+  "discussion": {
+    "view": {},
+    "edit": {
+      "buttons": {
+        "save": "Kaydet"
+      },
+      "dates": {
+        "created": "Oluşturulduğu Tarih",
+        "modified": "Değiştirilme Tarihi"
+      },
+      "labels": {
+        "description": "Açıklama",
+        "title": "Konu Adı"
+      },
+      "title": "{{discussionTitle}} Düzenle"
+    }
   },
   "footer": {
     "copyright": "Telif hakkı 2017 Kanser Forumu. Her hakkı saklıdır."
