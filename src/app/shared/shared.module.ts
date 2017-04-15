@@ -9,6 +9,7 @@ import { CollapseModule } from 'ng2-bootstrap/collapse';
 import { MomentModule } from 'angular2-moment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { MainContentComponent } from './main-content/main-content.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [
     NavbarComponent,
     FooterComponent,
+    MainContentComponent,
   ],
   exports: [
     NavbarComponent,
