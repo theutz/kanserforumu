@@ -32,7 +32,8 @@ import { MainContentComponent } from './main-content/main-content.component';
     FooterComponent,
     MomentModule,
     ToastrModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MainContentComponent
   ]
 })
 export class SharedModule { }
