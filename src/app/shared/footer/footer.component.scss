@@ -1,14 +1,1 @@
-@import "../../../styles";
-:host {
-  @extend .d-flex;
-  @extend .justify-content-center;
-  @extend .p-2;
-  @extend .align-content-center;
-  background-color: $brand-primary;
-}
 
-p {
-  @extend .m-0;
-  font-size: $font-size-base * .8;
-  color: $white;
-}
