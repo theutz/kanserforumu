@@ -6,7 +6,9 @@
     "remove": "Kaldır",
     "visit": "Git",
     "login": "Giriş Yap",
-    "logout": "Çıkış"
+    "logout": "Çıkış",
+    "back": "Geri",
+    "forums": "Forumlar"
   },
   "discussion": {
     "view": {},
