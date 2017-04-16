@@ -6,10 +6,6 @@
     </h4>
     <ng-content select="[title-right]"></ng-content>
   </div>
-  <div class="card-block">
-    <ng-content></ng-content>
-  </div>
-  <div *ngIf="!!footer" class="card-footer">
-    {{ footer }}
-  </div>
+  <ng-content></ng-content>
+  <ng-content select=".card-footer"></ng-content>
 </div>

@@ -1,7 +1,7 @@
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr/toastr-service';
 import { AuthService } from '../../services/auth.service';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Observable, ReplaySubject, Subject, Subscription } from 'rxjs/Rx';
 import { OnDestroy, Component, OnInit } from '@angular/core';
 import { ForumService } from 'app/services/forum.service';
 import { Forum } from 'app/services/forum';
@@ -15,8 +15,7 @@ import { Router } from '@angular/router';
 })
 export class ForumListComponent implements OnInit, OnDestroy {
   forums: Forum[] = [];
-
-  private _subscriptions$: Subscription;
+  forumsSubscription: Subscription;
 
   constructor(
     private _forumsService: ForumService,
@@ -28,17 +27,11 @@ export class ForumListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    const forums$ = this._forumsService
-      .getAll()
-      .map(forums => this.forums = forums);
-
-    this._subscriptions$ = Observable
-      .merge(forums$)
-      .subscribe();
+    this._forumsService.getAll()
+      .subscribe(forums => this.forums = forums);
   }
 
   ngOnDestroy() {
-    this._subscriptions$.unsubscribe();
   }
 
   isLoggedIn(): Observable<boolean> {
