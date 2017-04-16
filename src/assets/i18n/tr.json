@@ -26,6 +26,12 @@
     "copyright": "Telif hakkı 2017 Kanser Forumu. Her hakkı saklıdır."
   },
   "forum": {
+    "sidebar": {
+      "welcome": {
+        "title": "Hoş Geldiniz",
+        "body": "KanserForumu.com 'a hoşgeldiniz. Lütfen bu forumu kullanırken kişisel kimlik bilgilerini kullanmayın."
+      }
+    },
     "edit": {
       "dates": {
         "created": "Oluşturulduğu Tarih",

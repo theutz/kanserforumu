@@ -1,6 +1,6 @@
 <li class="list-group-item">
   <div class="d-flex w-100 justify-content-between align-items-center">
-    <h5 [ngSwitch]="!!route">
+    <h5 class="text-info" [ngSwitch]="!!route">
       <ng-container *ngSwitchCase="false">
         {{ title }}
       </ng-container>
@@ -8,7 +8,7 @@
         <a [routerLink]="route">{{ title }}</a>
       </ng-container>
     </h5>
-    <div *ngIf="!!badgeIcon || !!badge" class="badge badge-primary badge-pill">
+    <div *ngIf="!!badgeIcon || !!badge" class="badge badge-info badge-primary badge-pill">
       <i class="fa fa-fw fa-{{badgeIcon}}" aria-hidden="true"></i> {{ badge }}
     </div>
   </div>
