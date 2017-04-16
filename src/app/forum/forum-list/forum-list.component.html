@@ -2,51 +2,10 @@
   <app-main-content [title]="'forum.list.title' | translate" icon="users">
     <button add-btn title-right (click)="addForum()"></button>
     <ul class="list-group list-group-flush">
-      <app-main-content-item *ngFor="let forum of forums" [route]="'/forum/' + forum.key" [title]="forum.title" [badge]="discussionCount(forum)" badge-icon="comments"
-        >
+      <app-main-content-item *ngFor="let forum of forums" [route]="'/forum/' + forum.key" [title]="forum.title" [badge]="discussionCount(forum)"
+        badge-icon="comments">
         <small class="w-100 text-muted">{{ forum.modifiedDate | amTimeAgo }}</small>
       </app-main-content-item>
     </ul>
   </app-main-content>
 </app-loader>
-<!--<div *ngSwitchCase="true" class="card">
-    <div class="card-header">
-      <h2 class="card-title">
-        <i class="fa fa-users" aria-hidden="true"></i> {{ i18n.title }}
-      </h2>
-      <button *ngIf="isLoggedIn()|async" (click)="addForum()" class="add-forum">
-      <i class="fa fa-plus" aria-hidden="true"></i>
-      {{ i18n.buttons.add }} 
-    </button>
-    </div>
-    <ul class="forums">
-      <li class="forum" *ngFor="let forum of forums">
-        <div class="title">
-          <h5>
-            <a [routerLink]="'/forum/' + forum.key">
-          {{ forum.title }}
-          </a>
-          </h5>
-          <small class="text-muted w-25 text-right">{{ forum.createdDate | amTimeAgo }}</small>
-        </div>
-        <p class="card-text">{{forum.description}}</p>
-        <div class="actions">
-          <a class="card-link view-forum d-flex align-items-center" [routerLink]="'/forum/' + forum.key">
-            <span class="badge badge-primary mr-1">
-              <i class="fa fa-comments fa-fw" aria-hidden="true"></i>
-              {{ discussionCount(forum) }}
-            </span> {{ i18n.buttons.visit }}
-          </a>
-          <div class="ml-auto btn-group">
-            <a [routerLink]="'/forum/' + forum.key + '/edit'" class="edit-forum">
-              <i class="fa fa-edit" aria-hidden="true"></i> {{ i18n.buttons.edit }}
-            </a>
-            <button (click)="removeForum(forum)" class="remove-forum">
-          <i class="fa fa-remove" aria-hidden="true"></i>
-        {{ i18n.buttons.remove }}
-        </button>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>-->

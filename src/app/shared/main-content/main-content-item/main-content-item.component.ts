@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./main-content-item.component.scss']
 })
 export class MainContentItemComponent implements OnInit {
-  @Input() title = '';
-  @Input() badge = '';
+  @Input() title: string;
+  @Input() badge: string;
   @Input('badge-icon') badgeIcon: string;
   @Input() route: string;
 

@@ -5,7 +5,7 @@ import { OnDestroy } from '@angular/core/core';
 import { Discussion } from '../../services/discussion';
 import { DiscussionsService } from '../../services/discussions.service';
 import { ForumService } from '../../services/forum.service';
-import { Observable, ReplaySubject, Subscription } from 'rxjs/Rx';
+import { Observable, ReplaySubject, Subject, Subscription } from 'rxjs/Rx';
 import { Forum } from '../../services/forum';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,13 +18,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ForumViewComponent implements OnInit, OnDestroy {
   forum: Forum;
   discussions: Discussion[];
-  i18n: any;
 
-  private _forum$: Observable<Forum>;
-  private _forum$sub: Subscription;
-  private _discussions$: Observable<Discussion[]>;
-  private _discussions$sub: Subscription;
-  private _key$sub: Subscription;
+  private _unsubscriber = new Subject<void>();
+  private _unsubscribe$ = this._unsubscriber.asObservable();
 
   constructor(
     private _route: ActivatedRoute,
@@ -32,83 +28,68 @@ export class ForumViewComponent implements OnInit, OnDestroy {
     private _discussionService: DiscussionsService,
     private _router: Router,
     private _toast: ToastrService,
-    private _lorem: NgxLoremIpsumService,
-    private _tr: TranslateService
   ) { }
 
   ngOnInit() {
-    this._key$sub = this._getForumKeyFromRoute()
-      .subscribe(key => {
-        this._forum$ = this._forumService.get(key);
-        this._discussions$ = this._discussionService.getByForumKey(key);
-      });
-
-    this._forum$sub = this._forum$
-      .subscribe(forum => this.forum = forum);
-
-    this._tr.get('forum.view')
-      .subscribe(i18n =>
-        this.i18n = i18n
-      );
-
-    this._discussions$sub = this._discussions$
-      .subscribe(discussions =>
-        this.discussions = discussions);
+    this._getForumKeyFromRoute()
+      .takeUntil(this._unsubscribe$)
+      .switchMap(key => this._forumService.get(key))
+      .do(forum => this.forum = forum)
+      .switchMap(forum => this._discussionService.getByForumKey(forum.key))
+      .do(discussions => this.discussions = discussions)
+      .subscribe();
   }
 
   ngOnDestroy() {
-    this._key$sub.unsubscribe();
-    this._forum$sub.unsubscribe();
-    this._discussions$sub.unsubscribe();
+    this._unsubscriber.next(null);
+    this._unsubscriber.complete();
   }
 
   addDiscussion() {
     this._discussionService
-      .add({
-        key: '',
-        forumKey: this.forum.key,
-        createdDate: new Date().toISOString(),
-        modifiedDate: new Date().toISOString(),
-        description: '',
-        title: 'New Discussion'
-      })
+      .add(this._newDiscussion())
+      .first()
       .subscribe(discussion => {
         this._router
-          .navigate([
-            'forum',
-            this.forum.key,
-            'discussion',
-            discussion.key,
-            'edit'
-          ]);
+          .navigate(this.discussionRoute(discussion.key)
+            .concat('edit'));
       });
   }
 
-  editDiscussion(discussion: Discussion) {
-    this._router
-      .navigate(['forums', this.forum.key, 'discussions', discussion.key, 'edit']);
+  editForum() {
+    this._router.navigate(this.editForumRoute());
   }
 
-  removeDiscussion(discussion: Discussion) {
-    this._discussionService
-      .remove(discussion.key)
-      .subscribe(() => {
-        this._toast.success(`Removed ${discussion.title} successfully.`, 'Success!');
-      });
+  editForumRoute(): string[] {
+    return this.forumRoute().concat('edit');
+  }
+
+  forumRoute(): string[] {
+    return ['/forum', this.forum.key];
   }
 
   removeForum() {
-    this._forumService
-      .remove(this.forum.key)
-      .subscribe(() => {
-        this._router.navigate(['/forum'])
-          .then(() => { });
-      });
+    this._forumService.remove(this.forum.key)
+      .first()
+      .subscribe(() => this._router.navigate(['/forum']));
+  }
+
+  discussionRoute(discussionKey: string): any[] {
+    return this.forumRoute().concat('discussion', discussionKey);
   }
 
   private _getForumKeyFromRoute(): Observable<string> {
     return this._route.paramMap
       .map(map => map.get('id'));
   }
+
+  private _newDiscussion(): Discussion {
+    return {
+      key: '', forumKey: this.forum.key,
+      createdDate: new Date().toISOString(),
+      modifiedDate: new Date().toISOString(),
+      description: '', title: 'New Discussion'
+    };
+  };
 
 }

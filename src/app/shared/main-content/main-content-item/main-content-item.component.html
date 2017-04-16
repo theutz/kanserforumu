@@ -8,8 +8,8 @@
         <a [routerLink]="route">{{ title }}</a>
       </ng-container>
     </h5>
-    <div class="badge badge-primary badge-pill">
-      <i *ngIf="!!badgeIcon" class="fa fa-fw fa-{{badgeIcon}}" aria-hidden="true"></i> {{ badge }}
+    <div *ngIf="!!badgeIcon || !!badge" class="badge badge-primary badge-pill">
+      <i class="fa fa-fw fa-{{badgeIcon}}" aria-hidden="true"></i> {{ badge }}
     </div>
   </div>
   <ng-content></ng-content>
