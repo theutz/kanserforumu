@@ -1,10 +1,16 @@
 {
+  "buttons": {
+    "add": "{{item}} Ekle",
+    "save": "{{item}} Kaydet",
+    "edit": "{{item}} Düzenle",
+    "remove": "{{item}} Kaldır",
+    "visit": "{{item}} Git",
+    "login": "Giriş Yap",
+    "logout": "Çıkış"
+  },
   "discussion": {
     "view": {},
     "edit": {
-      "buttons": {
-        "save": "Kaydet"
-      },
       "dates": {
         "created": "Oluşturulduğu Tarih",
         "modified": "Değiştirilme Tarihi"
@@ -21,9 +27,6 @@
   },
   "forum": {
     "edit": {
-      "buttons": {
-        "save": "Kaydet"
-      },
       "dates": {
         "created": "Oluşturulduğu Tarih",
         "modified": "Değiştirilme Tarihi"
@@ -35,12 +38,6 @@
       "title": "{{forumTitle}} Düzenle"
     },
     "list": {
-      "buttons": {
-        "add": "Forum Ekle",
-        "edit": "Düzenle",
-        "remove": "Kaldır",
-        "visit": "Foruma Git"
-      },
       "dates": {
         "created": "Oluşturulduğu Tarih",
         "modified": "Değiştirilme Tarihi"
@@ -48,11 +45,6 @@
       "title": "Forumlar"
     },
     "view": {
-      "buttons": {
-        "add_discussion": "Konu Ekle",
-        "edit": "Düzenle",
-        "remove": "Kaldır"
-      },
       "dates": {
         "created": "Oluşturulduğu Tarih",
         "modified": "Değiştirilme Tarihi"
@@ -73,9 +65,6 @@
     ]
   },
   "login": {
-    "cta": {
-      "login": "Giriş Yap"
-    },
     "notifications": {
       "error": {
         "wrong_provider": {
@@ -90,20 +79,16 @@
     "please": "Lütfen giriş yapın",
     "welcome": "Hoş Geldiniz"
   },
+  "notifications": {
+    "logout": {
+      "body": "Bir dahaki sefere görüşmek üzere!",
+      "title": "Oturum kapatıldı"
+    }
+  },
   "navbar": {
-    "buttons": {
-      "login": "Giriş Yap",
-      "logout": "Çıkış"
-    },
     "links": {
       "forum": "Forum",
       "home": "Ana Sayfa"
-    },
-    "notifications": {
-      "logout": {
-        "body": "Bir dahaki sefere görüşmek üzere!",
-        "title": "Oturum kapatıldı"
-      }
     },
     "title": "Kanser Forumu",
     "welcome": "Hoş Geldin, {{ displayName }}!"

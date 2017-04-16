@@ -13,13 +13,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   title: string;
-  links: Array<{ url: string | string, title: string, icon: string }> = [];
   isCollapsed = true;
   currentUser: UserInfo;
-  i18n: any;
 
   private _currentUser$sub: Subscription;
-  private _i18n$sub: Subscription;
 
   constructor(
     private _trans: TranslateService,
@@ -29,27 +26,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this._currentUser$sub = this._auth.currentUser().subscribe(user => {
-      this.currentUser = user;
-
-      this._i18n$sub = this._trans
-        .get('navbar', {
-          welcome: {
-            displayName: user.displayName
-          }
-        })
-        .subscribe(i18n => {
-          this.i18n = i18n;
-          this.links.push({ title: i18n.links.home, url: '/home', icon: 'home' });
-          this.links.push({ title: i18n.links.forum, url: '/forum', icon: 'users' });
-        });
-    });
+    this._currentUser$sub = this._auth
+      .currentUser()
+      .subscribe(user => { this.currentUser = user; });
   }
 
   toggleNavbar(event?: Event): void {
-    if (!!event) {
-      event.preventDefault();
-    }
+    if (!!event) { event.preventDefault(); }
     this.isCollapsed = !this.isCollapsed;
   }
 
@@ -62,7 +45,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._currentUser$sub.unsubscribe();
-    this._i18n$sub.unsubscribe();
   }
 
   isLoggedIn(): Observable<boolean> {

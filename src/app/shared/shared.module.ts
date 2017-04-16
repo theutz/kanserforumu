@@ -10,6 +10,8 @@ import { MomentModule } from 'angular2-moment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MainContentModule } from './main-content/main-content.module';
+import { ButtonsModule } from './buttons/buttons.module';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   imports: [
@@ -20,11 +22,13 @@ import { MainContentModule } from './main-content/main-content.module';
     MomentModule,
     ToastrModule,
     BrowserAnimationsModule,
-    MainContentModule
+    MainContentModule,
+    ButtonsModule
   ],
   declarations: [
     NavbarComponent,
     FooterComponent,
+    LoaderComponent,
   ],
   exports: [
     NavbarComponent,
@@ -33,7 +37,9 @@ import { MainContentModule } from './main-content/main-content.module';
     MomentModule,
     ToastrModule,
     BrowserAnimationsModule,
-    MainContentModule
+    MainContentModule,
+    ButtonsModule,
+    LoaderComponent
   ]
 })
 export class SharedModule { }

@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./forum-list.component.scss']
 })
 export class ForumListComponent implements OnInit, OnDestroy {
-  forums: Forum[];
+  forums: Forum[] = [];
   i18n: any;
 
   private _forums$sub: Subscription;

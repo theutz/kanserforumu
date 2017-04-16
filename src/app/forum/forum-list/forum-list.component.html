@@ -1,10 +1,7 @@
-<ng-container [ngSwitch]="!!forums && !!i18n">
+<ng-container [ngSwitch]="!!forums">
   <ng-container *ngSwitchCase="true">
-    <app-main-content [title]="i18n.title" icon="users">
-      <button title-right class="btn btn-primary">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-        {{ i18n.buttons.add }}
-      </button>
+    <app-main-content [title]="i18n?.title" icon="users">
+      <button add-btn title-right>{{ i18n?.buttons.add }}</button>
     </app-main-content>
   </ng-container>
   <!--<div *ngSwitchCase="true" class="card">
