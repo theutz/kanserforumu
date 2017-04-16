@@ -1,3 +1,7 @@
-<p>
-  discussion-view works!
-</p>
+<app-loader [loaded]="!!discussion">
+  <app-main-content [title]="discussion?.title" icon="comments">
+    <div *ngIf="discussion?.description" class="card-block">
+      {{discussion?.description}}
+    </div>
+  </app-main-content>
+</app-loader>
