@@ -1,10 +1,10 @@
 {
   "buttons": {
-    "add": "{{item}} Ekle",
-    "save": "{{item}} Kaydet",
-    "edit": "{{item}} Düzenle",
-    "remove": "{{item}} Kaldır",
-    "visit": "{{item}} Git",
+    "add": "Ekle",
+    "save": "Kaydet",
+    "edit": "Düzenle",
+    "remove": "Kaldır",
+    "visit": "Git",
     "login": "Giriş Yap",
     "logout": "Çıkış"
   },

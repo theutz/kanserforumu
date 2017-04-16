@@ -15,10 +15,8 @@ import { Router } from '@angular/router';
 })
 export class ForumListComponent implements OnInit, OnDestroy {
   forums: Forum[] = [];
-  i18n: any;
 
-  private _forums$sub: Subscription;
-  private _i18n$sub: Subscription;
+  private _subscriptions$: Subscription;
 
   constructor(
     private _forumsService: ForumService,
@@ -30,17 +28,17 @@ export class ForumListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this._forums$sub = this._forumsService.getAll()
-      .subscribe(forums => {
-        this.forums = forums;
-        this._i18n$sub = this._trs.get('forum.list')
-          .subscribe(i18n => this.i18n = i18n);
-      });
+    const forums$ = this._forumsService
+      .getAll()
+      .map(forums => this.forums = forums);
+
+    this._subscriptions$ = Observable
+      .merge(forums$)
+      .subscribe();
   }
 
   ngOnDestroy() {
-    this._i18n$sub.unsubscribe();
-    this._forums$sub.unsubscribe();
+    this._subscriptions$.unsubscribe();
   }
 
   isLoggedIn(): Observable<boolean> {

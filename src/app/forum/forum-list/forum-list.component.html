@@ -1,10 +1,9 @@
-<ng-container [ngSwitch]="!!forums">
-  <ng-container *ngSwitchCase="true">
-    <app-main-content [title]="i18n?.title" icon="users">
-      <button add-btn title-right>{{ i18n?.buttons.add }}</button>
-    </app-main-content>
-  </ng-container>
-  <!--<div *ngSwitchCase="true" class="card">
+<app-loader [loaded]="!!forums">
+  <app-main-content [title]="'forum.list.title' | translate" icon="users">
+    <button add-btn title-right></button>
+  </app-main-content>
+</app-loader>
+<!--<div *ngSwitchCase="true" class="card">
     <div class="card-header">
       <h2 class="card-title">
         <i class="fa fa-users" aria-hidden="true"></i> {{ i18n.title }}
@@ -45,7 +44,3 @@
       </li>
     </ul>
   </div>-->
-  <div *ngSwitchCase="false" class="d-flex w-100 h-100 justify-content-center align-items-center">
-    <i class="fa fa-spinner fa-spin fa-4x"></i>
-  </div>
-</ng-container>
