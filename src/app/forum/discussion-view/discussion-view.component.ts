@@ -27,7 +27,7 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
       .map(map => map.get('discussionId'))
       .switchMap(key => this._discussionService.get(key))
       .do(d => this.discussion = d)
-      .subscribe(console.log);
+      .subscribe();
   }
 
   ngOnDestroy() {
