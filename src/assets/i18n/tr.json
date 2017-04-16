@@ -8,7 +8,8 @@
     "login": "Giriş Yap",
     "logout": "Çıkış",
     "back": "Geri",
-    "forums": "Forumlar"
+    "forums": "Forumlar",
+    "forum": "Forumu"
   },
   "discussion": {
     "view": {},
