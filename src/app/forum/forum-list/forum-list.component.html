@@ -1,6 +1,8 @@
 <app-loader [loaded]="!!forums">
   <app-main-content [title]="'forum.list.title' | translate" icon="users">
-    <button add-btn title-right (click)="addForum()"></button>
+    <div class="btn-group btn-group-sm" title-right>
+      <button add-btn (click)="addForum()"></button>
+    </div>
     <ul class="list-group list-group-flush">
       <app-main-content-item *ngFor="let forum of forums" [route]="'/forum/' + forum.key" [title]="forum.title" [badge]="discussionCount(forum)"
         badge-icon="comments">
