@@ -1,8 +1,10 @@
+import { TranslateService } from '@ngx-translate/core';
 import {
   Component,
   AfterViewChecked,
   EventEmitter,
   OnDestroy,
+  OnInit,
   Input,
   Output
 } from '@angular/core';
@@ -18,11 +20,42 @@ declare var tinymce: any;
   selector: 'app-tiny-editor',
   template: `<textarea id="{{elementId}}"></textarea>`
 })
-export class TinyEditorComponent implements AfterViewChecked, OnDestroy {
+export class TinyEditorComponent implements OnInit, AfterViewChecked, OnDestroy {
   @Input() elementId: String;
   @Output() onEditorContentChange = new EventEmitter();
 
   editor;
+
+  constructor(
+    private _translate: TranslateService
+  ) { }
+
+  ngOnInit() {
+
+  }
+
+  get _tinymceConfig() {
+    const config: any = {
+      selector: '#' + this.elementId,
+      plugins: ['link', 'table'],
+      menubar: false,
+      statusbar: false,
+      skin_url: '/assets/skins/lightgray',
+      setup: editor => {
+        this.editor = editor;
+        editor.on('keyup change', () => {
+          const content = editor.getContent();
+          this.onEditorContentChange.emit(content);
+        });
+      }
+    };
+
+    if (this._translate.getBrowserLang() === 'tr') {
+      config.language_url = '/assets/i18n/tinymce/tr_TR.js';
+    }
+
+    return config;
+  }
 
   ngAfterViewChecked() {
     this._initTinymce();
@@ -30,18 +63,7 @@ export class TinyEditorComponent implements AfterViewChecked, OnDestroy {
 
   private _initTinymce() {
     if (this.editor === undefined) {
-      tinymce.init({
-        selector: '#' + this.elementId,
-        plugins: ['link', 'table'],
-        skin_url: '/assets/skins/lightgray',
-        setup: editor => {
-          this.editor = editor;
-          editor.on('keyup change', () => {
-            const content = editor.getContent();
-            this.onEditorContentChange.emit(content);
-          });
-        }
-      });
+      tinymce.init(this._tinymceConfig);
     }
   }
 

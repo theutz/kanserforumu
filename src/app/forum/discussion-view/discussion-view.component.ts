@@ -30,6 +30,10 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
+  keyupHandler(event: Event) {
+    console.log(event);
+  }
+
   ngOnDestroy() {
     this._unsubscriber.next(null);
     this._unsubscriber.complete();
