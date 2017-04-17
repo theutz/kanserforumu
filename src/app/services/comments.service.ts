@@ -34,18 +34,17 @@ export class CommentsService {
         ))
       .switchMap(() => this._db
         .object(`/discussions/${comment.discussionKey}/commentKeys/${comment.key}`)
-        .set(true)
-      )
+        .set(true))
       .switchMap(() => Observable.of(comment));
-    // .map(ref => ref.key)
-    // .do(console.log)
-    // .do(key => comment.key = key)
-    // .do(console.log)
-    // .map(key => `${this._base}/${key}`)
-    // .do(console.log)
-    // .switchMap(url => Observable.from(this._db.object(url).update(comment)))
-    // .do(console.log)
-    // .switchMap(() => Observable.of(comment));
+  }
+
+  remove(comment: Comment): Observable<Comment> {
+    return Observable.from(
+      this._db.object(this._base + '/' + comment.key).remove())
+      .switchMap(() => Observable.from(
+        this._db.object(`/discussions/${comment.discussionKey}/commentKeys/${comment.key}`)
+          .remove()))
+      .switchMap(() => Observable.of(comment));
   }
 
 }

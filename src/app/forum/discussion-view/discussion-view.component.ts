@@ -73,6 +73,14 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
       });
   }
 
+  removeComment(comment: Comment) {
+    this._commentsService.remove(comment)
+      .first()
+      .subscribe(c => {
+        this._toast.success('Comment removed');
+      });
+  }
+
   keyupHandler(content) {
     this.newComment.body = content;
   }
