@@ -1,3 +1,4 @@
+import { TinyEditorComponent } from '../../shared/tiny-editor/tiny-editor.component';
 import { ToastrService } from 'ngx-toastr/toastr-service';
 import { CommentsService } from '../../services/comments.service';
 import { Comment } from '../../services/comment';
@@ -5,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { Discussion } from '../../services/discussion';
 import { DiscussionsService } from '../../services/discussions.service';
 import { UserInfo } from '../../services/user-info';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs/Rx';
 
@@ -20,6 +21,9 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
   user: UserInfo;
   newComment: Comment;
   showEditor = true;
+
+  @ViewChild(TinyEditorComponent)
+  tiny: TinyEditorComponent;
 
   readonly blankComment: Comment = {
     key: '',
@@ -38,7 +42,7 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _auth: AuthService,
     private _commentsService: CommentsService,
-    private _toast: ToastrService
+    private _toast: ToastrService,
   ) {
     this.newComment = this.blankComment;
   }
@@ -65,7 +69,7 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
       .first()
       .subscribe(x => {
         this._toast.success('Comment added');
-        this.showEditor = false;
+        this.tiny.editor.setContent('');
       });
   }
 
