@@ -6,6 +6,7 @@ import { AddButtonComponent } from './add-button/add-button.component';
 import { EditButtonComponent } from './edit-button/edit-button.component';
 import { RemoveButtonComponent } from './remove-button/remove-button.component';
 import { BackButtonComponent } from './back-button/back-button.component';
+import { SaveButtonComponent } from './save-button/save-button.component';
 
 @NgModule({
   imports: [
@@ -17,12 +18,14 @@ import { BackButtonComponent } from './back-button/back-button.component';
     EditButtonComponent,
     RemoveButtonComponent,
     BackButtonComponent,
+    SaveButtonComponent,
   ],
   exports: [
     AddButtonComponent,
     EditButtonComponent,
     RemoveButtonComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    SaveButtonComponent
   ]
 })
 export class ButtonsModule { }

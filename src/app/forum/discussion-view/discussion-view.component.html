@@ -1,12 +1,20 @@
-<app-loader [loaded]="!!discussion">
+<app-loader [loaded]="!!discussion && !!comments">
   <app-main-content [title]="discussion?.title" icon="comments">
     <div *ngIf="discussion?.description" class="card-block">
       {{discussion?.description}}
     </div>
     <ul items class="list-group list-group-flush">
-      <app-main-content-item></app-main-content-item>
+      <app-main-content-item *ngFor="let comment of comments">
+        <div [innerHtml]="comment.body"></div>
+        <small class="w-100">{{ comment.createdDate | amTimeAgo}}</small>
+      </app-main-content-item>
     </ul>
   </app-main-content>
-  <app-tiny-editor class="d-block my-2" [elementId]="'my-editor'" (onEditorContentChange)="keyupHandler($event)">
-  </app-tiny-editor>
+  <app-loader [loaded]="!!user">
+    <ng-container *ngIf="showEditor">
+      <app-tiny-editor class="d-block my-4" [elementId]="'my-editor'" (onEditorContentChange)="keyupHandler($event)"></app-tiny-editor>
+      <button class="mr-1" save-btn (click)="addComment()"></button>
+      <small class="text-muted" *ngIf="!!user?.email">Commenting as {{ user?.email }}</small>
+    </ng-container>
+  </app-loader>
 </app-loader>

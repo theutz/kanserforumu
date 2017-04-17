@@ -5,4 +5,5 @@ export interface Discussion {
   createdDate: string;
   modifiedDate: string;
   forumKey: string;
+  commentKeys?: [{ [key: string]: string }];
 }

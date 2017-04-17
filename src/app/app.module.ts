@@ -14,6 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationHandler } from '@ngx-translate/core';
+import { CommentsService } from './services/comments.service';
 import { CarouselModule } from 'ng2-bootstrap/carousel';
 import { ForumModule } from './forum/forum.module';
 import { AngularFireModule } from 'angularfire2';
@@ -70,7 +71,8 @@ export function HttpLoaderFactory(http: Http) {
     AuthGuard,
     NgxLoremIpsumService,
     ForumResolver,
-    DiscussionResolver
+    DiscussionResolver,
+    CommentsService
   ],
   bootstrap: [
     AppComponent

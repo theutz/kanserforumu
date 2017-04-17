@@ -18,10 +18,11 @@ declare var tinymce: any;
 
 @Component({
   selector: 'app-tiny-editor',
-  template: `<textarea id="{{elementId}}"></textarea>`
+  template: `<textarea id="{{elementId}}">{{content}}</textarea>`
 })
 export class TinyEditorComponent implements OnInit, AfterViewChecked, OnDestroy {
   @Input() elementId: String;
+  @Input() content: String;
   @Output() onEditorContentChange = new EventEmitter();
 
   editor;
@@ -31,7 +32,6 @@ export class TinyEditorComponent implements OnInit, AfterViewChecked, OnDestroy 
   ) { }
 
   ngOnInit() {
-
   }
 
   get _tinymceConfig() {
