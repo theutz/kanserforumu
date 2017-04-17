@@ -12,6 +12,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MainContentModule } from './main-content/main-content.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { LoaderComponent } from './loader/loader.component';
+import { TinyEditorComponent } from './tiny-editor/tiny-editor.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { LoaderComponent } from './loader/loader.component';
     NavbarComponent,
     FooterComponent,
     LoaderComponent,
+    TinyEditorComponent,
   ],
   exports: [
     NavbarComponent,
@@ -39,7 +41,8 @@ import { LoaderComponent } from './loader/loader.component';
     BrowserAnimationsModule,
     MainContentModule,
     ButtonsModule,
-    LoaderComponent
+    LoaderComponent,
+    TinyEditorComponent
   ]
 })
 export class SharedModule { }

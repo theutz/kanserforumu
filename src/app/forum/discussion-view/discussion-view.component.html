@@ -7,4 +7,6 @@
       <app-main-content-item></app-main-content-item>
     </ul>
   </app-main-content>
+  <app-tiny-editor [elementId]="'my-editor'" (onEditorContentChange)="keyupHandler($event)">
+  </app-tiny-editor>
 </app-loader>
