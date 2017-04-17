@@ -20,7 +20,7 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
   comments: Comment[];
   user: UserInfo;
   newComment: Comment;
-  showEditor = true;
+  hideEditor = true;
 
   @ViewChild(TinyEditorComponent)
   tiny: TinyEditorComponent;
@@ -71,6 +71,10 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
         this._toast.success('Comment added');
         this.tiny.editor.setContent('');
       });
+  }
+
+  onEditorInit() {
+    this.hideEditor = false;
   }
 
   removeComment(comment: Comment) {

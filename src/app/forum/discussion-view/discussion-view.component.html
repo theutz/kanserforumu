@@ -1,5 +1,8 @@
 <app-loader [loaded]="!!discussion && !!comments">
   <app-main-content [title]="discussion?.title" icon="comments">
+    <div class="btn-group btn-group-sm" title-right>
+      <button edit-btn></button>
+    </div>
     <div *ngIf="discussion?.description" class="card-block">
       {{discussion?.description}}
     </div>
@@ -16,10 +19,10 @@
     </ul>
   </app-main-content>
   <app-loader [loaded]="!!user">
-    <ng-container *ngIf="showEditor">
-      <app-tiny-editor class="d-block my-4" [elementId]="'my-editor'" (onEditorContentChange)="keyupHandler($event)"></app-tiny-editor>
+    <div [hidden]="hideEditor">
+      <app-tiny-editor class="d-block my-4" [elementId]="'my-editor'" (onEditorInit)="onEditorInit($event)" (onEditorContentChange)="keyupHandler($event)"></app-tiny-editor>
       <button class="mr-1" save-btn (click)="addComment()"></button>
       <small class="text-muted" *ngIf="!!user?.email">Commenting as {{ user?.email }}</small>
-    </ng-container>
+    </div>
   </app-loader>
 </app-loader>

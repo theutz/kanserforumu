@@ -24,6 +24,7 @@ export class TinyEditorComponent implements OnInit, AfterViewChecked, OnDestroy 
   @Input() elementId: String;
   @Input() content: String;
   @Output() onEditorContentChange = new EventEmitter();
+  @Output() onEditorInit = new EventEmitter();
 
   editor;
 
@@ -43,6 +44,11 @@ export class TinyEditorComponent implements OnInit, AfterViewChecked, OnDestroy 
       skin_url: '/assets/skins/lightgray',
       setup: editor => {
         this.editor = editor;
+
+        editor.on('init', () => {
+          this.onEditorInit.emit();
+        });
+
         editor.on('keyup change', () => {
           const content = editor.getContent();
           this.onEditorContentChange.emit(content);
