@@ -11,8 +11,9 @@ export class BackButtonComponent implements OnInit {
   @HostBinding('class.btn') btn = true;
   @HostBinding('class.btn-info') btnColor = true;
 
-  @HostListener('click')
-  onClick() {
+  @HostListener('click', ['$event'])
+  onClick(event: Event) {
+    event.preventDefault();
     this._location.back();
   }
 

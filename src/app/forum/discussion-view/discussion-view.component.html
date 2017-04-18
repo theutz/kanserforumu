@@ -18,11 +18,7 @@
       </app-main-content-item>
     </ul>
   </app-main-content>
-  <app-loader [loaded]="!!user">
-    <div [hidden]="hideEditor">
-      <app-tiny-editor class="d-block my-4" [elementId]="'my-editor'" (onEditorInit)="onEditorInit($event)" (onEditorContentChange)="keyupHandler($event)"></app-tiny-editor>
-      <button class="mr-1" save-btn (click)="addComment()"></button>
-      <small class="text-muted" *ngIf="!!user?.email">Commenting as {{ user?.email }}</small>
-    </div>
-  </app-loader>
+  <app-tiny-editor class="d-block my-4" [elementId]="'my-editor'" (onEditorContentChange)="keyupHandler($event)"></app-tiny-editor>
+  <button class="mr-1" save-btn (click)="addComment()"></button>
+  <small class="text-muted" *ngIf="!!user?.email">{{ 'discussion.view.commentingAs' | translate:{value: user?.email} }}</small>
 </app-loader>

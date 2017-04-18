@@ -68,9 +68,8 @@ export class TinyEditorComponent implements OnInit, AfterViewChecked, OnDestroy 
   }
 
   private _initTinymce() {
-    if (this.editor === undefined) {
-      tinymce.init(this._tinymceConfig);
-    }
+    if (this.editor !== undefined) { return; }
+    tinymce.init(this._tinymceConfig);
   }
 
   ngOnDestroy() {

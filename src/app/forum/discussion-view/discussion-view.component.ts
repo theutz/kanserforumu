@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { Discussion } from '../../services/discussion';
 import { DiscussionsService } from '../../services/discussions.service';
 import { UserInfo } from '../../services/user-info';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs/Rx';
 
@@ -71,10 +71,6 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
         this._toast.success('Comment added');
         this.tiny.editor.setContent('');
       });
-  }
-
-  onEditorInit() {
-    this.hideEditor = false;
   }
 
   removeComment(comment: Comment) {

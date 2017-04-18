@@ -12,7 +12,9 @@
     "forum": "Forumu"
   },
   "discussion": {
-    "view": {},
+    "view": {
+      "commentingAs": "{{value}} olarak yorum yaparken"
+    },
     "edit": {
       "dates": {
         "created": "Oluşturulduğu Tarih",

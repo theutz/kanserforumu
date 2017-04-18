@@ -13,33 +13,27 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class DiscussionEditComponent implements OnInit, OnDestroy {
   discussion: Discussion;
-  i18n: any;
 
-  private _destroySub: Subject<void> = new Subject<void>();
-  private _destroy$: Observable<void>;
+  private _unsubscriber = new Subject<void>();
+  private _destroy$ = this._unsubscriber.asObservable();
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _dService: DiscussionsService,
-    private _trans: TranslateService,
     private _toast: ToastrService
-  ) {
-    this._destroy$ = this._destroySub.asObservable();
-  }
+  ) { }
 
   ngOnInit() {
     this._getDiscussionKeyFromRoute()
+      .takeUntil(this._destroy$)
       .switchMap(key => this._dService.get(key))
-      .takeUntil(this._destroy$)
       .subscribe(d => this.discussion = d);
-    this._trans.get('discussion.edit')
-      .takeUntil(this._destroy$)
-      .subscribe(t => this.i18n = t);
   }
 
   ngOnDestroy() {
-    this._destroySub.next();
+    this._unsubscriber.next();
+    this._unsubscriber.complete();
   }
 
   onSubmit(discussion: Discussion) {
@@ -47,13 +41,12 @@ export class DiscussionEditComponent implements OnInit, OnDestroy {
       .first()
       .map(() =>
         Observable.fromPromise(
-          this._router.navigate(['forum', discussion.forumKey,
-            'discussion', discussion.key])))
+          this._router.navigate(['/discussion', discussion.key])))
       .subscribe(() => this._toast.success(`${discussion.title} updated`, 'Success'));
   }
 
   private _getDiscussionKeyFromRoute(): Observable<string> {
     return this._route.paramMap
-      .map(p => p.get('discussionId'));
+      .map(p => p.get('id'));
   }
 }
