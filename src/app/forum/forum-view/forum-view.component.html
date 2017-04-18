@@ -5,6 +5,9 @@
       <button edit-btn (click)="editForum()"></button>
       <button remove-btn (click)="removeForum()"></button>
     </div>
+    <div *ngIf="!!forum?.description" class="card-block">
+      {{ forum?.description }}
+    </div>
     <ul class="list-group list-group-flush">
       <app-main-content-item [title]="discussion.title" *ngFor="let discussion of discussions" [route]="'/discussion/' + discussion.key">
         <small class="text-muted">{{discussion.modifiedDate | amTimeAgo}}</small>
