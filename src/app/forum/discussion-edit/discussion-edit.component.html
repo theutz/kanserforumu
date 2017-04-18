@@ -1,0 +1,36 @@
+<app-loader [loaded]="!!discussion">
+  <ng-container *ngIf="!!discussion">
+    <form (ngSubmit)="onSubmit(theForm.value)" #theForm="ngForm">
+      <input type="hidden" name="key" [(ngModel)]="discussion.key">
+      <input type="hidden" name="forumKey" [(ngModel)]="discussion.forumKey">
+      <div class="card">
+        <div class="card-header">
+          <div class="form-group">
+            <label for="title">{{ 'discussion.edit.labels.title' | translate }}</label>
+            <input class="form-control" type="text" name="title" [(ngModel)]="discussion.title">
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="form-group">
+            <label for="description">{{ 'discussion.edit.labels.description' | translate }}</label>
+            <textarea [(ngModel)]="discussion.description" name="description" rows="5" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <div>
+            <i class="fa fa-fw fa-calendar-plus-o" aria-hidden="true"></i>
+            <strong>{{ 'discussion.edit.dates.created' | translate }}:</strong> {{ discussion.createdDate | amCalendar }}
+          </div>
+          <div>
+            <i class="fa fa-fw fa-calendar-check-o" aria-hidden="true"></i>
+            <strong>{{ 'discussion.edit.dates.modified' | translate }}:</strong> {{ discussion.modifiedDate | amCalendar }}
+          </div>
+        </div>
+      </div>
+      <div class="d-flex w-100 my-4 justify-content-between align-items-center">
+        <button back-btn></button>
+        <button save-btn type="submit"></button>
+      </div>
+    </form>
+  </ng-container>
+</app-loader>

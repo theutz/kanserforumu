@@ -1,0 +1,13 @@
+<app-loader [loaded]="!!forums">
+  <app-main-content [title]="'forum.list.title' | translate" icon="users">
+    <div class="btn-group btn-group-sm" title-right>
+      <button add-btn (click)="addForum()"></button>
+    </div>
+    <ul class="list-group list-group-flush">
+      <app-main-content-item *ngFor="let forum of forums" [route]="'/forum/' + forum.key" [title]="forum.title" [badge]="discussionCount(forum)"
+        badge-icon="comments">
+        <small class="w-100 text-muted">{{ forum.modifiedDate | amTimeAgo }}</small>
+      </app-main-content-item>
+    </ul>
+  </app-main-content>
+</app-loader>

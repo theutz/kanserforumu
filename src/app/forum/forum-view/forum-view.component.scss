@@ -1,0 +1,44 @@
+@import "../../../styles";
+.card {
+  @extend .my-4;
+}
+
+.card-header {
+  @extend .d-flex;
+  @extend .justify-content-start;
+}
+
+.btn-group {
+  @extend .ml-auto;
+}
+
+.forum-actions {
+  @extend .btn-group;
+  @extend .btn-group-sm;
+  &>* {
+    @extend .align-self-center;
+  }
+}
+
+button {
+  @extend .btn;
+}
+
+.add-discussion {
+  @extend .btn-primary;
+  @extend .card-link;
+}
+
+.edit-forum {
+  @extend .btn;
+  @extend .btn-secondary;
+}
+
+.remove-discussion {
+  @extend .btn-sm;
+  @extend .btn-danger;
+}
+
+.remove-forum {
+  @extend .btn-danger;
+}

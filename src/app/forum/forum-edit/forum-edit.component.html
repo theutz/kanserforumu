@@ -1,0 +1,33 @@
+<app-loader [loaded]="!!forum">
+  <form (ngSubmit)="onSubmit(theForm.value)" #theForm="ngForm">
+    <input type="hidden" name="key" [(ngModel)]="forum.key">
+    <div class="card">
+      <div class="card-header">
+        <div class="form-group">
+          <label for="title">{{ 'forum.edit.labels.title' | translate }}</label>
+          <input class="form-control" type="text" name="title" [(ngModel)]="forum.title">
+        </div>
+      </div>
+      <div class="card-block">
+        <div class="form-group">
+          <label for="description">{{ 'forum.edit.labels.description' | translate }}</label>
+          <textarea [(ngModel)]="forum.description" name="description" rows="5" class="form-control"></textarea>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <div>
+          <i class="fa fa-fw fa-calendar-plus-o" aria-hidden="true"></i>
+          <strong>{{ 'forum.edit.dates.created' | translate }}:</strong> {{ forum.createdDate | amCalendar }}
+        </div>
+        <div>
+          <i class="fa fa-fw fa-calendar-check-o" aria-hidden="true"></i>
+          <strong>{{ 'forum.edit.dates.modified' | translate }}:</strong> {{ forum.modifiedDate | amCalendar }}
+        </div>
+      </div>
+    </div>
+    <div class=" my-3 d-flex justify-content-between">
+      <button back-btn></button>
+      <button save-btn type="submit"></button>
+    </div>
+  </form>
+</app-loader>

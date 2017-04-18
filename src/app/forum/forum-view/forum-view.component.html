@@ -1,0 +1,17 @@
+<app-loader [loaded]="!!forum && !!discussions">
+  <app-main-content [title]="forum?.title" icon="users">
+    <div class="btn-group btn-group-sm" title-right>
+      <button add-btn (click)="addDiscussion()"></button>
+      <button edit-btn (click)="editForum()"></button>
+      <button remove-btn (click)="removeForum()"></button>
+    </div>
+    <div *ngIf="!!forum?.description" class="card-block">
+      {{ forum?.description }}
+    </div>
+    <ul class="list-group list-group-flush">
+      <app-main-content-item [title]="discussion.title" *ngFor="let discussion of discussions" [route]="'/discussion/' + discussion.key">
+        <small class="text-muted">{{discussion.modifiedDate | amTimeAgo}}</small>
+      </app-main-content-item>
+    </ul>
+  </app-main-content>
+</app-loader>

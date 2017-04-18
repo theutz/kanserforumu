@@ -1,0 +1,10 @@
+<ng-container [ngSwitch]="loaded">
+  <ng-container *ngSwitchCase="true">
+    <ng-content></ng-content>
+  </ng-container>
+  <ng-container *ngSwitchCase="false">
+    <div class="w-100 d-flex align-items-center justify-content-center">
+      <i class="fa fa-spinner fa-spin fa-4x text-primary" aria-hidden="true"></i>
+    </div>
+  </ng-container>
+</ng-container>

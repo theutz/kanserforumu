@@ -1,0 +1,20 @@
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+.display-1 {
+  @extend .display-1;
+  font-family: $brand-font-display;
+}
+
+.display-2 {
+  @extend .display-2;
+  font-family: $brand-font-display;
+}
+
+.display-3 {
+  @extend .display-3;
+  font-family: $brand-font-display;
+}
+
+.display-4 {
+  @extend .display-4;
+  font-family: $brand-font-display;
+}

@@ -1,0 +1,15 @@
+<div class="card card-info card-inverse">
+  <div class="card-block">
+    <h5 class="text-white" translate="forum.sidebar.welcome.title"></h5>
+    {{ 'forum.sidebar.welcome.body' | translate }}
+  </div>
+</div>
+<div class="btn-group btn-group-sm my-2">
+  <button back-btn></button>
+  <a class="btn btn-primary text-white" routerLink="/forum">
+    <i class="fa fa-users ml-1" aria-hidden="true"></i> {{ 'buttons.forums' | translate }}
+  </a>
+  <a *ngIf="!!forum" [routerLink]="'/forum/' + forum.key" class="btn btn-primary text-white">
+    <i class="fa fa-chevron-up" aria-hidden="true"></i> {{ 'buttons.forum' | translate }}
+  </a>
+</div>

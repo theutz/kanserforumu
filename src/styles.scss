@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina|Bree+Serif|Catamaran:500');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaina|Bree+Serif|Catamaran:400,700');
 @import "styles/brand";
 @import "styles/variables";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/ngx-toastr/toastr";
+@import "styles/overrides";
+@import "styles/shared";

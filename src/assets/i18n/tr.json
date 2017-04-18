@@ -1,10 +1,107 @@
 {
-  "BRAND": {
-    "SITE_NAME": "Kanser Forumu"
+  "buttons": {
+    "add": "Ekle",
+    "save": "Kaydet",
+    "edit": "Düzenle",
+    "remove": "Kaldır",
+    "visit": "Git",
+    "login": "Giriş Yap",
+    "logout": "Çıkış",
+    "back": "Geri",
+    "forums": "Forumlar",
+    "forum": "Forumu"
   },
-  "HOME": {
-    "HERO": {
-      "TITLE": "Birlikte umult bul"
+  "discussion": {
+    "view": {
+      "commentingAs": "{{value}} olarak yorum yaparken"
+    },
+    "edit": {
+      "dates": {
+        "created": "Oluşturulduğu Tarih",
+        "modified": "Değiştirilme Tarihi"
+      },
+      "labels": {
+        "description": "Açıklama",
+        "title": "Konu Adı"
+      },
+      "title": "{{discussionTitle}} Düzenle"
     }
+  },
+  "footer": {
+    "copyright": "Telif hakkı 2017 Kanser Forumu. Her hakkı saklıdır."
+  },
+  "forum": {
+    "sidebar": {
+      "welcome": {
+        "title": "Hoş Geldiniz",
+        "body": "KanserForumu.com 'a hoşgeldiniz. Lütfen bu forumu kullanırken kişisel kimlik bilgilerini kullanmayın."
+      }
+    },
+    "edit": {
+      "dates": {
+        "created": "Oluşturulduğu Tarih",
+        "modified": "Değiştirilme Tarihi"
+      },
+      "labels": {
+        "description": "Açıklama",
+        "title": "Forum Adı"
+      },
+      "title": "{{forumTitle}} Düzenle"
+    },
+    "list": {
+      "dates": {
+        "created": "Oluşturulduğu Tarih",
+        "modified": "Değiştirilme Tarihi"
+      },
+      "title": "Forumlar"
+    },
+    "view": {
+      "dates": {
+        "created": "Oluşturulduğu Tarih",
+        "modified": "Değiştirilme Tarihi"
+      }
+    }
+  },
+  "home": {
+    "slides": [{
+        "body": "Kanserle yalnız yüzleşmek zorunda değilsiniz",
+        "photo_url": "/assets/father-and-child-on-dock.jpg",
+        "title": "Kanser Forumu"
+      },
+      {
+        "body": "Kanserle yalnız yüzleşmek zorunda değilsiniz",
+        "photo_url": "/assets/istanbul-sunset.jpg",
+        "title": "Kanser Forumu"
+      }
+    ]
+  },
+  "login": {
+    "notifications": {
+      "error": {
+        "wrong_provider": {
+          "title": "Giriş yaparken hata oluştu"
+        }
+      },
+      "success": {
+        "body": "Hoş geldin, {{ displayName }}!",
+        "title": "Giriş başarılı"
+      }
+    },
+    "please": "Lütfen giriş yapın",
+    "welcome": "Hoş Geldiniz"
+  },
+  "notifications": {
+    "logout": {
+      "body": "Bir dahaki sefere görüşmek üzere!",
+      "title": "Oturum kapatıldı"
+    }
+  },
+  "navbar": {
+    "links": {
+      "forum": "Forum",
+      "home": "Ana Sayfa"
+    },
+    "title": "Kanser Forumu",
+    "welcome": "Hoş Geldin, {{ displayName }}!"
   }
 }

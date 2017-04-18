@@ -10,11 +10,32 @@
   }
 }
 
-.jumbotron {
-  @extend .jumbotron-fluid;
-  background-color: mix($brand-primary, $white);
-  h1 {
-    @extend .display-1;
-    color: $brand-primary;
+/deep/ .item.carousel-item>.item,
+/deep/ .item.carousel-item>.item img {
+  min-width: 100%;
+}
+
+/deep/ .item.carousel-item>.item {
+  min-width: 100%;
+  max-height: 50vh;
+  @include media-breakpoint-up(sm) {
+    max-height: 400px;
+  }
+}
+
+/deep/ .item.carousel-item>.item>.img-holder {
+  margin-top: -100%;
+  margin-left: -100%;
+  @include media-breakpoint-up(sm) {
+    margin-top: -50%;
+    margin-left: -50%;
+  }
+  @include media-breakpoint-up(md) {
+    margin-top: -20%;
+    margin-left: -20%;
+  }
+  @include media-breakpoint-up(lg) {
+    // margin-top: 0;
+    margin-left: 0;
   }
 }
