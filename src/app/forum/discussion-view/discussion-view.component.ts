@@ -64,10 +64,6 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
       .subscribe(u => this.user = u);
   }
 
-  editDiscussion() {
-    this._router.navigate(['/'])
-  }
-
   addComment() {
     this._commentsService.add(this.newComment)
       .first()

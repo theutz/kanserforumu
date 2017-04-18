@@ -1,7 +1,7 @@
 <app-loader [loaded]="!!discussion && !!comments">
   <app-main-content [title]="discussion?.title" icon="comments">
     <div class="btn-group btn-group-sm" title-right>
-      <button edit-btn></button>
+      <a edit-btn [routerLink]="'/discussion/' + discussion?.key + '/edit'"></a>
     </div>
     <div *ngIf="discussion?.description" class="card-block">
       {{discussion?.description}}
