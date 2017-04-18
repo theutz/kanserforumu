@@ -51,8 +51,7 @@ export class ForumViewComponent implements OnInit, OnDestroy {
       .first()
       .subscribe(discussion => {
         this._router
-          .navigate(this.discussionRoute(discussion.key)
-            .concat('edit'));
+          .navigate(['discussion', discussion.key, 'edit']);
       });
   }
 
@@ -72,10 +71,6 @@ export class ForumViewComponent implements OnInit, OnDestroy {
     this._forumService.remove(this.forum.key)
       .first()
       .subscribe(() => this._router.navigate(['/forum']));
-  }
-
-  discussionRoute(discussionKey: string): any[] {
-    return this.forumRoute().concat('discussion', discussionKey);
   }
 
   private _getForumKeyFromRoute(): Observable<string> {

@@ -6,7 +6,7 @@
       <button remove-btn (click)="removeForum()"></button>
     </div>
     <ul class="list-group list-group-flush">
-      <app-main-content-item [title]="discussion.title" *ngFor="let discussion of discussions" [route]="discussionRoute(discussion.key)">
+      <app-main-content-item [title]="discussion.title" *ngFor="let discussion of discussions" [route]="'/discussion/' + discussion.key">
         <small class="text-muted">{{discussion.modifiedDate | amTimeAgo}}</small>
       </app-main-content-item>
     </ul>

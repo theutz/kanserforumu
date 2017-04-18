@@ -1,3 +1,4 @@
+import { DiscussionComponent } from './forum/discussion/discussion.component';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -19,9 +20,14 @@ import { DiscussionResolver } from './services/discussion-resolver.service';
         path: 'forum', component: ForumComponent, children: [
           { path: ':id', component: ForumViewComponent, resolve: ForumResolver },
           { path: ':id/edit', component: ForumEditComponent, resolve: ForumResolver },
-          { path: ':id/discussion/:discussionId', component: DiscussionViewComponent, resolve: DiscussionResolver },
-          { path: ':id/discussion/:discussionId/edit', component: DiscussionEditComponent, resolve: DiscussionResolver },
           { path: '', component: ForumListComponent },
+        ]
+      },
+      {
+        path: 'discussion', component: DiscussionComponent, children: [
+          { path: ':id', component: DiscussionViewComponent, resolve: DiscussionResolver },
+          { path: ':id/edit', component: DiscussionEditComponent, resolve: DiscussionResolver },
+          { path: '', redirectTo: '/forum', pathMatch: 'full' }
         ]
       },
       { path: 'login', component: LoginComponent },

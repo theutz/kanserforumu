@@ -13,7 +13,7 @@ export class DiscussionResolver implements Resolve<Discussion> {
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Discussion | Observable<Discussion> | Promise<Discussion> {
-    return this._discussionsService.get(route.paramMap.get('discussionId'));
+    return this._discussionsService.get(route.paramMap.get('id'));
   }
 
 }

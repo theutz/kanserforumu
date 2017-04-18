@@ -50,7 +50,7 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._route.paramMap
       .takeUntil(this._destroy$)
-      .map(map => map.get('discussionId'))
+      .map(map => map.get('id'))
       .do(key => this.newComment.discussionKey = key)
       .switchMap(key => this._discussionService.get(key))
       .do(d => this.discussion = d)
@@ -62,6 +62,10 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
       .takeUntil(this._destroy$)
       .do(u => this.newComment.userKey = u.uid)
       .subscribe(u => this.user = u);
+  }
+
+  editDiscussion() {
+    this._router.navigate(['/'])
   }
 
   addComment() {
