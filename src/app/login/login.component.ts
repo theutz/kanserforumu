@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     const baseKey = 'login.notifications';
     this._auth.loginViaProvider(provider).subscribe(() => {
       const bodyKey = `${baseKey}.success.body`,
-        titleKey = `${baseKey}.success.titlE`;
+        titleKey = `${baseKey}.success.title`;
       this._translate
         .get([bodyKey, titleKey], { provider: provider })
         .subscribe(translation => {
