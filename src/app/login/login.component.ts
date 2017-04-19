@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit {
   }
 
   loginVia(provider: string) {
-    const baseKey = 'LOGIN.NOTIFICATIONS';
+    const baseKey = 'login.notifications';
     this._auth.loginViaProvider(provider).subscribe(() => {
-      const bodyKey = `${baseKey}.SUCCESS.BODY`,
-        titleKey = `${baseKey}.SUCCESS.TITLE`;
+      const bodyKey = `${baseKey}.success.body`,
+        titleKey = `${baseKey}.success.titlE`;
       this._translate
         .get([bodyKey, titleKey], { provider: provider })
         .subscribe(translation => {
@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
     },
       err => {
         if (err.code === 'auth/account-exists-with-different-credential') {
-          const bodyKey = `${baseKey}.ERROR.WRONG_PROVIDER.TITLE`,
-            titleKey = `${baseKey}.ERROR.WRONG_PROVIDER.BODY`;
+          const bodyKey = `${baseKey}.error.wrong_provider.titlE`,
+            titleKey = `${baseKey}.error.wrong_provider.body`;
           this._translate
             .get([bodyKey, titleKey], { attemptedProvider: err.credential.provider })
             .subscribe(trans => {
