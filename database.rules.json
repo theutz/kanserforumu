@@ -1,6 +1,12 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    ".read": true,
+    ".write": "auth != null",
+    "discussions": {
+      ".indexOn": ["forumKey"]
+    },
+    "comments": {
+      ".indexOn": ["discussionKey"]
+    }
   }
 }
