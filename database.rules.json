@@ -1,12 +1,28 @@
 {
   "rules": {
-    ".read": true,
-    ".write": "auth != null",
+    ".read": false,
+    ".write": false,
     "discussions": {
+      ".read": true,
+      ".write": false,
       ".indexOn": ["forumKey"]
     },
     "comments": {
+      ".read": true,
+      ".write": false,
       ".indexOn": ["discussionKey"]
+    },
+    "forums": {
+      ".read": true,
+      ".write": false
+    },
+    "administrators": {
+      ".read": true,
+      ".write": false
+    },
+    "moderators": {
+      ".read": true,
+      ".write": false
     }
   }
 }
