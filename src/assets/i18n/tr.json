@@ -87,6 +87,7 @@
         "title": "Giriş başarılı"
       }
     },
+    "loginWith": "{{value}} ile giriş",
     "please": "Lütfen giriş yapın",
     "welcome": "Hoş Geldiniz"
   },
