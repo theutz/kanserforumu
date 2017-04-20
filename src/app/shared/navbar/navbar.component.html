@@ -1,13 +1,13 @@
 <app-loader [loaded]="!!currentUser">
-  <header class="navbar">
+  <header class="navbar navbar-inverse navbar-toggleable-md bg-primary">
     <nav class="container">
       <div class="brand">
         <button (click)="toggleNavbar($event)" class="navbar-toggler">
         <span id="navbar-toggler" class="navbar-toggler-icon"></span>
       </button>
-        <a routerLink="/home" class="navbar-brand" translate="navbar.title"></a>
+        <a routerLink="/home" class="navbar-brand display-4" translate="navbar.title"></a>
       </div>
-      <div class="navbar-collapse" [collapse]="isCollapsed">
+      <div class="navbar-collapse d-flex align-items-center" [collapse]="isCollapsed">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item mr-2" routerLinkActive="active">
             <a class="nav-link" routerLink="/home">
@@ -22,14 +22,14 @@
         </ul>
         <ng-container [ngSwitch]="isLoggedIn()|async">
           <ng-container *ngSwitchCase="true">
-            <span class="welcome-message" translate="navbar.welcome" [translateParams]="{displayName: currentUser.displayName}"></span>
-            <div class="profile-image">
-              <img [src]="currentUser.photoURL" [alt]="currentUser.displayName">
+            <span class="navbar-text mx-1" translate="navbar.welcome" [translateParams]="{displayName: currentUser.email}"></span>
+            <div *ngIf="!!currentUser.photoUrl" class="profile-image">
+              <img class=".rounded-circle" [src]="currentUser.photoURL" [alt]="currentUser.email">
             </div>
-            <button class="logout" (click)="logout()">{{ 'buttons.logout' | translate }} <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+            <button class="ml-2" logout-btn (click)="logout()"></button>
           </ng-container>
           <ng-container *ngSwitchCase="false">
-            <a routerLink="/login" class="login">{{ 'buttons.login' | translate }} <i class="fa fa-sign-in" aria-hidden="true"></i></a>
+            <a login-btn routerLink="/login"></a>
           </ng-container>
         </ng-container>
       </div>

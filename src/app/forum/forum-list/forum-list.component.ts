@@ -45,7 +45,6 @@ export class ForumListComponent implements OnInit, OnDestroy {
       createdDate: new Date().toISOString(),
       modifiedDate: new Date().toISOString(),
       description: '',
-      discussionKeys: [{}]
     })
       .first()
       .subscribe(forum => {
@@ -61,11 +60,5 @@ export class ForumListComponent implements OnInit, OnDestroy {
         this._toast
           .success(`${forum.title} was removed.`, 'Success');
       });
-  }
-
-  discussionCount(forum: Forum): number {
-    return !!forum.discussionKeys
-      ? Object.keys(forum.discussionKeys).length
-      : 0;
   }
 }

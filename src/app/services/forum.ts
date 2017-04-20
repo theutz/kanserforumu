@@ -7,5 +7,4 @@ export interface Forum {
   createdDate: string;
   modifiedDate: string;
   description: string;
-  discussionKeys: [{ [key: string]: boolean }];
 }

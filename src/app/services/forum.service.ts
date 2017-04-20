@@ -87,7 +87,6 @@ export class ForumService {
       createdDate: new Date().toISOString(),
       modifiedDate: new Date().toISOString(),
       description: '',
-      discussionKeys: null
     };
   }
 }

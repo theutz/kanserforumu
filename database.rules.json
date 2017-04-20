@@ -9,7 +9,7 @@
         "commentKeys": {
           ".read": true,
           // Must be logged in as a moderator or admin
-          ".write": "(auth != null) && (!data.exists() || root.child('moderators').hasChild(auth.uid) || root.child('administrators').hasChild(auth.uid))"
+          ".write": "(auth != null) && (!data.exists() || root.child('moderators').hasChild(auth.uid) || root.child('administrators').hasChild(auth.uid) || root.child('comments').child(data).child('userKey').val() === auth.uid)"
         }
       },
       ".indexOn": ["forumKey"]
