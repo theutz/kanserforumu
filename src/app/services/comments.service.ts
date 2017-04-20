@@ -25,11 +25,12 @@ export class CommentsService {
     }
 
     add(comment: Comment): Observable<Comment> {
-        return Observable.from(this._db.list(this._base).push(null))
+        console.log(comment);
+        return Observable.from(this._db.list(this._base).push(comment))
             .map(ref => ref.key)
             .do(key => comment.key = key)
             .switchMap(key => Observable.from(
-                this._db.object(this._base + '/' + key).set(comment)))
+                this._db.object(this._base + '/' + key).update(comment)))
             .switchMap(() => Observable.of(comment));
     }
 
