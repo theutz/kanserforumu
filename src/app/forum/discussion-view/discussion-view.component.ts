@@ -77,7 +77,6 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
     }
 
     addComment() {
-        console.log(this.user);
         this._commentsService.add(this.newComment)
             .first()
             .subscribe(x => {
