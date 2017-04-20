@@ -5,11 +5,17 @@
     "discussions": {
       ".read": true,
       ".write": false,
+      "$discussion": {
+        "commentKeys": {
+          ".read": true,
+          ".write": "auth != null"
+        }
+      },
       ".indexOn": ["forumKey"]
     },
     "comments": {
       ".read": true,
-      ".write": false,
+      ".write": "auth != null",
       ".indexOn": ["discussionKey"]
     },
     "forums": {
