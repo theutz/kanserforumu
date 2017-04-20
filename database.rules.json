@@ -3,11 +3,20 @@
     ".read": false,
     ".write": false,
     "discussions": {
+      // everybody
       ".read": true,
-      ".write": false,
-      ".indexOn": ["forumKey"]
+      // logged in as moderator/admin
+      ".write": "(auth != null) && (!data.exists() || root.child('moderators').hasChild(auth.uid) || root.child('administrators').hasChild(auth.uid))",
+      ".indexOn": ["forumKey"],
+      "$discussion": {
+        // everybody
+        ".read": true,
+        // logged in as moderator/admin
+        ".write": "(auth != null) && (!data.exists() || root.child('moderators').hasChild(auth.uid) || root.child('administrators').hasChild(auth.uid))"
+      }
     },
     "comments": {
+      // everybody
       ".read": true,
       // logged in as moderator/admin or comment author
       ".write": "(auth != null) && (!data.exists() || root.child('moderators').hasChild(auth.uid) || root.child('administrators').hasChild(auth.uid) || data.child('userKey').val() === auth.uid)",
