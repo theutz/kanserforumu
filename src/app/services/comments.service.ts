@@ -25,7 +25,6 @@ export class CommentsService {
     }
 
     add(comment: Comment): Observable<Comment> {
-        console.log(comment);
         return Observable.from(this._db.list(this._base).push(comment))
             .map(ref => ref.key)
             .do(key => comment.key = key)
