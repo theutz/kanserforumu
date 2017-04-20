@@ -9,9 +9,11 @@
     },
     "comments": {
       ".read": true,
+      // logged in as moderator/admin or comment author
       ".write": "(auth != null) && (!data.exists() || root.child('moderators').hasChild(auth.uid) || root.child('administrators').hasChild(auth.uid) || data.child('userKey').val() === auth.uid)",
       "$comment": {
         ".read": true,
+        // logged in as moderator/admin or comment author
         ".write": "(auth != null) && (!data.exists() || root.child('moderators').hasChild(auth.uid) || root.child('administrators').hasChild(auth.uid) || data.child('userKey').val() === auth.uid)"
       },
       ".indexOn": ["discussionKey"]
