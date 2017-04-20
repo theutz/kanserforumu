@@ -23,9 +23,7 @@
         <ng-container [ngSwitch]="isLoggedIn()|async">
           <ng-container *ngSwitchCase="true">
             <span class="navbar-text mx-1" translate="navbar.welcome" [translateParams]="{displayName: currentUser.email}"></span>
-            <div *ngIf="!!currentUser.photoUrl" class="profile-image">
-              <img class=".rounded-circle" [src]="currentUser.photoURL" [alt]="currentUser.email">
-            </div>
+            <img *ngIf="!!currentUser.photoURL" class="ml-2 rounded-circle img-fluid h-75" [src]="currentUser.photoURL" [alt]="currentUser.email">
             <button class="ml-2" logout-btn (click)="logout()"></button>
           </ng-container>
           <ng-container *ngSwitchCase="false">
