@@ -30,34 +30,28 @@ export class LoginComponent implements OnInit {
 
   login() {
     this._auth.login(this.email, this.password)
+      .subscribe(() => this._onLoginSuccess(), err => this._onLoginError(err));
+  }
+
+  private _onLoginSuccess() {
+    this._translate.get('login.notifications.success')
+      .do(message => this._toast.success(message))
+      .do(x => this._router.navigate(['/forum']))
       .first()
-      .subscribe(console.log, console.error);
+      .subscribe();
+  }
+
+  private _onLoginError(err: any) {
+    this._translate.get('login.notifications.error')
+      .map(message => this._toast.error(message))
+      .do(x => console.error(err))
+      .first()
+      .subscribe();
   }
 
   loginVia(provider: string) {
-    const baseKey = 'login.notifications';
-    this._auth.loginViaProvider(provider).subscribe(() => {
-      const bodyKey = `${baseKey}.success.body`,
-        titleKey = `${baseKey}.success.title`;
-      this._translate
-        .get([bodyKey, titleKey], { provider: provider })
-        .subscribe(translation => {
-          this._router.navigate(['/forum']).then(() => {
-            this._toast.success(translation[bodyKey], translation[titleKey]);
-          });
-        });
-    },
-      err => {
-        if (err.code === 'auth/account-exists-with-different-credential') {
-          const bodyKey = `${baseKey}.error.wrong_provider.titlE`,
-            titleKey = `${baseKey}.error.wrong_provider.body`;
-          this._translate
-            .get([bodyKey, titleKey], { attemptedProvider: err.credential.provider })
-            .subscribe(trans => {
-              this._toast.error(trans[bodyKey], trans[titleKey]);
-            })
-        }
-      }
-    );
+    this._auth.loginViaProvider(provider)
+      .first()
+      .subscribe(() => this._onLoginSuccess(), err => this._onLoginError(err));
   }
 }

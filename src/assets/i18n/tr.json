@@ -76,17 +76,6 @@
     ]
   },
   "login": {
-    "notifications": {
-      "error": {
-        "wrong_provider": {
-          "title": "Giriş yaparken hata oluştu"
-        }
-      },
-      "success": {
-        "body": "Hoş geldin, {{ displayName }}!",
-        "title": "Giriş başarılı"
-      }
-    },
     "labels": {
       "email": "E-posta adresi",
       "password": "Şifre"
