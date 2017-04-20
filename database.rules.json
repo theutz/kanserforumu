@@ -8,7 +8,8 @@
       "$discussion": {
         "commentKeys": {
           ".read": true,
-          ".write": "auth != null"
+          // Must be logged in as a moderator or admin
+          ".write": "(auth != null) && (!data.exists() || root.child('moderators').hasChild(auth.uid) || root.child('administrators').hasChild(auth.uid))"
         }
       },
       ".indexOn": ["forumKey"]
