@@ -3,6 +3,8 @@ import { AuthService } from '../services/auth.service';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserInfo } from '../services/user-info';
+import { Subject, Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  email: string;
+  password: string;
+
+  private _unsbscriber = new Subject<void>();
+  private _destroy$ = this._unsbscriber.asObservable();
 
   constructor(
     private _auth: AuthService,
@@ -19,6 +26,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  login() {
+    this._auth.login(this.email, this.password)
+      .first()
+      .subscribe(console.log, console.error);
   }
 
   loginVia(provider: string) {
@@ -47,5 +60,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
 }

@@ -42,7 +42,7 @@ export class AuthService {
     login(email: string, password: string): Observable<string> {
         const result = new Subject<string>();
         this._initUserInfoSubject();
-        this._afAuth.login({ email: email, password: password })
+        this._afAuth.login({ email: email, password: password }, { provider: AuthProviders.Password, method: AuthMethods.Password })
             .then(() => result.next('success'))
             .catch(err => result.error(err));
         return result.asObservable();

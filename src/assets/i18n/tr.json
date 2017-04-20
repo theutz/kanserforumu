@@ -87,6 +87,11 @@
         "title": "Giriş başarılı"
       }
     },
+    "labels": {
+      "email": "E-posta adresi",
+      "password": "Şifre"
+    },
+    "or": "veya",
     "loginWith": "{{value}} ile giriş",
     "please": "Lütfen giriş yapın",
     "welcome": "Hoş Geldiniz"
