@@ -78,15 +78,14 @@ export class AuthService {
         return this._userInfoSubject
             .switchMap(u => Observable.from(
                 this._db.object(`/administrators/${u.uid}`)))
-            .map(x => x !== undefined);
+            .map(x => x.$value === true);
     }
 
     isModerator(): Observable<boolean> {
         return this._userInfoSubject
             .switchMap(u => Observable.from(
-                this._db.object(`/moderators/${u.uid}`)
-            ))
-            .map(x => x !== undefined);
+                this._db.object(`/moderators/${u.uid}`)))
+            .map(x => x.$value === true);
     }
 
     updateDisplayName(displayName: string): Observable<string> {

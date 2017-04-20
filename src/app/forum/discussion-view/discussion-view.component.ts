@@ -69,9 +69,10 @@ export class DiscussionViewComponent implements OnInit, OnDestroy {
             .takeUntil(this._destroy$)
             .subscribe(x => this.isLoggedIn = x);
 
-        Observable.forkJoin([
-            this._auth.isAdministrator().first(),
-            this._auth.isModerator().first()])
+        Observable.combineLatest([
+            this._auth.isAdministrator(),
+            this._auth.isModerator()])
+            .takeUntil(this._destroy$)
             .subscribe(x => this.canEdit = x[0] || x[1]);
     }
 
